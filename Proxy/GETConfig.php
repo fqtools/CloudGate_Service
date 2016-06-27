@@ -3,21 +3,11 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------GET--------------//
-$Flag1 = $_GET[ 'Flag1'];//备注
-$Server1 = $_GET[ 'Server1'];//服务器
-$Port1 = $_GET[ 'Port1'];//端口
-$Password1 = $_GET[ 'Password1'];//密码
-$Method1 = $_GET[ 'Method1'];//方式
-$Flag2 = $_GET[ 'Flag2'];//备注
-$Server2 = $_GET[ 'Server2'];//服务器
-$Port2 = $_GET[ 'Port2'];//端口
-$Password2 = $_GET[ 'Password2'];//密码
-$Method2 = $_GET[ 'Method2'];//方式
-$Flag3 = $_GET[ 'Flag3'];//备注
-$Server3 = $_GET[ 'Server3'];//服务器
-$Port3 = $_GET[ 'Port3'];//端口
-$Password3 = $_GET[ 'Password3'];//密码
-$Method3 = $_GET[ 'Method3'];//方式
+$Flag = $_GET[ 'Flag'];//备注
+$Server1 = $_GET[ 'Server'];//服务器
+$Port = $_GET[ 'Port'];//端口
+$Password = $_GET[ 'Password'];//密码
+$Method = $_GET[ 'Method'];//方式
 //-------------通用-------------//
 $NAME = "UPlus";            //名称
 $DNS = ",force-remote-dns"; //其他
@@ -59,8 +49,6 @@ echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
 echo "$Flag1 = custom,$Server1,$Port1,$Method1,$Password1\r\n";
-echo "$Flag2 = custom,$Server2,$Port2,$Method2,$Password2\r\n";
-echo "$Flag3 = custom,$Server3,$Port3,$Method3,$Password3\r\n";
 echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
@@ -315,11 +303,11 @@ echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
 echo "$Flag1 = custom,$Server1,$Port1,$Method1,$Password1,$Module\r\n";
-echo "$Flag2 = custom,$Server2,$Port2,$Method2,$Password2,$Module\r\n";
-echo "$Flag3 = custom,$Server3,$Port3,$Method3,$Password3,$Module\r\n";
+echo "SG = custom,127.0.0.1,80,aes-256-cfb,Password1024.,$Module\r\n";
+echo "KR = custom,127.0.0.1,80,aes-256-cfb,Password1024.,$Module\r\n";
 echo "[Proxy Group]\r\n";
-echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
-echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "Proxy = select, $Flag1, SG, KR\r\n";
+echo "AutoGroup = url-test, SG, KR, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 echo "[Host]";
 echo"\r\n# HOSTS\r\n";
 while(!feof($HOSTS))
