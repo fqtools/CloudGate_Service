@@ -13,6 +13,7 @@ $Config7 = $_GET['Config7'];//配置
 $Config8 = $_GET['Config8'];//配置
 $Config9 = $_GET['Config9'];//配置
 $Config0 = $_GET['Config0'];//配置
+$Flag = $_GET['Flag'];//配置
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 $DNS = ",force-remote-dns"; //其他
@@ -69,7 +70,7 @@ echo "$Config8\r\n";
 echo "$Config9\r\n";
 echo "$Config0\r\n";
 echo "[Proxy Group]\r\n";
-echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
+echo "Proxy = select, $Flag\r\n";
 echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
