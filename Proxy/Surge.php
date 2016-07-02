@@ -96,6 +96,7 @@ echo"# GFWList\r\n";
 while(!feof($GFWList))
 {
 echo trim(fgets($GFWList)).$ProxyRU.$DNS."\r\n"; 
+}
 {
 fclose($GFWList);
 }
@@ -109,10 +110,11 @@ echo trim(fgets($DIRECT)).$DIRECTRU."\r\n";
 fclose($DIRECT);
 }
 //REJECT
-echo"# REJECT\r\n";
+echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
 echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
+}
 {
 fclose($REJECT);
 }
@@ -141,6 +143,4 @@ echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,Proxy";
 exit();
-}
-}
 //--------------END-------------//
