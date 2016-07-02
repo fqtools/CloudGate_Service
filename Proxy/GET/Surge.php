@@ -3,17 +3,21 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
-$Config1 = $_GET['Config1'];//配置
-$Config2 = $_GET['Config2'];//配置
-$Config3 = $_GET['Config3'];//配置
-$Config4 = $_GET['Config4'];//配置
-$Config5 = $_GET['Config5'];//配置
-$Config6 = $_GET['Config6'];//配置
-$Config7 = $_GET['Config7'];//配置
-$Config8 = $_GET['Config8'];//配置
-$Config9 = $_GET['Config9'];//配置
-$Config0 = $_GET['Config0'];//配置
-$Flag = $_GET['Flag'];//配置
+$Flag1 = $_GET['Flag1'];//配置
+$Server1 = $_GET['Server1'];//配置
+$Port1 = $_GET['Port1'];//配置
+$Method1 = $_GET['Method1'];//配置
+$Password1 = $_GET['Password1'];//配置
+$Flag2 = $_GET['Flag2'];//配置
+$Server2 = $_GET['Server2'];//配置
+$Port2 = $_GET['Port2'];//配置
+$Method2 = $_GET['Method2'];//配置
+$Password2 = $_GET['Password2'];//配置
+$Flag3 = $_GET['Flag3'];//配置
+$Server3 = $_GET['Server3'];//配置
+$Port3 = $_GET['Port3'];//配置
+$Method3 = $_GET['Method3'];//配置
+$Password3 = $_GET['Password3'];//配置
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 $DNS = ",force-remote-dns"; //其他
@@ -59,19 +63,12 @@ echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "$Config1\r\n";
-echo "$Config2\r\n";
-echo "$Config3\r\n";
-echo "$Config4\r\n";
-echo "$Config5\r\n";
-echo "$Config6\r\n";
-echo "$Config7\r\n";
-echo "$Config8\r\n";
-echo "$Config9\r\n";
-echo "$Config0\r\n";
+echo "$Flag1 = custom,$Server1,$Port1,$Method1,$Password1,$Module\r\n";
+echo "$Flag2 = custom,$Server2,$Port2,$Method2,$Password2,$Module\r\n";
+echo "$Flag3 = custom,$Server3,$Port3,$Method3,$Password3,$Module\r\n";
 echo "[Proxy Group]\r\n";
-echo "Proxy = select, $Flag\r\n";
-echo "AutoGroup = url-test, $Flag, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
+echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 echo "[Host]";
