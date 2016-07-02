@@ -110,7 +110,7 @@ echo trim(fgets($DIRECT)).$DIRECTRU."\r\n";
 fclose($DIRECT);
 }
 //REJECT
-echo"\r\n# REJECT\r\n";
+echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
 echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
