@@ -6,6 +6,13 @@ header("Content-Type:text/html;charset=UTF-8");//UTF-8
 $Config1 = $_GET['Config1'];//配置
 $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
+$Config4 = $_GET['Config4'];//配置
+$Config5 = $_GET['Config5'];//配置
+$Config6 = $_GET['Config6'];//配置
+$Config7 = $_GET['Config7'];//配置
+$Config8 = $_GET['Config8'];//配置
+$Config9 = $_GET['Config9'];//配置
+$Config0 = $_GET['Config0'];//配置
 $NAME = "UPlus";            //名称
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
@@ -46,9 +53,16 @@ echo "# A.BIG.T Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇸🇬 = custom,$Config1\r\n";
-echo "🇳🇫 = custom,$Config2\r\n";
-echo "🇬🇧 = custom,$Config3\r\n";
+echo "$Config1\r\n";
+echo "$Config2\r\n";
+echo "$Config3\r\n";
+echo "$Config4\r\n";
+echo "$Config5\r\n";
+echo "$Config6\r\n";
+echo "$Config7\r\n";
+echo "$Config8\r\n";
+echo "$Config9\r\n";
+echo "$Config0\r\n";
 //--------------输出------------//
 //Default
 echo "[Rule]";
