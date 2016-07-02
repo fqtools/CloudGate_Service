@@ -8,6 +8,9 @@ $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
+$ProxyRU = ",Proxy";        //其他
+$DIRECTRU = ",DIRECT";      //其他
+$REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
@@ -73,16 +76,16 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo fgets($Default)."";
+echo trim(fgets($Default)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($Default);
 }
 //PROXY
-echo"\r\n# PROXY\r\n";
+echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).$DNS."\r\n"; 
+echo trim(fgets($Proxy)).$ProxyRU.$DNS."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -91,7 +94,7 @@ fclose($Proxy);
 echo"# GFWList\r\n";
 while(!feof($GFWList))
 {
-echo trim(fgets($GFWList)).$DNS."\r\n"; 
+echo trim(fgets($GFWList)).$ProxyRU.$DNS."\r\n"; 
 }
 {
 fclose($GFWList);
@@ -100,7 +103,7 @@ fclose($GFWList);
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
-echo fgets($DIRECT)."";
+echo trim(fgets($DIRECT)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($DIRECT);
@@ -109,13 +112,13 @@ fclose($DIRECT);
 echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
-echo fgets($REJECT)."";
+echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
 }
 {
 fclose($REJECT);
 }
 //KEYWORD
-echo"\r\n# KEYWORD\r\n";
+echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
 echo "DOMAIN-KEYWORD,";

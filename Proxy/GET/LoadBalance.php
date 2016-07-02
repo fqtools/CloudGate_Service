@@ -3,14 +3,13 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
+$Config1 = $_GET['Config1'];//配置
+$Config2 = $_GET['Config2'];//配置
+$Config3 = $_GET['Config3'];//配置
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$Server = "172.0.0.1";      //地址
-$Port = "80";               //端口
-$Password = "Password1024.";//密码
-$Method = "aes-256-cfb";    //方式
-$ProxyRU = ",Proxy";        //其他
-$DIRECTRU = ",DIRECT";      //其他
+$ProxyRU = ",🇳🇫";           //其他
+$DIRECTRU = ",🇨🇳";          //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
@@ -39,7 +38,7 @@ $HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
 $HOSTSFile  = $HOSTSFile . '?Cache='.time();
 $HOSTS = fopen($HOSTSFile,"r");
 //-------------下载-------------//
-$File = "Surge.Conf";//下载文件名称
+$File = "LoadBalance.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header('Content-type: application/octet-stream; charset=utf8');//下载动作
 header("Accept-Ranges: bytes");
@@ -55,12 +54,12 @@ echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
-echo "🇳🇫 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
-echo "🇬🇧 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
+echo "🇨🇳 = custom,$Config1,$Module\r\n";
+echo "🇳🇫 = custom,$Config2,$Module\r\n";
+echo "🇬🇧 = custom,$Config3,$Module\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
-echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "AutoGroup = url-test, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 echo "[Host]";
@@ -77,7 +76,7 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).$DIRECTRU."\r\n"; 
+echo trim(fgets($Default)).$DIRECTRU.$DNS."\r\n"; 
 }
 {
 fclose($Default);
@@ -96,6 +95,7 @@ echo"# GFWList\r\n";
 while(!feof($GFWList))
 {
 echo trim(fgets($GFWList)).$ProxyRU.$DNS."\r\n"; 
+}
 {
 fclose($GFWList);
 }
@@ -113,6 +113,7 @@ echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
 echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
+}
 {
 fclose($REJECT);
 }
@@ -138,7 +139,7 @@ fclose($IPCIDR);
 }
 //Other
 echo"\r\n# Other\r\n";
-echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL,Proxy";
+echo"GEOIP,CN$DIRECTRU\r\n";
+echo"FINAL$ProxyRU";
 exit();
 //--------------END-------------//
