@@ -141,4 +141,6 @@ echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,Proxy";
 exit();
+}
+}
 //--------------END-------------//
