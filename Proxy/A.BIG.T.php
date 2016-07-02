@@ -50,7 +50,7 @@ echo "# A.BIG.T Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇸🇬 = custom,$Server,$Port,$Method,$Password\r\n";
+//echo "🇸🇬 = custom,$Server,$Port,$Method,$Password\r\n";
 //--------------输出------------//
 //Default
 echo "[Rule]";
