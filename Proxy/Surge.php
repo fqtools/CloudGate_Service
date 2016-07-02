@@ -9,7 +9,7 @@ $Server = "172.0.0.1";      //地址
 $Port = "80";               //端口
 $Password = "Password1024.";//密码
 $Method = "aes-256-cfb";    //方式
-$ProxyRU = ",Proxy";        //其他
+$ProxyRU = ",AutoGroup";    //其他
 $DIRECTRU = ",DIRECT";      //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
@@ -141,6 +141,6 @@ fclose($IPCIDR);
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL,Proxy";
+echo"FINAL$ProxyRU";
 exit();
 //--------------END-------------//

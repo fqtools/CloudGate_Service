@@ -8,7 +8,7 @@ $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$ProxyRU = ",Proxy";        //其他
+$ProxyRU = ",AutoGroup";    //其他
 $DIRECTRU = ",DIRECT";      //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
@@ -140,6 +140,6 @@ fclose($IPCIDR);
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL,Proxy";
+echo"FINAL$ProxyRU";
 exit();
 //--------------END-------------//
