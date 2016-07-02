@@ -71,7 +71,7 @@ echo "$Config9\r\n";
 echo "$Config0\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, $Flag\r\n";
-echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "AutoGroup = url-test, $Flag, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 echo "[Host]";
