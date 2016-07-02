@@ -8,7 +8,7 @@ $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$ProxyRU = ",🇳🇫";           //其他
+$ProxyRU = ",AutoGroup";    //其他
 $DIRECTRU = ",🇨🇳";          //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
@@ -58,7 +58,8 @@ echo "🇨🇳 = custom,$Config1,$Module\r\n";
 echo "🇳🇫 = custom,$Config2,$Module\r\n";
 echo "🇬🇧 = custom,$Config3,$Module\r\n";
 echo "[Proxy Group]\r\n";
-echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
+echo "Proxy = select, 🇳🇫, 🇬🇧\r\n";
+//echo "Group = select, AutoGroup, 🇳🇫, 🇬🇧\r\n";
 echo "AutoGroup = url-test, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
