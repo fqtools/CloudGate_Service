@@ -141,7 +141,7 @@ fclose($IPCIDR);
 }
 //Other
 echo"\r\n# Other\r\n";
-echo"GEOIP,CN$DIRECTRU\r\n";
+echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL$ProxyRU";
 exit();
 //--------------END-------------//
