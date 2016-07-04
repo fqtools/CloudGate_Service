@@ -3,6 +3,8 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
+$Comma = ",";               //其他
+$Method = $_GET['Method'];  //配置
 $Config1 = $_GET['Config1'];//配置
 $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
@@ -86,7 +88,7 @@ fclose($Default);
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).$ProxyRU.$DNS."\r\n"; 
+echo trim(fgets($Proxy)).$Comma.$Method.$DNS."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -95,7 +97,7 @@ fclose($Proxy);
 echo"# GFWList\r\n";
 while(!feof($GFWList))
 {
-echo trim(fgets($GFWList)).$ProxyRU.$DNS."\r\n"; 
+echo trim(fgets($GFWList)).$Comma.$Method.$DNS."\r\n"; 
 }
 {
 fclose($GFWList);
@@ -141,6 +143,6 @@ fclose($IPCIDR);
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL$ProxyRU";
+echo"FINAL$Comma$Method";
 exit();
 //--------------END-------------//
