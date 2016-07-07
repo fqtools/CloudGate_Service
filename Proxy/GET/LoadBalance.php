@@ -7,7 +7,7 @@ $Config1 = $_GET['Config1'];//配置
 $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
 $NAME = "UPlus";            //名称
-$OTA = "ota=true";           //OTA
+$OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 $ProxyRU = ",AutoGroup";    //其他
 $DIRECTRU = ",🇨🇳";          //其他
