@@ -3,9 +3,13 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
+$China = $_GET['China'];    //配置
 $Config1 = $_GET['Config1'];//配置
 $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
+$Flag1 = $_GET['Flag1'];    //配置
+$Flag2 = $_GET['Flag2'];    //配置
+$Flag3 = $_GET['Flag3'];    //配置
 $NAME = "UPlus";            //名称
 $OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
@@ -56,13 +60,14 @@ echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,$Config1,$Module,$OTA\r\n";
-echo "🇳🇫 = custom,$Config2,$Module,$OTA\r\n";
-echo "🇬🇧 = custom,$Config3,$Module,$OTA\r\n";
+echo "🇨🇳 = custom,$China,$Module,$OTA\r\n";
+echo "$Flag1 = custom,$Config1,$Module,$OTA\r\n";
+echo "$Flag2 = custom,$Config2,$Module,$OTA\r\n";
+echo "$Flag3 = custom,$Config3,$Module,$OTA\r\n";
 echo "[Proxy Group]\r\n";
-echo "Proxy = select, 🇳🇫, 🇬🇧\r\n";
+echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
 //echo "Group = select, AutoGroup, 🇳🇫, 🇬🇧\r\n";
-echo "AutoGroup = url-test, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 echo "[Host]";
