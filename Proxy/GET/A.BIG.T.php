@@ -6,6 +6,9 @@ header("Content-Type:text/html;charset=UTF-8");//UTF-8
 $Config1 = $_GET['Config1'];//配置
 $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
+$Flag1 = $_GET['Flag1'];    //配置
+$Flag2 = $_GET['Flag2'];    //配置
+$Flag3 = $_GET['Flag3'];    //配置
 $NAME = "UPlus";            //名称
 $ProxyRU = ",Proxy";        //其他
 $DIRECTRU = ",DIRECT";      //其他
@@ -50,9 +53,9 @@ echo "# A.BIG.T Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇸🇬 = custom,$Config1\r\n";
-echo "🇳🇫 = custom,$Config2\r\n";
-echo "🇬🇧 = custom,$Config3\r\n";
+echo "$Flag1 = custom,$Config1\r\n";
+echo "$Flag2 = custom,$Config2\r\n";
+echo "$Flag3 = custom,$Config3\r\n";
 //--------------输出------------//
 //Default
 echo "[Rule]";

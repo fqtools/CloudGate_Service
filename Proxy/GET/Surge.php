@@ -70,8 +70,8 @@ echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
 echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
-echo "[Host]";
-echo"\r\n# HOSTS\r\n";
+//echo "[Host]";
+//echo"\r\n# HOSTS\r\n";
 while(!feof($HOSTS))
 {
 echo fgets($HOSTS)."";
