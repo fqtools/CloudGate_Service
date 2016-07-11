@@ -52,6 +52,8 @@ echo "skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local
 echo "bypass-tun = 192.168.0.0/16, 10.0.0.0/8, 172.0.0.0/8, 127.0.0.0/24\r\n";
 echo "dns-server = 8.8.8.8, 8.8.4.4\r\n";
 echo "loglevel = notify\r\n";
+echo "replica = false\r\n";
+echo "ipv6 = false\r\n";
 echo "#  \r\n";
 echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
