@@ -67,8 +67,8 @@ echo trim(fgets($Default)).$DIRECTRU."\r\n";
 {
 fclose($Default);
 }
-//Proxy
-echo"# Proxy\r\n";
+//PROXY
+echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
 echo trim(fgets($Proxy)).$ProxyRU."\r\n"; 
