@@ -32,6 +32,9 @@ $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
 $REJECTFile  = $REJECTFile . '?Cache='.time();
 $REJECT = fopen($REJECTFile,"r");
+$KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
+$KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
+$KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
@@ -112,6 +115,16 @@ echo trim(fgets($REJECT)).$REJECTRU."\r\n";
 }
 {
 fclose($REJECT);
+}
+//KEYWORD
+echo"# KEYWORD\r\n";
+while(!feof($KEYWORD))
+{
+echo "DOMAIN-KEYWORD,";
+echo fgets($KEYWORD)."";
+}
+{
+fclose($KEYWORD);
 }
 //IPCIDR
 echo"\r\n# IP-CIDR\r\n";
