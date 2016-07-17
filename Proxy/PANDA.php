@@ -54,6 +54,8 @@ echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
 echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
+echo "[Proxy Group]\r\n"
+echo "Proxy = select,DIRECT\r\n";
 //--------------输出------------//
 //HOSTS
 //echo "[Host]";
@@ -122,7 +124,7 @@ echo fgets($IPCIDR)."";
 fclose($IPCIDR);
 }
 //Other
-echo"# Other\r\n";
+echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,DIRECT";
 exit();
