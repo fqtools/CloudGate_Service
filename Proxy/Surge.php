@@ -15,6 +15,9 @@ $DIRECTRU = ",DIRECT";      //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
+$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
+$HOSTSFile  = $HOSTSFile . '?Cache='.time();
+$HOSTS = fopen($HOSTSFile,"r");
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
 $Default = fopen($DefaultFile,"r");
@@ -36,9 +39,6 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
-$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-$HOSTSFile  = $HOSTSFile . '?Cache='.time();
-$HOSTS = fopen($HOSTSFile,"r");
 //-------------下载-------------//
 $File = "Surge.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
