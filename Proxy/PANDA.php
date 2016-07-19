@@ -55,8 +55,8 @@ echo "#  \r\n";
 echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
-echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
+//echo "[Proxy]\r\n";
+//echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select,DIRECT\r\n";
 //--------------输出------------//
