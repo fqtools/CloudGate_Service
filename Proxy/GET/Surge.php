@@ -12,7 +12,6 @@ $Config3 = $_GET['Config3'];//配置
 $Flag1 = $_GET['Flag1'];    //配置
 $Flag2 = $_GET['Flag2'];    //配置
 $Flag3 = $_GET['Flag3'];    //配置
-$Comma = ",";               //其他
 $NAME = "UPlus";            //名称
 $OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
@@ -98,7 +97,7 @@ fclose($Default);
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).$Comma.$Method.$DNS."\r\n"; 
+echo trim(fgets($Proxy)).",".$Method.$DNS."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -107,7 +106,7 @@ fclose($Proxy);
 echo"# GFWList\r\n";
 while(!feof($GFWList))
 {
-echo trim(fgets($GFWList)).$Comma.$Method.$DNS."\r\n"; 
+echo trim(fgets($GFWList)).",".$Method.$DNS."\r\n"; 
 }
 {
 fclose($GFWList);
@@ -153,6 +152,6 @@ fclose($IPCIDR);
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL$Comma$Method";
+echo"FINAL,$Method";
 exit();
 //--------------END-------------//
