@@ -15,16 +15,16 @@ $DIRECTRU = ",DIRECT";      //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
-$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.tx";
+$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
 $HOSTSFile  = $HOSTSFile . '?Cache='.time();
 $HOSTS = fopen($HOSTSFile,"r");
-$DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.tx";
+$DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
 $Default = fopen($DefaultFile,"r");
-$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.tx";
+$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
 $ProxyFile  = $ProxyFile . '?Cache='.time();
 $Proxy = fopen($ProxyFile,"r");
-$GFWListFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/GFWList.tx";
+$GFWListFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/GFWList.txt";
 $GFWListFile  = $GFWListFile . '?Cache='.time();
 $GFWList = fopen($GFWListFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
@@ -70,7 +70,6 @@ echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstat
 //HOSTS
 //echo "[Host]";
 //echo"\r\n# HOSTS\r\n";
-if($HOSTS){//判断打开错误
 while(!feof($HOSTS))
 {
 echo fgets($HOSTS)."";
@@ -78,17 +77,7 @@ echo fgets($HOSTS)."";
 {
 fclose($HOSTS);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
-
 //Default
-if($Default){//判断打开错误
 echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
@@ -98,20 +87,7 @@ echo trim(fgets($Default)).$DIRECTRU."\r\n";
 {
 fclose($Default);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
-
-
-
-
 //PROXY
-if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -120,18 +96,7 @@ echo trim(fgets($Proxy)).$ProxyRU.$DNS."\r\n";
 {
 fclose($Proxy);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
-
-
 //GFWList
-if($GFWList){//判断打开错误
 echo"# GFWList\r\n";
 while(!feof($GFWList))
 {
@@ -140,18 +105,7 @@ echo trim(fgets($GFWList)).$ProxyRU.$DNS."\r\n";
 {
 fclose($GFWList);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
-
-
 //DIRECT
-if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -160,17 +114,7 @@ echo trim(fgets($DIRECT)).$DIRECTRU."\r\n";
 {
 fclose($DIRECT);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
-
 //REJECT
-if($REJECT){//判断打开错误
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -179,17 +123,7 @@ echo trim(fgets($REJECT)).$REJECTRU."\r\n";
 {
 fclose($REJECT);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
-
 //KEYWORD
-if($KEYWORD){//判断打开错误
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
@@ -199,16 +133,7 @@ echo fgets($KEYWORD)."";
 {
 fclose($KEYWORD);
 }
-}else {//
-  echo "下载失败!";//或者
-}//
-
-
-
-
-
 //IPCIDR
-if($IPCIDR){//判断打开错误
 echo"\r\n# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
@@ -218,16 +143,6 @@ echo fgets($IPCIDR)."";
 {
 fclose($IPCIDR);
 }
-}else {//
-  echo "Have a good night!";//就输出这句话!
-}//
-
-
-
-
-
-
-
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";

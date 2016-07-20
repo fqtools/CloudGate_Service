@@ -33,7 +33,7 @@ $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
 //-------------下载-------------//
-$File = "Potatso.Conf";//下载文件名称
+$File = "Souler.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header('Content-type: application/octet-stream; charset=utf8');//下载动作
 header("Accept-Ranges: bytes");
@@ -41,14 +41,13 @@ header('Content-Disposition: attachment; filename='.$File);//名称
 //--------------配置------------//
 echo"ruleSets:\r\n";
 echo"# \r\n";
-echo"# Potatso Config File [$NAME]\r\n";
+echo"# Souler Config File [$NAME]\r\n";
 echo"# Last Modified: " . date("Y/m/d") . "\r\n";
 echo"#\r\n";
 echo"- name: $NAME\r\n";
 echo"  rules: ";
 //--------------输出------------//
 //Default
-if($Default){//判断打开错误
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
@@ -58,11 +57,7 @@ echo trim(fgets($Default)).$DIRECTRU."\r\n";
 {
 fclose($Default);
 }
-}else {
-  echo "下载失败!";//
-}
 //PROXY
-if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -72,11 +67,7 @@ echo trim(fgets($Proxy)).$ProxyRU."\r\n";
 {
 fclose($Proxy);
 }
-}else {
-  echo "下载失败!";//
-}
 //GFWList
-if($GFWList){//判断打开错误
 echo"\r\n# GFWList\r\n";
 while(!feof($GFWList))
 {
@@ -86,11 +77,7 @@ echo trim(fgets($GFWList)).$ProxyRU."\r\n";
 {
 fclose($GFWList);
 }
-}else {
-  echo "下载失败!";//
-}
 //DIRECT
-if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -100,11 +87,7 @@ echo trim(fgets($DIRECT)).$DIRECTRU."\r\n";
 {
 fclose($DIRECT);
 }
-}else {
-  echo "下载失败!";//
-}
 //REJECT
-if($REJECT){//判断打开错误
 echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -114,11 +97,7 @@ echo trim(fgets($REJECT)).$REJECTRU."\r\n";
 {
 fclose($REJECT);
 }
-}else {
-  echo "下载失败!";//
-}
 //URL-MATCH
-if($Path){//判断打开错误
 echo"# URL-MATCH\r\n";
 while(!feof($Path))
 {
@@ -128,11 +107,7 @@ echo fgets($Path)."";
 {
 fclose($Path);
 }
-}else {//
-  echo "下载失败!";//
-}
 //DOMAIN-MATCH
-if($KEYWORD){//判断打开错误
 echo"\r\n# DOMAIN-MATCH\r\n";
 while(!feof($KEYWORD))
 {
@@ -142,11 +117,7 @@ echo fgets($KEYWORD)."";
 {
 fclose($KEYWORD);
 }
-}else {
-  echo "下载失败!";//
-}
 //IPCIDR
-if($IPCIDR){//判断打开错误
 echo"\r\n# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
@@ -155,9 +126,6 @@ echo fgets($IPCIDR)."";
 }
 {
 fclose($IPCIDR);
-}
-}else {
-  echo "下载失败!";//
 }
 //Other
 echo"\r\n#Other\r\n";

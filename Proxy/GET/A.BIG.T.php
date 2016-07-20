@@ -58,6 +58,7 @@ echo "$Flag2 = custom,$Config2\r\n";
 echo "$Flag3 = custom,$Config3\r\n";
 //--------------输出------------//
 //Default
+if($Default){//判断打开错误
 echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
@@ -67,7 +68,11 @@ echo trim(fgets($Default)).$DIRECTRU."\r\n";
 {
 fclose($Default);
 }
+}else {
+  echo "下载失败!";//
+}
 //PROXY
+if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -76,7 +81,11 @@ echo trim(fgets($Proxy)).$ProxyRU."\r\n";
 {
 fclose($Proxy);
 }
+}else {
+  echo "下载失败!";//
+}
 //GFWList
+if($GFWList){//判断打开错误
 echo"\r\n# GFWList\r\n";
 while(!feof($GFWList))
 {
@@ -85,7 +94,11 @@ echo trim(fgets($GFWList)).$ProxyRU."\r\n";
 {
 fclose($GFWList);
 }
+}else {
+  echo "下载失败!";//
+}
 //DIRECT
+if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -94,7 +107,11 @@ echo trim(fgets($DIRECT)).$DIRECTRU."\r\n";
 {
 fclose($DIRECT);
 }
+}else {
+  echo "下载失败!";//
+}
 //REJECT
+if($REJECT){//判断打开错误
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -103,7 +120,11 @@ echo trim(fgets($REJECT)).$REJECTRU."\r\n";
 {
 fclose($REJECT);
 }
+}else {
+  echo "下载失败!";//
+}
 //KEYWORD
+if($KEYWORD){//判断打开错误
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
@@ -113,7 +134,11 @@ echo fgets($KEYWORD)."";
 {
 fclose($KEYWORD);
 }
+}else {
+  echo "下载失败!";//
+}
 //IPCIDR
+if($IPCIDR){//判断打开错误
 echo"\r\n# IPCIDR\r\n";
 while(!feof($IPCIDR))
 {
@@ -122,6 +147,9 @@ echo fgets($IPCIDR)."";
 }
 {
 fclose($IPCIDR);
+}
+}else {
+  echo "下载失败!";//
 }
 //Other
 echo"\r\n# Other\r\n";
