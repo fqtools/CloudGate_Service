@@ -14,6 +14,9 @@ $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
 $ProxyFile  = $ProxyFile . '?Cache='.time();
 $Proxy = fopen($ProxyFile,"r");
+$GFWListFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/GFWList.txt";
+$GFWListFile  = $GFWListFile . '?Cache='.time();
+$GFWList = fopen($GFWListFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
 $DIRECTFile  = $DIRECTFile . '?Cache='.time();
 $DIRECT = fopen($DIRECTFile,"r");
@@ -30,7 +33,7 @@ $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
 //-------------下载-------------//
-$File = "Potatso.Conf";//下载文件名称
+$File = "Souler.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header('Content-type: application/octet-stream; charset=utf8');//下载动作
 header("Accept-Ranges: bytes");
@@ -38,7 +41,7 @@ header('Content-Disposition: attachment; filename='.$File);//名称
 //--------------配置------------//
 echo"ruleSets:\r\n";
 echo"# \r\n";
-echo"# Potatso Config File [$NAME]\r\n";
+echo"# Souler Config File [$NAME]\r\n";
 echo"# Last Modified: " . date("Y/m/d") . "\r\n";
 echo"#\r\n";
 echo"- name: $NAME\r\n";
@@ -68,6 +71,20 @@ echo trim(fgets($Proxy)).$ProxyRU."\r\n";
 }
 {
 fclose($Proxy);
+}
+}else {
+  echo "下载失败!";//
+}
+//GFWList
+if($GFWList){//判断打开错误
+echo"\r\n# GFWList\r\n";
+while(!feof($GFWList))
+{
+echo "  - ";
+echo trim(fgets($GFWList)).$ProxyRU."\r\n"; 
+}
+{
+fclose($GFWList);
 }
 }else {
   echo "下载失败!";//
@@ -111,7 +128,7 @@ echo fgets($Path)."";
 {
 fclose($Path);
 }
-}else {//
+}else {
   echo "下载失败!";//
 }
 //DOMAIN-MATCH

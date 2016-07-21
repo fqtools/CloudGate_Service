@@ -3,27 +3,30 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
-$China = $_GET['China'];    //配置
-$Config1 = $_GET['Config1'];//配置
-$Config2 = $_GET['Config2'];//配置
-$Config3 = $_GET['Config3'];//配置
-$Flag1 = $_GET['Flag1'];    //配置
-$Flag2 = $_GET['Flag2'];    //配置
-$Flag3 = $_GET['Flag3'];    //配置
 $NAME = "UPlus";            //名称
-$OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$ProxyRU = ",AutoGroup";    //其他
-$DIRECTRU = ",🇨🇳";          //其他
+$OTA = "ota=false";      //OTA设置
+$Server = "172.0.0.1";    //服务器
+$Port = "80";               //端口
+$Password = "Password1024.";//密码
+$Method = "aes-256-cfb";    //方式
+$ProxyRU = ",Proxy";        //其他
+$DIRECTRU = ",DIRECT";      //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
+$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
+$HOSTSFile  = $HOSTSFile . '?Cache='.time();
+$HOSTS = fopen($HOSTSFile,"r");
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
 $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
 $ProxyFile  = $ProxyFile . '?Cache='.time();
 $Proxy = fopen($ProxyFile,"r");
+$GFWListFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/GFWList.txt";
+$GFWListFile  = $GFWListFile . '?Cache='.time();
+$GFWList = fopen($GFWListFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
 $DIRECTFile  = $DIRECTFile . '?Cache='.time();
 $DIRECT = fopen($DIRECTFile,"r");
@@ -36,11 +39,8 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
-$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-$HOSTSFile  = $HOSTSFile . '?Cache='.time();
-$HOSTS = fopen($HOSTSFile,"r");
 //-------------下载-------------//
-$File = "LoadBalance.Conf";//下载文件名称
+$File = "Surge.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header('Content-type: application/octet-stream; charset=utf8');//下载动作
 header("Accept-Ranges: bytes");
@@ -60,14 +60,12 @@ echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,$China,$Module,$OTA\r\n";
-echo "$Flag1 = custom,$Config1,$Module,$OTA\r\n";
-echo "$Flag2 = custom,$Config2,$Module,$OTA\r\n";
-echo "$Flag3 = custom,$Config3,$Module,$OTA\r\n";
+echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
+echo "🇳🇫 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
+echo "🇬🇧 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
 echo "[Proxy Group]\r\n";
-echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
-//echo "Group = select, AutoGroup, 🇳🇫, 🇬🇧\r\n";
-echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
+echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 //echo "[Host]";
@@ -89,7 +87,7 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).$DIRECTRU.$DNS."\r\n"; 
+echo trim(fgets($Default)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($Default);
@@ -106,6 +104,19 @@ echo trim(fgets($Proxy)).$ProxyRU.$DNS."\r\n";
 }
 {
 fclose($Proxy);
+}
+}else {
+  echo "下载失败!";//
+}
+//GFWList
+if($GFWList){//判断打开错误
+echo"# GFWList\r\n";
+while(!feof($GFWList))
+{
+echo trim(fgets($GFWList)).$ProxyRU.$DNS."\r\n"; 
+}
+{
+fclose($GFWList);
 }
 }else {
   echo "下载失败!";//

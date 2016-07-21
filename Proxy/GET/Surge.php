@@ -26,9 +26,6 @@ $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
 $ProxyFile  = $ProxyFile . '?Cache='.time();
 $Proxy = fopen($ProxyFile,"r");
-$GFWListFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/GFWList.txt";
-$GFWListFile  = $GFWListFile . '?Cache='.time();
-$GFWList = fopen($GFWListFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
 $DIRECTFile  = $DIRECTFile . '?Cache='.time();
 $DIRECT = fopen($DIRECTFile,"r");
@@ -110,19 +107,6 @@ echo trim(fgets($Proxy)).",".$Method.$DNS."\r\n";
 }
 {
 fclose($Proxy);
-}
-}else {
-  echo "下载失败!";//
-}
-//GFWList
-if($GFWList){//判断打开错误
-echo"# GFWList\r\n";
-while(!feof($GFWList))
-{
-echo trim(fgets($GFWList)).",".$Method.$DNS."\r\n"; 
-}
-{
-fclose($GFWList);
 }
 }else {
   echo "下载失败!";//
