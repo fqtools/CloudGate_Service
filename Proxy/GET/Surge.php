@@ -153,7 +153,7 @@ fclose($KEYWORD);
 }
 //IPCIDR
 if($IPCIDR){//判断打开错误
-echo"\r\n# IP-CIDR";
+echo"\r\n# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
 echo "IP-CIDR,";
