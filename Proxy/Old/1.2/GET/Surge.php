@@ -90,7 +90,7 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).",DIRECT"."\r\n"; 
+echo trim(fgets($Default)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($Default);
@@ -103,7 +103,7 @@ if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).",Proxy,force-remote-dns"."\r\n"; 
+echo trim(fgets($Proxy)).",".$Method.$DNS."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -116,7 +116,7 @@ if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
-echo trim(fgets($DIRECT)).",DIRECT"."\r\n"; 
+echo trim(fgets($DIRECT)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($DIRECT);
@@ -129,7 +129,7 @@ if($REJECT){//判断打开错误
 echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
-echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
+echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
 }
 {
 fclose($REJECT);

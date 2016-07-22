@@ -4,6 +4,9 @@ header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
 $NAME = "UPlus";            //名称
+$ProxyRU = ",Proxy";        //其他
+$DIRECTRU = ",DIRECT";      //其他
+$REJECTRU = ",REJECT";      //其他
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
@@ -47,7 +50,7 @@ echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
 echo "  - ";
-echo trim(fgets($Default)).",DIRECT"."\r\n"; 
+echo trim(fgets($Default)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($Default);
@@ -61,7 +64,7 @@ echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
 echo "  - ";
-echo trim(fgets($Proxy)).",Proxy"."\r\n"; 
+echo trim(fgets($Proxy)).$ProxyRU."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -75,7 +78,7 @@ echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
 echo "  - ";
-echo trim(fgets($DIRECT)).",DIRECT"."\r\n"; 
+echo trim(fgets($DIRECT)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($DIRECT);
@@ -89,7 +92,7 @@ echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
 echo "  - ";
-echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
+echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
 }
 {
 fclose($REJECT);

@@ -8,9 +8,6 @@ $Server = "127.0.0.1";      //地址
 $Port = "80";               //端口
 $Password = "Password1024.";//密码
 $Method = "aes-256-cfb";    //方式
-$ProxyRU = ",Proxy";        //其他
-$DIRECTRU = ",DIRECT";      //其他
-$REJECTRU = ",REJECT";      //其他
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
@@ -56,7 +53,7 @@ echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).$DIRECTRU."\r\n"; 
+echo trim(fgets($Default)).",DIRECT"."\r\n"; 
 }
 {
 fclose($Default);
@@ -69,7 +66,7 @@ if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).$ProxyRU."\r\n"; 
+echo trim(fgets($Proxy)).",Proxy"."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -82,7 +79,7 @@ if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
-echo trim(fgets($DIRECT)).$DIRECTRU."\r\n"; 
+echo trim(fgets($DIRECT)).",DIRECT"."\r\n"; 
 }
 {
 fclose($DIRECT);
@@ -95,7 +92,7 @@ if($REJECT){//判断打开错误
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
-echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
+echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
 }
 {
 fclose($REJECT);

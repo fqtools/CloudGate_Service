@@ -13,10 +13,6 @@ $Flag3 = $_GET['Flag3'];    //配置
 $NAME = "UPlus";            //名称
 $OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$ProxyRU = ",AutoGroup";    //其他
-$DIRECTRU = ",🇨🇳";          //其他
-$REJECTRU = ",REJECT";      //其他
-$DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
@@ -89,7 +85,7 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).$DIRECTRU.$DNS."\r\n"; 
+echo trim(fgets($Default)).",🇨🇳,force-remote-dns"."\r\n"; 
 }
 {
 fclose($Default);
@@ -102,7 +98,7 @@ if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).$ProxyRU.$DNS."\r\n"; 
+echo trim(fgets($Proxy)).",AutoGroup,force-remote-dns"."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -115,7 +111,7 @@ if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
-echo trim(fgets($DIRECT)).$DIRECTRU."\r\n"; 
+echo trim(fgets($DIRECT)).",🇨🇳"."\r\n"; 
 }
 {
 fclose($DIRECT);
@@ -128,7 +124,7 @@ if($REJECT){//判断打开错误
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
-echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
+echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
 }
 {
 fclose($REJECT);
@@ -167,6 +163,6 @@ fclose($IPCIDR);
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL$ProxyRU";
+echo"FINAL,AutoGroup";
 exit();
 //--------------END-------------//

@@ -3,9 +3,7 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
-$Replica = $_GET['Replica'];//配置
-$IPV6 = $_GET['IPV6'];      //配置
-$Method = $_GET['Method'];  //配置
+$China = $_GET['China'];    //配置
 $Config1 = $_GET['Config1'];//配置
 $Config2 = $_GET['Config2'];//配置
 $Config3 = $_GET['Config3'];//配置
@@ -15,8 +13,8 @@ $Flag3 = $_GET['Flag3'];    //配置
 $NAME = "UPlus";            //名称
 $OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$ProxyRU = ",Proxy";        //其他
-$DIRECTRU = ",DIRECT";      //其他
+$ProxyRU = ",AutoGroup";    //其他
+$DIRECTRU = ",🇨🇳";          //其他
 $REJECTRU = ",REJECT";      //其他
 $DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
@@ -42,7 +40,7 @@ $HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
 $HOSTSFile  = $HOSTSFile . '?Cache='.time();
 $HOSTS = fopen($HOSTSFile,"r");
 //-------------下载-------------//
-$File = "Surge.Conf";//下载文件名称
+$File = "LoadBalance.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header('Content-type: application/octet-stream; charset=utf8');//下载动作
 header("Accept-Ranges: bytes");
@@ -55,13 +53,14 @@ echo "skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local
 echo "bypass-tun = 192.168.0.0/16, 10.0.0.0/8, 172.0.0.0/8, 127.0.0.0/24\r\n";
 echo "dns-server = 8.8.8.8, 8.8.4.4\r\n";
 echo "loglevel = notify\r\n";
-echo "replica = $Replica\r\n";
-echo "ipv6 = $IPV6\r\n";
+echo "replica = false\r\n";
+echo "ipv6 = false\r\n";
 echo "#  \r\n";
 echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
+echo "🇨🇳 = custom,$China,$Module,$OTA\r\n";
 echo "$Flag1 = custom,$Config1,$Module,$OTA\r\n";
 echo "$Flag2 = custom,$Config2,$Module,$OTA\r\n";
 echo "$Flag3 = custom,$Config3,$Module,$OTA\r\n";
@@ -90,7 +89,7 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).",DIRECT"."\r\n"; 
+echo trim(fgets($Default)).$DIRECTRU.$DNS."\r\n"; 
 }
 {
 fclose($Default);
@@ -103,7 +102,7 @@ if($Proxy){//判断打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).",Proxy,force-remote-dns"."\r\n"; 
+echo trim(fgets($Proxy)).$ProxyRU.$DNS."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -116,7 +115,7 @@ if($DIRECT){//判断打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
-echo trim(fgets($DIRECT)).",DIRECT"."\r\n"; 
+echo trim(fgets($DIRECT)).$DIRECTRU."\r\n"; 
 }
 {
 fclose($DIRECT);
@@ -126,10 +125,10 @@ fclose($DIRECT);
 }
 //REJECT
 if($REJECT){//判断打开错误
-echo"\r\n# REJECT\r\n";
+echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
-echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
+echo trim(fgets($REJECT)).$REJECTRU."\r\n"; 
 }
 {
 fclose($REJECT);
@@ -168,6 +167,6 @@ fclose($IPCIDR);
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL,$Method";
+echo"FINAL$ProxyRU";
 exit();
 //--------------END-------------//
