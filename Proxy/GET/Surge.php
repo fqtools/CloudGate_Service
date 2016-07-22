@@ -166,7 +166,7 @@ fclose($IPCIDR);
   echo "下载失败!";//
 }
 //Other
-echo"\r\n# Other\r\n";
+echo"# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,$Method";
 exit();
