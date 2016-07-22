@@ -89,7 +89,7 @@ echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
 echo "  - ";
-echo trim(fgets($REJECT)).“,REJECT”."\r\n"; 
+echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
 }
 {
 fclose($REJECT);
