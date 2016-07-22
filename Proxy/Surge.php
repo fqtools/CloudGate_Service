@@ -143,11 +143,11 @@ fclose($KEYWORD);
 }
 //IPCIDR
 if($IPCIDR){//判断打开错误
-echo"\r\n# IP-CIDR\r\n";
+echo"\r\n# IP-CIDR";
 while(!feof($IPCIDR))
 {
 echo "IP-CIDR,";
-echo fgets($IPCIDR)."";
+echo trim(fgets($IPCIDR)).",no-resolve"."\r\n"; 
 }
 {
 fclose($IPCIDR);
