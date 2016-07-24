@@ -18,6 +18,12 @@ $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
 $REJECTFile  = $REJECTFile . '?Cache='.time();
 $REJECT = fopen($REJECTFile,"r");
+$KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
+$KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
+$KEYWORD = fopen($KEYWORDFile,"r");
+$IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
+$IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
+$IPCIDR = fopen($IPCIDRFile,"r");
 //-------------下载-------------//
 $File = "DNSList.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
@@ -90,6 +96,34 @@ echo trim(fgets($REJECT)).",REJECT"."\r\n";
 }
 {
 fclose($REJECT);
+}
+}else {
+  echo "下载失败!";//
+}
+//KEYWORD
+if($KEYWORD){//判断打开错误
+echo"# KEYWORD\r\n";
+while(!feof($KEYWORD))
+{
+echo "DOMAIN-KEYWORD,";
+echo fgets($KEYWORD)."";
+}
+{
+fclose($KEYWORD);
+}
+}else {
+  echo "下载失败!";//
+}
+//IPCIDR
+if($IPCIDR){//判断打开错误
+echo"\r\n# IP-CIDR\r\n";
+while(!feof($IPCIDR))
+{
+echo "IP-CIDR,";
+echo trim(fgets($IPCIDR)).",no-resolve"."\r\n"; 
+}
+{
+fclose($IPCIDR);
 }
 }else {
   echo "下载失败!";//

@@ -3,12 +3,18 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
-$Config1 = $_GET['Config1'];//配置
-$Config2 = $_GET['Config2'];//配置
-$Config3 = $_GET['Config3'];//配置
-$Flag1 = $_GET['Flag1'];    //配置
-$Flag2 = $_GET['Flag2'];    //配置
-$Flag3 = $_GET['Flag3'];    //配置
+if( isset($_GET['Config1']) ){//判断
+$Config1 = $_GET['Config1']};//配置
+if( isset($_GET['Config2']) ){//判断
+$Config2 = $_GET['Config2']};//配置
+if( isset($_GET['Config3']) ){//判断
+$Config3 = $_GET['Config3']);//配置
+if( isset($_GET['Flag1']) ){//判断
+$Flag1 = $_GET['Flag1']};    //配置
+if( isset($_GET['Flag2']) ){//判断
+$Flag2 = $_GET['Flag2'];}    //配置
+if( isset($_GET['Flag3']) ){//判断
+$Flag3 = $_GET['Flag3'];}    //配置
 $NAME = "UPlus";            //名称
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
