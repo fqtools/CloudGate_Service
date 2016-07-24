@@ -14,7 +14,7 @@ $Config2 = $_GET['Config2'];//配置
 echo "无效参数!";
 }
 if( isset($_GET['Config3']) ){//判断
-$Config3 = $_GET['Config3']);//配置
+$Config3 = $_GET['Config3'];//配置
 }else {
 echo "无效参数!";
 }
