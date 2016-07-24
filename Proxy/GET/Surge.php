@@ -3,22 +3,54 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
+if( isset($_GET['Replica']) ){//判断
 $Replica = $_GET['Replica'];//配置
+}else {
+$Replica = "false";//配置
+}
+if( isset($_GET['IPV6']) ){//判断
 $IPV6 = $_GET['IPV6'];      //配置
+}else {
+$IPV6 = "false";//配置
+}
+if( isset($_GET['Method']) ){//判断
 $Method = $_GET['Method'];  //配置
+}else {
+$Method = "AutoGroup";//配置
+}
+if( isset($_GET['Config1']) ){//判断
 $Config1 = $_GET['Config1'];//配置
+}else {
+$Config1 = "127.0.0.1";//配置
+}
+if( isset($_GET['Config2']) ){//判断
 $Config2 = $_GET['Config2'];//配置
+}else {
+$Config2 = "127.0.0.2";//配置
+}
+if( isset($_GET['Config3']) ){//判断
 $Config3 = $_GET['Config3'];//配置
+}else {
+$Config3 = "127.0.0.3";//配置
+}
+if( isset($_GET['Flag1']) ){//判断
 $Flag1 = $_GET['Flag1'];    //配置
+}else {
+$Flag1 = "JP";//配置
+}
+if( isset($_GET['Flag2']) ){//判断
 $Flag2 = $_GET['Flag2'];    //配置
+}else {
+$Flag2 = "JP";//配置
+}
+if( isset($_GET['Flag3']) ){//判断
 $Flag3 = $_GET['Flag3'];    //配置
+}else {
+$Flag3 = "JP";//配置
+}
 $NAME = "UPlus";            //名称
 $OTA = "ota=false";          //OTA
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$ProxyRU = ",Proxy";        //其他
-$DIRECTRU = ",DIRECT";      //其他
-$REJECTRU = ",REJECT";      //其他
-$DNS = ",force-remote-dns"; //其他
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Cache='.time();
