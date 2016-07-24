@@ -16,7 +16,7 @@ $Config2 = "127.0.0.2";//配置
 if( isset($_GET['Config3']) ){//判断
 $Config3 = $_GET['Config3'];//配置
 }else {
-$Config1 = "127.0.0.3";//配置
+$Config3 = "127.0.0.3";//配置
 }
 if( isset($_GET['Flag1']) ){//判断
 $Flag1 = $_GET['Flag1'];    //配置
@@ -31,7 +31,7 @@ $Flag2 = "JP";    //配置
 if( isset($_GET['Flag3']) ){//判断
 $Flag3 = $_GET['Flag3'];    //配置
 }else {
-$Flag1 = "KR";    //配置
+$Flag3 = "KR";    //配置
 }
 $NAME = "UPlus";            //名称
 //-------------文件-------------//
