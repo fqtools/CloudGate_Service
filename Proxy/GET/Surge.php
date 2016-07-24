@@ -21,17 +21,17 @@ $Method = "AutoGroup";//配置
 if( isset($_GET['Config1']) ){//判断
 $Config1 = $_GET['Config1'];//配置
 }else {
-$Config1 = "127.0.0.1";//配置
+$Config1 = "50.70.70.30,18650,aes-256-cfb,Password";//配置
 }
 if( isset($_GET['Config2']) ){//判断
 $Config2 = $_GET['Config2'];//配置
 }else {
-$Config2 = "127.0.0.2";//配置
+$Config2 = "50.190.150.170,18650,aes-256-cfb,Password";//配置
 }
 if( isset($_GET['Config3']) ){//判断
 $Config3 = $_GET['Config3'];//配置
 }else {
-$Config3 = "127.0.0.3";//配置
+$Config3 = "120.190.200.240,18650,aes-256-cfb,Password";//配置
 }
 if( isset($_GET['Flag1']) ){//判断
 $Flag1 = $_GET['Flag1'];    //配置
@@ -41,12 +41,12 @@ $Flag1 = "JP";//配置
 if( isset($_GET['Flag2']) ){//判断
 $Flag2 = $_GET['Flag2'];    //配置
 }else {
-$Flag2 = "JP";//配置
+$Flag2 = "SG";//配置
 }
 if( isset($_GET['Flag3']) ){//判断
 $Flag3 = $_GET['Flag3'];    //配置
 }else {
-$Flag3 = "JP";//配置
+$Flag3 = "KR";//配置
 }
 $NAME = "UPlus";            //名称
 $OTA = "ota=false";          //OTA
