@@ -63,14 +63,14 @@ header('Content-type: application/octet-stream; charset=utf8');//下载动作
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.$File);//名称
 //--------------配置------------//
-//echo"proxies:\r\n";
-//echo"- name: ss1\r\n";
-//echo"  type: SS\r\n";
-//echo"  host: 10.0.0.0\r\n";
-//echo"  port: 443\r\n";
-//echo"  encryption: rc4-md5\r\n";
-//echo"  password: 12345\r\n";
-//echo"#\r\n";
+echo"proxies:\r\n";
+echo"- name: ss1\r\n";
+echo"  type: SS\r\n";
+echo"  host: 10.0.0.0\r\n";
+echo"  port: 443\r\n";
+echo"  encryption: rc4-md5\r\n";
+echo"  password: 12345\r\n";
+echo"#\r\n";
 echo"- name: $Flag1\r\n";
 echo"  uri: $Config1\r\n";
 echo"- name: $Flag2\r\n";
