@@ -3,6 +3,16 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
+if( isset($_GET['interval']) ){//判断
+$interval = $_GET['interval'];      //配置
+}else {
+$interval = "600";//配置
+}
+if( isset($_GET['Apple']) ){//判断
+$Apple = $_GET['Apple'];      //配置
+}else {
+$Apple = "DIRECT";//配置
+}
 if( isset($_GET['Replica']) ){//判断
 $Replica = $_GET['Replica'];//配置
 }else {
@@ -100,7 +110,7 @@ echo "$Flag3 = custom,$Config3,$Module,$OTA\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
 //echo "Group = select, AutoGroup, 🇳🇫, 🇬🇧\r\n";
-echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = $interval, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 //echo "[Host]";
@@ -122,7 +132,7 @@ echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-echo trim(fgets($Default)).",DIRECT"."\r\n"; 
+echo trim(fgets($Default)).",$Apple"."\r\n"; 
 }
 {
 fclose($Default);

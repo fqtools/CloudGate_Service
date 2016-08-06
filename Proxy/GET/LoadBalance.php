@@ -3,6 +3,11 @@
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
 //-------------通用-------------//
+if( isset($_GET['interval']) ){//判断
+$interval = $_GET['interval'];      //配置
+}else {
+$interval = "600";//配置
+}
 if( isset($_GET['China']) ){//判断
 $China = $_GET['China'];    //配置
 }else {
@@ -91,7 +96,7 @@ echo "$Flag3 = custom,$Config3,$Module,$OTA\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
 //echo "Group = select, AutoGroup, 🇳🇫, 🇬🇧\r\n";
-echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
+echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = $interval, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
 //echo "[Host]";
