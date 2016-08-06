@@ -17,9 +17,9 @@ $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
 $REJECTFile  = $REJECTFile . '?Cache='.time();
 $REJECT = fopen($REJECTFile,"r");
-$PathFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Path.txt";
-$PathFile  = $PathFile . '?Cache='.time();
-$Path = fopen($PathFile,"r");
+//$PathFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Path.txt";
+//$PathFile  = $PathFile . '?Cache='.time();
+//$Path = fopen($PathFile,"r");
 $KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
 $KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
 $KEYWORD = fopen($KEYWORDFile,"r");
@@ -98,19 +98,19 @@ fclose($REJECT);
   echo "下载失败!";//
 }
 //URL-MATCH
-if($Path){//判断打开错误
-echo"# URL-MATCH\r\n";
-while(!feof($Path))
-{
-echo "  - URL-MATCH,";
-echo fgets($Path)."";
-}
-{
-fclose($Path);
-}
-}else {//
-  echo "下载失败!";//
-}
+//if($Path){//判断打开错误
+//echo"# URL-MATCH\r\n";
+//while(!feof($Path))
+//{
+//echo "  - URL-MATCH,";
+//echo fgets($Path)."";
+//}
+//{
+//fclose($Path);
+//}
+//}else {//
+//  echo "下载失败!";//
+//}
 //DOMAIN-MATCH
 if($KEYWORD){//判断打开错误
 echo"\r\n# DOMAIN-MATCH\r\n";
