@@ -217,6 +217,7 @@ echo"FINAL,$Method";
 //Rewrite
 if($Rewrite){//判断打开错误
 echo"\r\n# Rewrite\r\n";
+echo"[URL Rewrite]\r\n";
 while(!feof($Rewrite))
 {
 echo fgets($Rewrite)."";
