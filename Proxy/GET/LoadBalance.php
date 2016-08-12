@@ -68,6 +68,9 @@ $IPCIDR = fopen($IPCIDRFile,"r");
 $HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
 $HOSTSFile  = $HOSTSFile . '?Cache='.time();
 $HOSTS = fopen($HOSTSFile,"r");
+$RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
+$RewriteFile  = $RewriteFile . '?Cache='.time();
+$Rewrite = fopen($RewriteFile,"r");
 //-------------下载-------------//
 $File = "LoadBalance.Conf";//下载文件名称
 header("cache-control:no-cache,must-revalidate");//No-Cache
@@ -110,7 +113,7 @@ echo fgets($HOSTS)."";
 fclose($HOSTS);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# HOSTS Module下载失败!\r\n";//
 }
 //Default
 if($Default){//判断打开错误
@@ -124,7 +127,7 @@ echo trim(fgets($Default)).",🇨🇳,force-remote-dns"."\r\n";
 fclose($Default);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# Default Module下载失败!\r\n";//
 }
 //PROXY
 if($Proxy){//判断打开错误
@@ -137,7 +140,7 @@ echo trim(fgets($Proxy)).",AutoGroup,force-remote-dns"."\r\n";
 fclose($Proxy);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# Proxy Module下载失败!\r\n";//
 }
 //DIRECT
 if($DIRECT){//判断打开错误
@@ -150,7 +153,7 @@ echo trim(fgets($DIRECT)).",🇨🇳"."\r\n";
 fclose($DIRECT);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# DIRECT Module下载失败!\r\n";//
 }
 //REJECT
 if($REJECT){//判断打开错误
@@ -163,7 +166,7 @@ echo trim(fgets($REJECT)).",REJECT"."\r\n";
 fclose($REJECT);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# REJECT Module下载失败!\r\n";//
 }
 //KEYWORD
 if($KEYWORD){//判断打开错误
@@ -177,7 +180,7 @@ echo fgets($KEYWORD)."";
 fclose($KEYWORD);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# KEYWORD Module下载失败!\r\n";//
 }
 //IPCIDR
 if($IPCIDR){//判断打开错误
@@ -191,11 +194,25 @@ echo trim(fgets($IPCIDR)).",no-resolve"."\r\n";
 fclose($IPCIDR);
 }
 }else {
-  echo "下载失败!";//
+  echo "\r\n# IPCIDR Module下载失败!\r\n";//
 }
 //Other
 echo"# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,AutoGroup";
+//Rewrite
+echo"# Rewrite\r\n";
+if($Rewrite){//判断打开错误
+echo"\r\n# Rewrite\r\n";
+while(!feof($Rewrite))
+{
+echo fgets($Rewrite)."";
+}
+{
+fclose($Rewrite);
+}
+}else {
+  echo "\r\n# Rewrite Module下载失败!\r\n";//
+}
 exit();
 //--------------END-------------//
