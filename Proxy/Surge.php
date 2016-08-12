@@ -163,7 +163,7 @@ echo"# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,Proxy";
 //Rewrite
-echo"# Rewrite\r\n";
+echo"\r\n# Rewrite\r\n";
 if($Rewrite){//判断打开错误
 echo"\r\n# Rewrite\r\n";
 while(!feof($Rewrite))
