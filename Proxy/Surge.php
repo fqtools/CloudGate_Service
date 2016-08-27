@@ -10,30 +10,31 @@ $Server = "172.0.0.1";    //服务器
 $Port = "80";               //端口
 $Password = "Password1024.";//密码
 $Method = "aes-256-cfb";    //方式
+$Cache = date("YmdHisu");   //缓存
 //-------------文件-------------//
 $HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-$HOSTSFile  = $HOSTSFile . '?Cache='.time();
+$HOSTSFile  = $HOSTSFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $HOSTS = fopen($HOSTSFile,"r");
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
-$DefaultFile  = $DefaultFile . '?Cache='.time();
+$DefaultFile  = $DefaultFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
-$ProxyFile  = $ProxyFile . '?Cache='.time();
+$ProxyFile  = $ProxyFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $Proxy = fopen($ProxyFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
-$DIRECTFile  = $DIRECTFile . '?Cache='.time();
+$DIRECTFile  = $DIRECTFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
-$REJECTFile  = $REJECTFile . '?Cache='.time();
+$REJECTFile  = $REJECTFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $REJECT = fopen($REJECTFile,"r");
 $KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
-$KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
+$KEYWORDFile  = $KEYWORDFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
-$IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
+$IPCIDRFile  = $IPCIDRFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
 $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
-$RewriteFile  = $RewriteFile . '?Cache='.time();
+$RewriteFile  = $RewriteFile . '?Cache='.sha1($Cache).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
 //-------------下载-------------//
 $File = "Surge.Conf";//下载文件名称
