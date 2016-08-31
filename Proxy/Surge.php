@@ -1,8 +1,11 @@
 <?php
 //------------Start-------------//
-header("cache-control:no-cache,must-revalidate");//No-Cache
-header("Content-Type:text/html;charset=UTF-8");//UTF-8
+header("cache-control:no-cache,must-revalidate");
+header("Content-Type:text/html;charset=UTF-8");
+header("Accept-Ranges: bytes");
+header('Content-Disposition: attachment; filename='.$File);
 //-------------通用-------------//
+$File = "Surge.Conf";   //文件名称
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 $OTA = "ota=false";      //OTA设置
@@ -35,12 +38,6 @@ $IPCIDR = fopen($IPCIDRFile,"r");
 $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
 $RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
-//-------------下载-------------//
-$File = "Surge.Conf";//下载文件名称
-header("cache-control:no-cache,must-revalidate");//No-Cache
-header('Content-type: application/octet-stream; charset=utf8');//下载动作
-header("Accept-Ranges: bytes");
-header('Content-Disposition: attachment; filename='.$File);//名称
 //--------------配置------------//
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
@@ -62,12 +59,12 @@ echo "🇬🇧 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
-//--------------输出------------//
+//--------------模块------------//
 //HOSTS
 /*
 echo "[Host]";
 echo"\r\n# HOSTS\r\n";
-if($HOSTS){//判断打开错误
+if($HOSTS){
 while(!feof($HOSTS))
 {
 echo fgets($HOSTS)."";
@@ -80,7 +77,7 @@ fclose($HOSTS);
 }
 */
 //Default
-if($Default){//判断打开错误
+if($Default){
 echo "\r\n[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
@@ -94,7 +91,7 @@ fclose($Default);
   echo "\r\n# Default Module下载失败!\r\n";//
 }
 //PROXY
-if($Proxy){//判断打开错误
+if($Proxy){
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -107,7 +104,7 @@ fclose($Proxy);
   echo "\r\n# Proxy Module下载失败!\r\n";//
 }
 //DIRECT
-if($DIRECT){//判断打开错误
+if($DIRECT){
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -120,7 +117,7 @@ fclose($DIRECT);
   echo "\r\n# DIRECT Module下载失败!\r\n";//
 }
 //REJECT
-if($REJECT){//判断打开错误
+if($REJECT){
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -133,7 +130,7 @@ fclose($REJECT);
   echo "\r\n# REJECT Module下载失败!\r\n";//
 }
 //KEYWORD
-if($KEYWORD){//判断打开错误
+if($KEYWORD){
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
@@ -147,7 +144,7 @@ fclose($KEYWORD);
   echo "\r\n# KEYWORD Module下载失败!\r\n";//
 }
 //IPCIDR
-if($IPCIDR){//判断打开错误
+if($IPCIDR){
 echo"\r\n# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
@@ -165,7 +162,7 @@ echo"# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,Proxy";
 //Rewrite
-if($Rewrite){//判断打开错误
+if($Rewrite){
 echo"\r\n# Rewrite\r\n";
 echo"[URL Rewrite]\r\n";
 while(!feof($Rewrite))
