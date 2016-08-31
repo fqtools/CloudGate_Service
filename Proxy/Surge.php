@@ -3,9 +3,8 @@
 header("cache-control:no-cache,must-revalidate");
 header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
-header('Content-Disposition: attachment; filename='.$NAME.Conf);
+header('Content-Disposition: attachment; filename='Surge.Conf);
 //-------------通用-------------//
-$File = "Surge.Conf";   //文件名称
 $NAME = "UPlus";            //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 $OTA = "ota=false";      //OTA设置
