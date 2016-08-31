@@ -6,25 +6,25 @@ header("Content-Type:text/html;charset=UTF-8");//UTF-8
 $NAME = "UPlus";            //名称
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
-$DefaultFile  = $DefaultFile . '?Cache='.time();
+$DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
-$ProxyFile  = $ProxyFile . '?Cache='.time();
+$ProxyFile  = $ProxyFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Proxy = fopen($ProxyFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
-$DIRECTFile  = $DIRECTFile . '?Cache='.time();
+$DIRECTFile  = $DIRECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
-$REJECTFile  = $REJECTFile . '?Cache='.time();
+$REJECTFile  = $REJECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $REJECT = fopen($REJECTFile,"r");
 //$PathFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Path.txt";
-//$PathFile  = $PathFile . '?Cache='.time();
+//$PathFile  = $PathFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 //$Path = fopen($PathFile,"r");
 $KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
-$KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
+$KEYWORDFile  = $KEYWORDFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
-$IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
+$IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
 //-------------下载-------------//
 $File = "Potatso.Conf";//下载文件名称

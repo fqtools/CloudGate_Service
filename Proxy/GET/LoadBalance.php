@@ -2,74 +2,43 @@
 //------------Start-------------//
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
+//-------------接收-------------//
+if( isset($_GET['interval']) ){$interval = $_GET['interval'];}else {$interval = "600";}
+if( isset($_GET['China']) ){$China = $_GET['China'];}else {$China = "17.70.70.30,18650,aes-256-cfb,Password";}
+if( isset($_GET['Config1']) ){$Config1 = $_GET['Config1'];}else {$Config1 = "50.70.70.30,18650,aes-256-cfb,Password";}
+if( isset($_GET['Config2']) ){$Config2 = $_GET['Config2'];}else {$Config2 = "50.190.150.170,18650,aes-256-cfb,Password";}
+if( isset($_GET['Config3']) ){$Config3 = $_GET['Config3'];}else {$Config3 = "120.190.200.240,18650,aes-256-cfb,Password";}
+if( isset($_GET['Flag1']) ){$Flag1 = $_GET['Flag1'];}else {$Flag1 = "JP";}
+if( isset($_GET['Flag2']) ){$Flag2 = $_GET['Flag2'];}else {$Flag2 = "KR";}
+if( isset($_GET['Flag3']) ){$Flag3 = $_GET['Flag3'];}else {$Flag3 = "CN";}
 //-------------通用-------------//
-if( isset($_GET['interval']) ){//判断
-$interval = $_GET['interval'];      //配置
-}else {
-$interval = "600";//配置
-}
-if( isset($_GET['China']) ){//判断
-$China = $_GET['China'];    //配置
-}else {
-$China = "17.70.70.30,18650,aes-256-cfb,Password";//配置
-}
-if( isset($_GET['Config1']) ){//判断
-$Config1 = $_GET['Config1'];//配置
-}else {
-$Config1 = "50.70.70.30,18650,aes-256-cfb,Password";//配置
-}
-if( isset($_GET['Config2']) ){//判断
-$Config2 = $_GET['Config2'];//配置
-}else {
-$Config2 = "50.190.150.170,18650,aes-256-cfb,Password";//配置
-}
-if( isset($_GET['Config3']) ){//判断
-$Config3 = $_GET['Config3'];//配置
-}else {
-$Config3 = "120.190.200.240,18650,aes-256-cfb,Password";//配置
-}
-if( isset($_GET['Flag1']) ){//判断
-$Flag1 = $_GET['Flag1'];    //配置
-}else {
-$Flag1 = "JP";//配置
-}
-if( isset($_GET['Flag2']) ){//判断
-$Flag2 = $_GET['Flag2'];    //配置
-}else {
-$Flag2 = "KR";//配置
-}
-if( isset($_GET['Flag3']) ){//判断
-$Flag3 = $_GET['Flag3'];    //配置
-}else {
-$Flag3 = "CN";//配置
-}
 $NAME = "UPlus";            //名称
-$OTA = "ota=false";          //OTA
+$OTA = "ota=false";      //OTA设置
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
-$DefaultFile  = $DefaultFile . '?Cache='.time();
+$DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
-$ProxyFile  = $ProxyFile . '?Cache='.time();
+$ProxyFile  = $ProxyFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Proxy = fopen($ProxyFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
-$DIRECTFile  = $DIRECTFile . '?Cache='.time();
+$DIRECTFile  = $DIRECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
-$REJECTFile  = $REJECTFile . '?Cache='.time();
+$REJECTFile  = $REJECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $REJECT = fopen($REJECTFile,"r");
 $KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
-$KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
+$KEYWORDFile  = $KEYWORDFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
-$IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
+$IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
 $HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-$HOSTSFile  = $HOSTSFile . '?Cache='.time();
+$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $HOSTS = fopen($HOSTSFile,"r");
 $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
-$RewriteFile  = $RewriteFile . '?Cache='.time();
+$RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
 //-------------下载-------------//
 $File = "LoadBalance.Conf";//下载文件名称

@@ -2,59 +2,36 @@
 //------------Start-------------//
 header("cache-control:no-cache,must-revalidate");//No-Cache
 header("Content-Type:text/html;charset=UTF-8");//UTF-8
+//-------------接收-------------//
+if( isset($_GET['Config1']) ){$Config1 = $_GET['Config1'];}else {$Config1 = "ss://salsa20:Password@182.41.70.11:18650";}
+if( isset($_GET['Config2']) ){$Config2 = $_GET['Config2'];}else {$Config2 = "ss://chacha20:Password@60.28.31.40:18650";}
+if( isset($_GET['Config3']) ){$Config3 = $_GET['Config3'];}else {$Config3 = "ss://aes-256-cfb:Password@50.80.40.20:18650";}
+if( isset($_GET['Flag1']) ){$Flag1 = $_GET['Flag1'];}else {$Flag1 = "JP";}
+if( isset($_GET['Flag2']) ){$Flag2 = $_GET['Flag2'];}else {$Flag2 = "SG";}
+if( isset($_GET['Flag3']) ){$Flag3 = $_GET['Flag3'];}else {$Flag3 = "KR";}
 //-------------通用-------------//
-if( isset($_GET['Config1']) ){//判断
-$Config1 = $_GET['Config1'];//配置
-}else {
-$Config1 = "ss://salsa20:Password@182.41.70.11:18650";//配置
-}
-if( isset($_GET['Config2']) ){//判断
-$Config2 = $_GET['Config2'];//配置
-}else {
-$Config2 = "ss://chacha20:Password@60.28.31.40:18650";//配置
-}
-if( isset($_GET['Config3']) ){//判断
-$Config3 = $_GET['Config3'];//配置
-}else {
-$Config3 = "ss://aes-256-cfb:Password@50.80.40.20:18650";//配置
-}
-if( isset($_GET['Flag1']) ){//判断
-$Flag1 = $_GET['Flag1'];    //配置
-}else {
-$Flag1 = "JP";//配置
-}
-if( isset($_GET['Flag2']) ){//判断
-$Flag2 = $_GET['Flag2'];    //配置
-}else {
-$Flag2 = "SG";//配置
-}
-if( isset($_GET['Flag3']) ){//判断
-$Flag3 = $_GET['Flag3'];    //配置
-}else {
-$Flag3 = "KR";//配置
-}
 $NAME = "UPlus";            //名称
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
-$DefaultFile  = $DefaultFile . '?Cache='.time();
+$DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
 $ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
-$ProxyFile  = $ProxyFile . '?Cache='.time();
+$ProxyFile  = $ProxyFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Proxy = fopen($ProxyFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
-$DIRECTFile  = $DIRECTFile . '?Cache='.time();
+$DIRECTFile  = $DIRECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $DIRECT = fopen($DIRECTFile,"r");
 $REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
-$REJECTFile  = $REJECTFile . '?Cache='.time();
+$REJECTFile  = $REJECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $REJECT = fopen($REJECTFile,"r");
 //$PathFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Path.txt";
-//$PathFile  = $PathFile . '?Cache='.time();
+//$PathFile  = $PathFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 //$Path = fopen($PathFile,"r");
 $KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
-$KEYWORDFile  = $KEYWORDFile . '?Cache='.time();
+$KEYWORDFile  = $KEYWORDFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
-$IPCIDRFile  = $IPCIDRFile . '?Cache='.time();
+$IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
 //-------------下载-------------//
 $File = "Potatso.Conf";//下载文件名称
@@ -81,7 +58,7 @@ echo"- name: $NAME\r\n";
 echo"  rules: ";
 //--------------输出------------//
 //Default
-if($Default){//判断打开错误
+if($Default){打开错误
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
@@ -95,7 +72,7 @@ fclose($Default);
   echo "\r\n# Default Module下载失败!\r\n";//
 }
 //PROXY
-if($Proxy){//判断打开错误
+if($Proxy){打开错误
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -109,7 +86,7 @@ fclose($Proxy);
   echo "\r\n# Proxy Module下载失败!\r\n";//
 }
 //DIRECT
-if($DIRECT){//判断打开错误
+if($DIRECT){打开错误
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -123,7 +100,7 @@ fclose($DIRECT);
   echo "\r\n# DIRECT Module下载失败!\r\n";//
 }
 //REJECT
-if($REJECT){//判断打开错误
+if($REJECT){打开错误
 echo"\r\n# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -137,7 +114,7 @@ fclose($REJECT);
   echo "\r\n# REJECT Module下载失败!\r\n";//
 }
 //URL-MATCH
-//if($Path){//判断打开错误
+//if($Path){打开错误
 //echo"# URL-MATCH\r\n";
 //while(!feof($Path))
 //{
@@ -151,7 +128,7 @@ fclose($REJECT);
 //  echo "\r\n# Path Module下载失败!\r\n";//
 //}
 //DOMAIN-MATCH
-if($KEYWORD){//判断打开错误
+if($KEYWORD){打开错误
 echo"\r\n# DOMAIN-MATCH\r\n";
 while(!feof($KEYWORD))
 {
@@ -165,7 +142,7 @@ fclose($KEYWORD);
   echo "\r\n# KEYWORD Module下载失败!\r\n";//
 }
 //IPCIDR
-if($IPCIDR){//判断打开错误
+if($IPCIDR){打开错误
 echo"\r\n# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
