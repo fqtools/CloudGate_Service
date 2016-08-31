@@ -37,9 +37,9 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
-$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$HOSTS = fopen($HOSTSFile,"r");
+//$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
+//$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+//$HOSTS = fopen($HOSTSFile,"r");
 $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
 $RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
@@ -69,12 +69,12 @@ echo "$Flag2 = custom,$Config2,$Module,$OTA\r\n";
 echo "$Flag3 = custom,$Config3,$Module,$OTA\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";
-//echo "Group = select, AutoGroup, 🇳🇫, 🇬🇧\r\n";
 echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = $interval, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
-//echo "[Host]";
-//echo"\r\n# HOSTS\r\n";
+/*
+echo "[Host]";
+echo"\r\n# HOSTS\r\n";
 if($HOSTS){打开错误
 while(!feof($HOSTS))
 {
@@ -86,6 +86,7 @@ fclose($HOSTS);
 }else {
   echo "\r\n# HOSTS Module下载失败!\r\n";//
 }
+*/
 //Default
 if($Default){打开错误
 echo "\r\n[Rule]";

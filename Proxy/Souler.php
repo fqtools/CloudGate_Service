@@ -98,19 +98,21 @@ fclose($REJECT);
   echo "\r\n# REJECT Module下载失败!\r\n";//
 }
 //URL-MATCH
-//if($Path){//判断打开错误
-//echo"# URL-MATCH\r\n";
-//while(!feof($Path))
-//{
-//echo "  - URL-MATCH,";
-//echo fgets($Path)."";
-//}
-//{
-//fclose($Path);
-//}
-//}else {
-//  echo "\r\n# Path Module下载失败!\r\n";//
-//}
+/*
+if($Path){//判断打开错误
+echo"# URL-MATCH\r\n";
+while(!feof($Path))
+{
+echo "  - URL-MATCH,";
+echo fgets($Path)."";
+}
+{
+fclose($Path);
+}
+}else {
+  echo "\r\n# Path Module下载失败!\r\n";//
+}
+*/
 //DOMAIN-MATCH
 if($KEYWORD){//判断打开错误
 echo"\r\n# DOMAIN-MATCH\r\n";

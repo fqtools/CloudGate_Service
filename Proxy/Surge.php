@@ -11,9 +11,9 @@ $Port = "80";               //端口
 $Password = "Password1024.";//密码
 $Method = "aes-256-cfb";    //方式
 //-------------文件-------------//
-$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$HOSTS = fopen($HOSTSFile,"r");
+//$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
+//$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+//$HOSTS = fopen($HOSTSFile,"r");
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
@@ -64,8 +64,9 @@ echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------输出------------//
 //HOSTS
-//echo "[Host]";
-//echo"\r\n# HOSTS\r\n";
+/*
+echo "[Host]";
+echo"\r\n# HOSTS\r\n";
 if($HOSTS){//判断打开错误
 while(!feof($HOSTS))
 {
@@ -77,6 +78,7 @@ fclose($HOSTS);
 }else {
   echo "\r\n# HOSTS Module下载失败!\r\n";//
 }
+*/
 //Default
 if($Default){//判断打开错误
 echo "\r\n[Rule]";
