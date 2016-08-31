@@ -1,7 +1,9 @@
 <?php
 //------------Start-------------//
-header("cache-control:no-cache,must-revalidate");//No-Cache
-header("Content-Type:text/html;charset=UTF-8");//UTF-8
+header("cache-control:no-cache,must-revalidate");
+header("Content-Type:text/html;charset=UTF-8");
+header("Accept-Ranges: bytes");
+header('Content-Disposition: attachment; filename='.'Shadowrocket.Conf');
 //-------------通用-------------//
 $NAME = "UPlus";            //名称
 //-------------文件-------------//
@@ -23,12 +25,6 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
-//-------------下载-------------//
-$File = "Shadowrocket.Conf";//下载文件名称
-header("cache-control:no-cache,must-revalidate");//No-Cache
-header('Content-type: application/octet-stream; charset=utf8');//下载动作
-header("Accept-Ranges: bytes");
-header('Content-Disposition: attachment; filename='.$File);//名称
 //--------------配置------------//
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
@@ -41,9 +37,9 @@ echo "#  \r\n";
 echo "# Shadowrocket Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "#  \r\n";
-//--------------输出------------//
+//--------------模块------------//
 //Default
-if($Default){//判断打开错误
+if($Default){
 echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
@@ -54,10 +50,10 @@ echo trim(fgets($Default)).",DIRECT"."\r\n";
 fclose($Default);
 }
 }else {
-  echo "\r\n# Default Module下载失败!\r\n";//
+  echo "\r\n# Default Module下载失败!\r\n";
 }
 //PROXY
-if($Proxy){//判断打开错误
+if($Proxy){
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -67,10 +63,10 @@ echo trim(fgets($Proxy)).",Proxy"."\r\n";
 fclose($Proxy);
 }
 }else {
-  echo "\r\n# Proxy Module下载失败!\r\n";//
+  echo "\r\n# Proxy Module下载失败!\r\n";
 }
 //DIRECT
-if($DIRECT){//判断打开错误
+if($DIRECT){
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -80,10 +76,10 @@ echo trim(fgets($DIRECT)).",DIRECT"."\r\n";
 fclose($DIRECT);
 }
 }else {
-  echo "\r\n# DIRECT Module下载失败!\r\n";//
+  echo "\r\n# DIRECT Module下载失败!\r\n";
 }
 //REJECT
-if($REJECT){//判断打开错误
+if($REJECT){
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -93,10 +89,10 @@ echo trim(fgets($REJECT)).",REJECT"."\r\n";
 fclose($REJECT);
 }
 }else {
-  echo "\r\n# REJECT Module下载失败!\r\n";//
+  echo "\r\n# REJECT Module下载失败!\r\n";
 }
 //KEYWORD
-if($KEYWORD){//判断打开错误
+if($KEYWORD){
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
@@ -107,10 +103,10 @@ echo fgets($KEYWORD)."";
 fclose($KEYWORD);
 }
 }else {
-  echo "\r\n# KEYWORD Module下载失败!\r\n";//
+  echo "\r\n# KEYWORD Module下载失败!\r\n";
 }
 //IPCIDR
-if($IPCIDR){//判断打开错误
+if($IPCIDR){
 echo"\r\n# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
@@ -121,7 +117,7 @@ echo fgets($IPCIDR)."";
 fclose($IPCIDR);
 }
 }else {
-  echo "\r\n# IPCIDR Module下载失败!\r\n";//
+  echo "\r\n# IPCIDR Module下载失败!\r\n";
 }
 //Other
 echo"\r\n# Other\r\n";

@@ -1,7 +1,9 @@
 <?php
 //------------Start-------------//
-header("cache-control:no-cache,must-revalidate");//No-Cache
-header("Content-Type:text/html;charset=UTF-8");//UTF-8
+header("cache-control:no-cache,must-revalidate");
+header("Content-Type:text/html;charset=UTF-8");
+header("Accept-Ranges: bytes");
+header('Content-Disposition: attachment; filename='.'A.BIG.T.Conf');
 //-------------通用-------------//
 $NAME = "UPlus";            //名称
 $Server = "127.0.0.1";      //地址
@@ -27,12 +29,6 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
-//-------------下载-------------//
-$File = "A.BIG.T.conf";//下载文件名称
-header("cache-control:no-cache,must-revalidate");//No-Cache
-header('Content-type: application/octet-stream; charset=utf8');//下载动作
-header("Accept-Ranges: bytes");
-header('Content-Disposition: attachment; filename='.$File);//名称
 //--------------配置------------//
 echo "[General]\r\n";
 echo "skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local\r\n";
@@ -45,9 +41,9 @@ echo "# A.BIG.T Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-//--------------输出------------//
+//--------------模块------------//
 //Default
-if($Default){//判断打开错误
+if($Default){
 echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
@@ -61,7 +57,7 @@ fclose($Default);
   echo "\r\n# Default Module下载失败!\r\n";//
 }
 //PROXY
-if($Proxy){//判断打开错误
+if($Proxy){
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
@@ -74,7 +70,7 @@ fclose($Proxy);
   echo "\r\n# Proxy Module下载失败!\r\n";//
 }
 //DIRECT
-if($DIRECT){//判断打开错误
+if($DIRECT){
 echo"# DIRECT\r\n";
 while(!feof($DIRECT))
 {
@@ -87,7 +83,7 @@ fclose($DIRECT);
   echo "\r\n# DIRECT Module下载失败!\r\n";//
 }
 //REJECT
-if($REJECT){//判断打开错误
+if($REJECT){
 echo"# REJECT\r\n";
 while(!feof($REJECT))
 {
@@ -100,7 +96,7 @@ fclose($REJECT);
   echo "\r\n# REJECT Module下载失败!\r\n";//
 }
 //KEYWORD
-if($KEYWORD){//判断打开错误
+if($KEYWORD){
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
@@ -114,7 +110,7 @@ fclose($KEYWORD);
   echo "\r\n# KEYWORD Module下载失败!\r\n";//
 }
 //IPCIDR
-if($IPCIDR){//判断打开错误
+if($IPCIDR){
 echo"\r\n# IPCIDR\r\n";
 while(!feof($IPCIDR))
 {

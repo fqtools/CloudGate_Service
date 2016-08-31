@@ -14,9 +14,6 @@ $Port = "80";               //端口
 $Password = "Password1024.";//密码
 $Method = "aes-256-cfb";    //方式
 //-------------文件-------------//
-//$HOSTSFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/HOSTS.txt";
-//$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-//$HOSTS = fopen($HOSTSFile,"r");
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
@@ -60,22 +57,6 @@ echo "[Proxy Group]\r\n";
 echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";
 //--------------模块------------//
-//HOSTS
-/*
-echo "[Host]";
-echo"\r\n# HOSTS\r\n";
-if($HOSTS){
-while(!feof($HOSTS))
-{
-echo fgets($HOSTS)."";
-}
-{
-fclose($HOSTS);
-}
-}else {
-  echo "\r\n# HOSTS Module下载失败!\r\n";//
-}
-*/
 //Default
 if($Default){
 echo "\r\n[Rule]";
@@ -88,7 +69,7 @@ echo trim(fgets($Default)).",DIRECT"."\r\n";
 fclose($Default);
 }
 }else {
-  echo "\r\n# Default Module下载失败!\r\n";//
+  echo "\r\n# Default Module下载失败!\r\n";
 }
 //PROXY
 if($Proxy){
@@ -101,7 +82,7 @@ echo trim(fgets($Proxy)).",Proxy,force-remote-dns"."\r\n";
 fclose($Proxy);
 }
 }else {
-  echo "\r\n# Proxy Module下载失败!\r\n";//
+  echo "\r\n# Proxy Module下载失败!\r\n";
 }
 //DIRECT
 if($DIRECT){
@@ -114,7 +95,7 @@ echo trim(fgets($DIRECT)).",DIRECT"."\r\n";
 fclose($DIRECT);
 }
 }else {
-  echo "\r\n# DIRECT Module下载失败!\r\n";//
+  echo "\r\n# DIRECT Module下载失败!\r\n";
 }
 //REJECT
 if($REJECT){
@@ -127,7 +108,7 @@ echo trim(fgets($REJECT)).",REJECT"."\r\n";
 fclose($REJECT);
 }
 }else {
-  echo "\r\n# REJECT Module下载失败!\r\n";//
+  echo "\r\n# REJECT Module下载失败!\r\n";
 }
 //KEYWORD
 if($KEYWORD){
@@ -141,7 +122,7 @@ echo fgets($KEYWORD)."";
 fclose($KEYWORD);
 }
 }else {
-  echo "\r\n# KEYWORD Module下载失败!\r\n";//
+  echo "\r\n# KEYWORD Module下载失败!\r\n";
 }
 //IPCIDR
 if($IPCIDR){
@@ -155,7 +136,7 @@ echo trim(fgets($IPCIDR)).",no-resolve"."\r\n";
 fclose($IPCIDR);
 }
 }else {
-  echo "\r\n# IPCIDR Module下载失败!\r\n";//
+  echo "\r\n# IPCIDR Module下载失败!\r\n";
 }
 //Other
 echo"# Other\r\n";
@@ -173,7 +154,7 @@ echo fgets($Rewrite)."";
 fclose($Rewrite);
 }
 }else {
-  echo "\r\n# Rewrite Module下载失败!\r\n";//
+  echo "\r\n# Rewrite Module下载失败!\r\n";
 }
 exit();
 //--------------END-------------//
