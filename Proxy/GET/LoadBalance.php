@@ -5,6 +5,7 @@ header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'LoadBalance.Conf');
 //-------------接收-------------//
+if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "Advanced";}
 if( isset($_GET['interval']) ){$interval = $_GET['interval'];}else {$interval = "600";}
 if( isset($_GET['China']) ){$China = $_GET['China'];}else {$China = "17.70.70.30,18650,aes-256-cfb,Password";}
 if( isset($_GET['Config1']) ){$Config1 = $_GET['Config1'];}else {$Config1 = "50.70.70.30,18650,aes-256-cfb,Password";}
@@ -21,7 +22,8 @@ $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
-$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
+if ($Rule=="Advanced"){$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Advanced.txt";} 
+elseif ($Rule=="Basic"){$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Basic.txt";}
 $ProxyFile  = $ProxyFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Proxy = fopen($ProxyFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";

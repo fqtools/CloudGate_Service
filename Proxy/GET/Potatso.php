@@ -5,6 +5,8 @@ header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'Potatso.Conf');
 //-------------接收-------------//
+if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "Advanced";}
+if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "DIRECT";}
 if( isset($_GET['Config1']) ){$Config1 = $_GET['Config1'];}else {$Config1 = "ss://salsa20:Password@182.41.70.11:18650";}
 if( isset($_GET['Config2']) ){$Config2 = $_GET['Config2'];}else {$Config2 = "ss://chacha20:Password@60.28.31.40:18650";}
 if( isset($_GET['Config3']) ){$Config3 = $_GET['Config3'];}else {$Config3 = "ss://aes-256-cfb:Password@50.80.40.20:18650";}
@@ -17,7 +19,8 @@ $NAME = "UPlus";            //名称
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
-$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Proxy.txt";
+if ($Rule=="Advanced"){$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Advanced.txt";} 
+elseif ($Rule=="Basic"){$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Basic.txt";}
 $ProxyFile  = $ProxyFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Proxy = fopen($ProxyFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
@@ -56,7 +59,7 @@ echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
 echo "  - ";
-echo trim(fgets($Default)).",DIRECT"."\r\n"; 
+echo trim(fgets($Default)).",$Apple"."\r\n"; 
 }
 {
 fclose($Default);
