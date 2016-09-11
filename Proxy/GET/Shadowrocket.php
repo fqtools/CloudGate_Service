@@ -113,6 +113,7 @@ fclose($KEYWORD);
   echo "\r\n# KEYWORD Module下载失败!\r\n";
 }
 //IPCIDR
+/*
 if($IPCIDR){
 echo"\r\n# IPCIDR\r\n";
 while(!feof($IPCIDR))
@@ -126,6 +127,7 @@ fclose($IPCIDR);
 }else {
   echo "\r\n# IPCIDR Module下载失败!\r\n";
 }
+*/
 //Other
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
