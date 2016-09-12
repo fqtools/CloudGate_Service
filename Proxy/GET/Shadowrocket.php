@@ -41,9 +41,6 @@ echo "# Shadowrocket Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "$Flag1 = custom,$Config1\r\n";
-echo "$Flag2 = custom,$Config2\r\n";
-echo "$Flag3 = custom,$Config3\r\n";
 //--------------模块------------//
 //Default
 if($Default){
