@@ -5,7 +5,7 @@ header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'DNSList.Conf');
 //-------------通用-------------//
-$NAME = "UPlus";            //名称
+$NAME = "CloudGate";        //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";

@@ -8,7 +8,7 @@ header('Content-Disposition: attachment; filename='.'Shadowrocket.Conf');
 if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "Advanced";}
 if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "DIRECT";}
 //-------------通用-------------//
-$NAME = "UPlus";            //名称
+$NAME = "CloudGate";        //名称
 //-------------文件-------------//
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();

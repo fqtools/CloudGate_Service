@@ -5,7 +5,7 @@ header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'A.BIG.T.Conf');
 //-------------通用-------------//
-$NAME = "UPlus";            //名称
+$NAME = "CloudGate";        //名称
 $Server = "127.0.0.1";      //地址
 $Port = "80";               //端口
 $Password = "Password1024.";//密码

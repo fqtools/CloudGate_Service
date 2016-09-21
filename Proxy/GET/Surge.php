@@ -18,7 +18,7 @@ if( isset($_GET['Flag1']) ){$Flag1 = $_GET['Flag1'];  }else {$Flag1 = "JP";}
 if( isset($_GET['Flag2']) ){$Flag2 = $_GET['Flag2'];  }else {$Flag2 = "SG";}
 if( isset($_GET['Flag3']) ){$Flag3 = $_GET['Flag3'];  }else {$Flag3 = "KR";}
 //-------------通用-------------//
-$NAME = "UPlus";            //名称
+$NAME = "CloudGate";        //名称
 $OTA = "ota=false";      //OTA设置
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
 //-------------文件-------------//
