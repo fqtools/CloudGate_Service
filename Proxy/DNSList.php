@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //------------Start-------------//
 header("cache-control:no-cache,must-revalidate");
 header("Content-Type:text/html;charset=UTF-8");
