@@ -132,7 +132,7 @@ echo"\r\n# Rewrite\r\n";
 echo"[URL Rewrite]\r\n";
 while(!feof($Rewrite))
 {
-echo trim(fgets($Rewrite))."&nbsp;302".""; 
+echo trim(fgets($Rewrite))." 302"."\r\n"; 
 }
 {
 fclose($Rewrite);
