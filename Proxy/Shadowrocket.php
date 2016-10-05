@@ -97,7 +97,7 @@ echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
 echo "DOMAIN-KEYWORD,";
-echo trim(fgets($KEYWORD)).",force-remote-dns".""; 
+echo trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; 
 }
 {
 fclose($KEYWORD);
