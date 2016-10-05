@@ -97,7 +97,7 @@ echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
 echo "DOMAIN-KEYWORD,";
-echo fgets($KEYWORD)."";
+echo trim(fgets($KEYWORD)).",force-remote-dns".""; 
 }
 {
 fclose($KEYWORD);
@@ -123,5 +123,19 @@ fclose($IPCIDR);
 echo"\r\n# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
 echo"FINAL,Proxy";
+//Rewrite
+if($Rewrite){
+echo"\r\n# Rewrite\r\n";
+echo"[URL Rewrite]\r\n";
+while(!feof($Rewrite))
+{
+echo trim(fgets($Rewrite))."&nbsp;302".""; 
+}
+{
+fclose($Rewrite);
+}
+}else {
+  echo "\r\n# Rewrite Module下载失败!\r\n";
+}
 exit();
 //--------------END------------//
