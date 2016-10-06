@@ -147,7 +147,8 @@ echo"\r\n# Rewrite\r\n";
 echo"[URL Rewrite]\r\n";
 while(!feof($Rewrite))
 {
-echo trim(fgets($Rewrite))." header"."\r\n"; 
+echo fgets($Rewrite)."";
+//echo trim(fgets($Rewrite))." header"."\r\n"; 
 }
 {
 fclose($Rewrite);
