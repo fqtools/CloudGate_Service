@@ -10,9 +10,9 @@ if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "DIRECT";}
 if( isset($_GET['Config1']) ){$Config1 = $_GET['Config1'];}else {$Config1 = "127.0.0.1,80,aes-256-cfb,Password";}
 if( isset($_GET['Config2']) ){$Config2 = $_GET['Config2'];}else {$Config2 = "127.0.0.1,80,aes-256-cfb,Password";}
 if( isset($_GET['Config3']) ){$Config3 = $_GET['Config3'];}else {$Config3 = "127.0.0.1,80,aes-256-cfb,Password";}
-if( isset($_GET['Flag1']) ){$Flag1 = $_GET['Flag1'];    }else {$Flag1 = "NONE";    }
-if( isset($_GET['Flag2']) ){$Flag2 = $_GET['Flag2'];    }else {$Flag2 = "NONE ";    }
-if( isset($_GET['Flag3']) ){$Flag3 = $_GET['Flag3'];    }else {$Flag3 = "NONE  ";    }
+if( isset($_GET['Flag1']) ){$Flag1 = $_GET['Flag1'];    }else {$Flag1 = "NONE1";    }
+if( isset($_GET['Flag2']) ){$Flag2 = $_GET['Flag2'];    }else {$Flag2 = "NONE2";    }
+if( isset($_GET['Flag3']) ){$Flag3 = $_GET['Flag3'];    }else {$Flag3 = "NONE3";    }
 //-------------通用-------------//
 $NAME = "CloudGate";        //名称
 //-------------文件-------------//
