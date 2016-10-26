@@ -85,7 +85,7 @@ if($Proxy){
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-echo trim(fgets($Proxy)).",Proxy,force-remote-dns"."\r\n"; 
+echo trim(fgets($Proxy)).",Proxy"."\r\n"; 
 }
 {
 fclose($Proxy);
@@ -125,7 +125,7 @@ echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
 echo "DOMAIN-KEYWORD,";
-echo fgets($KEYWORD)."";
+echo trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; 
 }
 {
 fclose($KEYWORD);
@@ -135,7 +135,7 @@ fclose($KEYWORD);
 }
 //IPCIDR
 if($IPCIDR){
-echo"\r\n# IP-CIDR\r\n";
+echo"# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
 echo "IP-CIDR,";

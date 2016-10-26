@@ -125,7 +125,7 @@ fclose($KEYWORD);
 }
 //IPCIDR
 if($IPCIDR){
-echo"\r\n# IP-CIDR\r\n";
+echo"# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
 echo "IP-CIDR,";
