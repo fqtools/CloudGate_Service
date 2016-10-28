@@ -13,12 +13,15 @@ $Port = "80";               //端口
 $Password = "Password1024.";//密码
 $Method = "aes-256-cfb";    //方式
 //-------------文件-------------//
-$DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
-$DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$Default = fopen($DefaultFile,"r");
 $HOSTSFile = "http://187945.vhost304.cloudvhost.cn/Static/Hosts/Hosts.txt";
 $HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $HOSTS = fopen($HOSTSFile,"r");
+$YoutubeFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Youtube.txt";
+$YoutubeFile  = $YoutubeFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+$Youtube = fopen($YoutubeFile,"r");
+$DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
+$DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+$Default = fopen($DefaultFile,"r");
 $DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
 $DIRECTFile  = $DIRECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $DIRECT = fopen($DIRECTFile,"r");
@@ -69,6 +72,18 @@ fclose($HOSTS);
 }
 }else {
   echo "\r\n# HOSTS Module下载失败!\r\n";
+}
+//Youtube
+echo"\r\n# Youtube\r\n";
+while(!feof($Youtube))
+{
+echo trim(fgets($Youtube))." = 202.171.253.111"."\r\n"; 
+}
+{
+fclose($Youtube);
+}
+}else {
+  echo "\r\n# Youtube Module下载失败!\r\n";
 }
 //Default
 if($Default){
