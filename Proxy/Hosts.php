@@ -3,7 +3,7 @@
 header("cache-control:no-cache,must-revalidate");
 header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
-header('Content-Disposition: attachment; filename='.'Surge.Conf');
+header('Content-Disposition: attachment; filename='.'Hosts.Conf');
 //-------------通用-------------//
 $NAME = "CloudGate";        //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
@@ -59,7 +59,7 @@ echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 //HOSTS
 if($HOSTS){
 echo "\r\n[Host]";
-echo"# HOSTS\r\n";
+echo"\r\n# HOSTS\r\n";
 while(!feof($HOSTS))
 {
 echo trim(fgets($HOSTS)).""."\r\n"; 
