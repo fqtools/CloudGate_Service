@@ -74,6 +74,7 @@ fclose($HOSTS);
   echo "\r\n# HOSTS Module下载失败!\r\n";
 }
 //Youtube
+if($Youtube){
 echo"\r\n# Youtube\r\n";
 while(!feof($Youtube))
 {
