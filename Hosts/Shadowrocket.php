@@ -40,7 +40,7 @@ echo "skip-proxy = 10.0.0.0/8,17.0.0.0/8,172.16.0.0/12,192.168.0.0/16,localhost,
 echo "bypass-tun = 10.0.0.0/8,127.0.0.0/24,172.0.0.0/8,192.168.0.0/16\r\n";
 echo "dns-server = 8.8.8.8,8.8.4.4\r\n";
 echo "#  \r\n";
-echo "# Shadowrocket Config File [$NAME]\r\n";
+echo "# Hosts Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "#  \r\n";
 //--------------模块------------//
@@ -117,6 +117,7 @@ fclose($HOSTS);
   echo "\r\n# HOSTS Module下载失败!\r\n";
 }
 //Youtube
+/*
 if($Youtube){
 echo"\r\n# Youtube\r\n";
 while(!feof($Youtube))
@@ -130,6 +131,7 @@ fclose($Youtube);
 }else {
   echo "\r\n# Youtube Module下载失败!\r\n";
 }
+*/
 //Rewrite
 if($Rewrite){
 echo"\r\n# Rewrite\r\n";
