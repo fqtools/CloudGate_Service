@@ -16,12 +16,9 @@ $Method = "aes-256-cfb";    //方式
 $HOSTSFile = "http://187945.vhost304.cloudvhost.cn/Static/Hosts/Hosts.txt";
 $HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $HOSTS = fopen($HOSTSFile,"r");
-$YoutubeFileOne = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Youtube-One.txt";
-$YoutubeFileOne  = $YoutubeFileOne . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$YoutubeOne = fopen($YoutubeFileOne,"r");
-$YoutubeFileTwo = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Youtube-Two.txt";
-$YoutubeFileTwo  = $YoutubeFileTwo . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$YoutubeTwo = fopen($YoutubeFileTwo,"r");
+$YoutubeFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Youtube.txt";
+$YoutubeFile  = $YoutubeFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+$Youtube = fopen($YoutubeFile,"r");
 $DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
 $DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Default = fopen($DefaultFile,"r");
@@ -76,31 +73,18 @@ fclose($HOSTS);
 }else {
   echo "\r\n# HOSTS Module下载失败!\r\n";
 }
-//YoutubeOne
-if($YoutubeOne){
-echo"\r\n# YoutubeOne\r\n";
-while(!feof($YoutubeOne))
+//Youtube
+if($Youtube){
+echo"\r\n# Youtube\r\n";
+while(!feof($Youtube))
 {
-echo trim(fgets($YoutubeOne))." = 202.171.253.111"."\r\n"; 
+echo trim(fgets($Youtube))." = 202.171.253.111"."\r\n"; 
 }
 {
-fclose($YoutubeOne);
+fclose($Youtube);
 }
 }else {
-  echo "\r\n# YoutubeOne Module下载失败!\r\n";
-}
-//YoutubeTwo
-if($YoutubeTwo){
-echo"\r\n# YoutubeTwo\r\n";
-while(!feof($YoutubeTwo))
-{
-echo trim(fgets($YoutubeTwo))." = 202.171.253.103"."\r\n"; 
-}
-{
-fclose($YoutubeTwo);
-}
-}else {
-  echo "\r\n# YoutubeTwo Module下载失败!\r\n";
+  echo "\r\n# Youtube Module下载失败!\r\n";
 }
 //Default
 if($Default){
