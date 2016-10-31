@@ -7,7 +7,7 @@ header('Content-Disposition: attachment; filename='.'Shadowrocket.Conf');
 //-------------通用-------------//
 $NAME = "CloudGate";        //名称
 //-------------文件-------------//
-$HOSTSFile = "http://187945.vhost304.cloudvhost.cn/Static/Hosts/Surge-Hosts.txt";
+$HOSTSFile = "http://187945.vhost304.cloudvhost.cn/Static/Hosts/Hosts.txt";
 $HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $HOSTS = fopen($HOSTSFile,"r");
 $YoutubeFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Youtube.txt";

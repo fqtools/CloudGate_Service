@@ -2,6 +2,9 @@
 /*
 USERAGENT Location
 */
+header("cache-control:no-cache,must-revalidate");
+header("Content-Type:text/html;charset=UTF-8");
+
 $USERAGENT = $_SERVER['HTTP_USER_AGENT'];
 
 //Surge
