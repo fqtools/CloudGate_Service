@@ -54,7 +54,7 @@ $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
 $RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
 //--------------配置------------//
-echo "#!MANAGED-CONFIG https://config.daoapp.io/Proxy/GET/Surge.php?AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$Flag1&Flag2=$Flag2&Flag3=$Flag3&Flag4=$Flag4&Flag5=$Flag5 interval=86400\r\n";
+echo "#!MANAGED-CONFIG http://UPlus7.Win/Advanced/Surge.php?AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$Flag1&Flag2=$Flag2&Flag3=$Flag3&Flag4=$Flag4&Flag5=$Flag5 interval=86400\r\n";
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
 echo "skip-proxy = 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, ::ffff:0:0:0:0/1, ::ffff:128:0:0:0/1, *.crashlytics.com, *.helpshift.com, *.supercell.net\r\n";
@@ -109,11 +109,11 @@ else {echo "Proxy = select, $Flag1\r\n";}}
 
 //AutoGroup | if AntoGroup=null>false | if AutoGroup=false>false | if AutoGroup=true>true |
 if ($AutoGroup=="true"){
-if ($Group<"2"){echo "AutoGroup = url-test, $Flag1 url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2 url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3 url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4 url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5 url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
+if ($Group<"2"){echo "AutoGroup = url-test, $Flag1, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
+elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
+elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
+elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
+elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
 }elseif ($AutoGroup=="false"){}
 
 //if ($AutoGroup=="true"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
