@@ -97,13 +97,15 @@ else {
 echo "$Flag1 = custom,$Config1,$Module\r\n";}
 
 echo "[Proxy Group]\r\n";
+if ($AutoGroup=="true"){}
+else{
 if ($Group<"2"){echo "Proxy = select, $Flag1\r\n";}
 elseif ($Group<"3"){echo "Proxy = select, $Flag1, $Flag2\r\n";}
 elseif ($Group<"4"){echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";}
 elseif ($Group<"5"){echo "Proxy = select, $Flag1, $Flag2, $Flag3, $Flag4\r\n";}
 elseif ($Group<"6"){echo "Proxy = select, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5\r\n";}
 elseif ($Group>"6"){echo "$Flag1 = custom,$Config1,$Module\r\n";}
-else {echo "Proxy = select, $Flag1\r\n";}
+else {echo "Proxy = select, $Flag1\r\n";}}
 
 //AutoGroup | if AntoGroup=null>false | if AutoGroup=false>false | if AutoGroup=true>true |
 if ($AutoGroup=="true"){
@@ -118,7 +120,7 @@ elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, 
 //--------------模块------------//
 //Default
 if($Default){
-echo "\r\n[Rule]";
+echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
@@ -173,30 +175,14 @@ fclose($REJECT);
 }else {
   echo "\r\n# REJECT Module下载失败!\r\n";
 }
-/*
 //KEYWORD
 if($KEYWORD){
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
-if($AutoGroup=="true"){str_replace("Proxy","AutoGroup","DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"); }
+if($AutoGroup=="true"){echo str_replace("Proxy","AutoGroup","DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"); }
 elseif($AutoGroup=="false"){echo "DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; }
 else{echo "DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; }
-}
-{
-fclose($KEYWORD);
-}
-}else {
-  echo "\r\n# KEYWORD Module下载失败!\r\n";
-}
-*/
-//KEYWORD
-if($KEYWORD){
-echo"# KEYWORD\r\n";
-while(!feof($KEYWORD))
-{
-echo "DOMAIN-KEYWORD,";
-echo trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; 
 }
 {
 fclose($KEYWORD);
@@ -209,7 +195,9 @@ if($IPCIDR){
 echo"# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
-echo "IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"; 
+if($AutoGroup=="true"){echo str_replace("Proxy","AutoGroup","IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"); }
+elseif($AutoGroup=="false"){echo "IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"; }
+else{echo "IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"; }
 }
 {
 fclose($IPCIDR);
