@@ -9,13 +9,13 @@ header("Content-Type:text/html;charset=UTF-8");
 $USERAGENT = $_SERVER['HTTP_USER_AGENT'];
 //Surge
 if(strstr($USERAGENT,"Surge")){
-header("Location:".'https://Config.daoapp.io/Hosts/Surge-Hosts.php');
+header("Location:".'http://UPlus7.Win/Hosts/Surge-Hosts.php');
 }
 //Shadowrocket
 elseif(strstr($USERAGENT,"Shadowrocket")){
-header("Location:".'https://Config.daoapp.io/Hosts/Shadowrocket.php');
+header("Location:".'http://UPlus7.Win/Hosts/Shadowrocket.php');
 }
 //Other
 else{
-header("Location:".'https://Config.daoapp.io/Hosts/Surge-Hosts.php');
+header("Location:".'http://UPlus7.Win/Hosts/Surge-Hosts.php');
 }
