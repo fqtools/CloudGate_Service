@@ -6,7 +6,7 @@ header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'Surge.Conf');
 //-------------接收-------------//
 if( isset($_GET['AutoGroup']) ){$AutoGroup = $_GET['AutoGroup'];}else {$Rule = "false";}
-if( $AutoGroup=="true" ){$AutoGroup="true";}elseif($AutoGroup=="false"){$AutoGroup="false";}else {$AutoGroup="false";}
+if( $AutoGroup=="true" ){$GETAutoGroup="true";}elseif($AutoGroup=="false"){$GETAutoGroup="false";}else {$GETAutoGroup="false";}
 if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "false";}
 if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Apple="false";}
 if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "false";}
@@ -97,24 +97,24 @@ else {
 echo "$Flag1 = custom,$Config1,$Module\r\n";}
 
 echo "[Proxy Group]\r\n";
-if ($AutoGroup=="true"){}
-else{
+if ($GETAutoGroup=="true"){}
+elseif($GETAutoGroup=="false"){
 if ($Group<"2"){echo "Proxy = select, $Flag1\r\n";}
 elseif ($Group<"3"){echo "Proxy = select, $Flag1, $Flag2\r\n";}
 elseif ($Group<"4"){echo "Proxy = select, $Flag1, $Flag2, $Flag3\r\n";}
 elseif ($Group<"5"){echo "Proxy = select, $Flag1, $Flag2, $Flag3, $Flag4\r\n";}
 elseif ($Group<"6"){echo "Proxy = select, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5\r\n";}
-elseif ($Group>"6"){echo "$Flag1 = custom,$Config1,$Module\r\n";}
-else {echo "Proxy = select, $Flag1\r\n";}}
+elseif ($Group>"6"){echo "$Flag1 = custom,$Config1,$Module\r\n";}}
+else {echo "Proxy = select, $Flag1\r\n";}
 
 //AutoGroup | if AntoGroup=null>false | if AutoGroup=false>false | if AutoGroup=true>true |
-if ($AutoGroup=="true"){
+if ($GETAutoGroup=="true"){
 if ($Group<"2"){echo "AutoGroup = url-test, $Flag1, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
 elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
 elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
 elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
-}elseif ($AutoGroup=="false"){}
+elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}}
+elseif ($GETAutoGroup=="false"){}
 
 //if ($AutoGroup=="true"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";}
 //--------------模块------------//
@@ -124,8 +124,8 @@ echo "[Rule]";
 echo"\r\n# Default\r\n";
 while(!feof($Default))
 {
-if($AutoGroup=="true"){echo trim(fgets($Default)).",AutoGroup"."\r\n"; }
-elseif($AutoGroup=="false"){echo trim(fgets($Default)).",$GETApple"."\r\n"; }
+if($GETAutoGroup=="true"){echo trim(fgets($Default)).",AutoGroup"."\r\n"; }
+elseif($GETAutoGroup=="false"){echo trim(fgets($Default)).",$GETApple"."\r\n"; }
 else {echo trim(fgets($Default)).",$GETApple"."\r\n"; }
 }
 {
@@ -139,8 +139,8 @@ if($Proxy){
 echo"# PROXY\r\n";
 while(!feof($Proxy))
 {
-if($AutoGroup=="true"){echo trim(fgets($Proxy)).",AutoGroup"."\r\n"; }
-elseif($AutoGroup=="false"){echo trim(fgets($Proxy)).",Proxy"."\r\n"; }
+if($GETAutoGroup=="true"){echo trim(fgets($Proxy)).",AutoGroup"."\r\n"; }
+elseif($GETAutoGroup=="false"){echo trim(fgets($Proxy)).",Proxy"."\r\n"; }
 else{echo trim(fgets($Proxy)).",Proxy"."\r\n"; }
 }
 {
@@ -180,8 +180,8 @@ if($KEYWORD){
 echo"# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
-if($AutoGroup=="true"){echo str_replace("Proxy","AutoGroup","DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"); }
-elseif($AutoGroup=="false"){echo "DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; }
+if($GETAutoGroup=="true"){echo str_replace("Proxy","AutoGroup","DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"); }
+elseif($GETAutoGroup=="false"){echo "DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; }
 else{echo "DOMAIN-KEYWORD,".trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; }
 }
 {
@@ -195,8 +195,8 @@ if($IPCIDR){
 echo"# IP-CIDR\r\n";
 while(!feof($IPCIDR))
 {
-if($AutoGroup=="true"){echo str_replace("Proxy","AutoGroup","IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"); }
-elseif($AutoGroup=="false"){echo "IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"; }
+if($GETAutoGroup=="true"){echo str_replace("Proxy","AutoGroup","IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"); }
+elseif($GETAutoGroup=="false"){echo "IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"; }
 else{echo "IP-CIDR,".trim(fgets($IPCIDR)).",no-resolve"."\r\n"; }
 }
 {
@@ -208,8 +208,8 @@ fclose($IPCIDR);
 //Other
 echo"# Other\r\n";
 echo"GEOIP,CN,DIRECT\r\n";
-if($AutoGroup=="true"){echo"FINAL,AutoGroup";}
-elseif($AutoGroup=="false"){echo"FINAL,Proxy";}
+if($GETAutoGroup=="true"){echo"FINAL,AutoGroup";}
+elseif($GETAutoGroup=="false"){echo"FINAL,Proxy";}
 else{echo"FINAL,Proxy";}
 //Rewrite
 if($Rewrite){
