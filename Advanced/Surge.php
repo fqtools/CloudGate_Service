@@ -5,6 +5,8 @@ header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'Surge.Conf');
 //-------------接收-------------//
+if( isset($_GET['Protocol']) ){$Protocol = $_GET['Protocol'];  }else {$Protocol = "custom";}
+
 if( isset($_GET['AutoGroup']) ){$AutoGroup = $_GET['AutoGroup'];}else {$Rule = "false";}
 if( $AutoGroup=="true" ){$GETAutoGroup="true";}elseif($AutoGroup=="false"){$GETAutoGroup="false";}elseif($AutoGroup=="select"){$GETAutoGroup="select";}else {$GETAutoGroup="false";}
 if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "false";}
@@ -54,7 +56,7 @@ $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
 $RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
 //--------------配置------------//
-echo "#!MANAGED-CONFIG http://UPlus7.Win/Advanced/Surge.php?AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$Flag1&Flag2=$Flag2&Flag3=$Flag3&Flag4=$Flag4&Flag5=$Flag5 interval=86400\r\n";
+echo "#!MANAGED-CONFIG http://UPlus7.Win/Advanced/Surge.php?AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$Flag1&Flag2=$Flag2&Flag3=$Flag3&Flag4=$Flag4&Flag5=$Flag5&Protocol=$Protocol interval=86400\r\n";
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
 echo "skip-proxy = 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, ::ffff:0:0:0:0/1, ::ffff:128:0:0:0/1, *.crashlytics.com, *.helpshift.com, *.supercell.net\r\n";
@@ -72,30 +74,29 @@ echo "# Last Modified: " . date("Y-m-d H:i:s") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
 if ($Group<"2"){
-echo "$Flag1 = custom,$Config1,$Module\r\n";}
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";}
 elseif ($Group<"3"){
-echo "$Flag1 = custom,$Config1,$Module\r\n";
-echo "$Flag2 = custom,$Config2,$Module\r\n";}
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";
+echo "$Flag2 = $Protocol,$Config2,$Module\r\n";}
 elseif ($Group<"4"){
-echo "$Flag1 = custom,$Config1,$Module\r\n";
-echo "$Flag2 = custom,$Config2,$Module\r\n";
-echo "$Flag3 = custom,$Config3,$Module\r\n";}
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";
+echo "$Flag2 = $Protocol,$Config2,$Module\r\n";
+echo "$Flag3 = $Protocol,$Config3,$Module\r\n";}
 elseif ($Group<"5"){
-echo "$Flag1 = custom,$Config1,$Module\r\n";
-echo "$Flag2 = custom,$Config2,$Module\r\n";
-echo "$Flag3 = custom,$Config3,$Module\r\n";
-echo "$Flag4 = custom,$Config4,$Module\r\n";}
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";
+echo "$Flag2 = $Protocol,$Config2,$Module\r\n";
+echo "$Flag3 = $Protocol,$Config3,$Module\r\n";
+echo "$Flag4 = $Protocol,$Config4,$Module\r\n";}
 elseif ($Group<"6"){
-echo "$Flag1 = custom,$Config1,$Module\r\n";
-echo "$Flag2 = custom,$Config2,$Module\r\n";
-echo "$Flag3 = custom,$Config3,$Module\r\n";
-echo "$Flag4 = custom,$Config4,$Module\r\n";
-echo "$Flag5 = custom,$Config5,$Module\r\n";}
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";
+echo "$Flag2 = $Protocol,$Config2,$Module\r\n";
+echo "$Flag3 = $Protocol,$Config3,$Module\r\n";
+echo "$Flag4 = $Protocol,$Config4,$Module\r\n";
+echo "$Flag5 = $Protocol,$Config5,$Module\r\n";}
 elseif ($Group>"6"){
-echo "$Flag1 = custom,$Config1,$Module\r\n";}
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";}
 else {
-echo "$Flag1 = custom,$Config1,$Module\r\n";}
-
+echo "$Flag1 = $Protocol,$Config1,$Module\r\n";}
 echo "[Proxy Group]\r\n";
 if ($GETAutoGroup=="true"){}
 elseif($GETAutoGroup=="false"){
