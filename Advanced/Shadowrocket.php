@@ -159,7 +159,7 @@ echo"\r\n# Rewrite\r\n";
 echo"[URL Rewrite]\r\n";
 while(!feof($Rewrite))
 {
-echo trim(fgets($Rewrite))." 302"."\r\n"; 
+echo str_replace("header","302",trim(fgets($Rewrite))."\r\n");
 }
 {
 fclose($Rewrite);
