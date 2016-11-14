@@ -9,21 +9,21 @@ $USERAGENT = $_SERVER['HTTP_USER_AGENT'];
 
 //Surge
 if(strstr($USERAGENT,"Surge")){
-header("Location:".'https://Config.daoapp.io/Proxy/Surge.php');
+header("Location:".'https://'.$_SERVER['SERVER_NAME'].'/Proxy/Surge.php');
 }
 //Shadowrocket
 elseif(strstr($USERAGENT,"Shadowrocket")){
-header("Location:".'https://Config.daoapp.io/Proxy/Shadowrocket.php');
+header("Location:".'https://'.$_SERVER['SERVER_NAME'].'/Proxy/Shadowrocket.php');
 }
 //Potatso
 elseif(strstr($USERAGENT,"Potatso")){
-header("Location:".'https://Config.daoapp.io/Proxy/Potatso.php');
+header("Location:".'https://'.$_SERVER['SERVER_NAME'].'/Proxy/Potatso.php');
 }
 //A.BIG.T
 elseif(strstr($USERAGENT,"A.BIG.T")){
-header("Location:".'https://Config.daoapp.io/Proxy/A.BIG.T.php');
+header("Location:".'https://'.$_SERVER['SERVER_NAME'].'/Proxy/A.BIG.T.php');
 }
 //Other
 else{
-header("Location:".'https://Config.daoapp.io/Other.html');
+header("Location:".'https://'.$_SERVER['SERVER_NAME'].'/Other.html');
 }
