@@ -6,12 +6,14 @@ header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'Hosts.Conf');
 //-------------通用-------------//
 $NAME = "CloudGate";        //名称
+$Sign = sha1(date("YmdHi")."BurpSuite");
 if( isset($_GET['Fix']) ){$Fix = $_GET['Fix'];}else {$Fix = "false";}
 if( $Fix=="true" ){$GETFix="true";}elseif($Fix=="false"){$GETFix="false";}else {$GETFix="false";}
 //-------------文件-------------//
-if ($GETFix=="true"){$HOSTSFile = "http://187945.vhost304.cloudvhost.cn/Static/Hosts/HostsFix.txt";}
-elseif($GETFix=="false"){$HOSTSFile = "http://187945.vhost304.cloudvhost.cn/Static/Hosts/Hosts.txt";}
-$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+if ($GETFix=="true"){
+$HOSTSFile = "http://1.burpsuite.applinzi.com/Hosts/HostsFix.txt";
+$HOSTSFile  = $HOSTSFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();}
+elseif($GETFix=="false"){$HOSTSFile = "http://BurpSuite.applinzi.com/Hosts/Hosts.php?Sign=$Sign";}
 $HOSTS = fopen($HOSTSFile,"r");
 $YoutubeFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Youtube.txt";
 $YoutubeFile  = $YoutubeFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
@@ -29,7 +31,7 @@ $RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
 $RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $Rewrite = fopen($RewriteFile,"r");
 //--------------配置------------//
-echo "#!MANAGED-CONFIG http://".$_SERVER['SERVER_NAME']."/Rule/General/Hosts.php interval=86400\r\n";
+echo "#!MANAGED-CONFIG http://".$_SERVER['SERVER_NAME']."/Rule/General/Hosts.php?Fix=$Fix interval=86400\r\n";
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
 echo "skip-proxy = 0.0.0.0/8, 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, ::ffff:0:0:0:0/1, ::ffff:128:0:0:0/1, *.crashlytics.com, *.helpshift.com, *.supercell.net\r\n";
@@ -124,7 +126,7 @@ echo"# Rewrite\r\n";
 echo"[URL Rewrite]\r\n";
 while(!feof($Rewrite))
 {
-echo trim(fgets($Rewrite))." header"."\r\n"; 
+echo trim(fgets($Rewrite))."\r\n"; 
 }
 {
 fclose($Rewrite);

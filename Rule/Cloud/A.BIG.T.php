@@ -5,7 +5,7 @@ header("Content-Type:text/html;charset=UTF-8");
 header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'A.BIG.T.Conf');
 //-------------通用-------------//
-$GeneralDefaultURL = "http://7xpphx.com1.z0.glb.clouddn.com/General/Demo/A.BIG.T_Gerenal.cfg";
+$GeneralDefaultURL = "http://7xpphx.com1.z0.glb.clouddn.com/General/Demo/A.BIG.T_General.cfg";
 if( isset($_GET['Config']) ){$GeneralURL = $_GET['Config'];}else {$GeneralURL = "$GeneralDefaultURL";}
 if( strstr($GeneralURL,"http://")&&strstr($GeneralURL,".cfg") ){$GeneralURLSign = $GeneralURL .'?Sign='.sha1(mt_rand()).'&TimeStamp='.time();}else {$GeneralURLSign = "$GeneralDefaultURL";}
 $a_array = get_headers($GeneralURLSign,true); 
