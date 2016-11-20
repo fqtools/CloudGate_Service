@@ -7,7 +7,6 @@ header('Content-Disposition: attachment; filename='.'Surge.Conf');
 //-------------通用-------------//
 $NAME = "CloudGate";        //名称
 $Module = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module"; //Module
-$OTA = "ota=false";      //OTA设置
 $Server = "172.0.0.1";    //服务器
 $Port = "80";               //端口
 $Password = "Password1024.";//密码
@@ -49,9 +48,9 @@ echo "# Surge Config File [$NAME]\r\n";
 echo "# Last Modified: " . date("Y/m/d") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
-echo "🇳🇫 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
-echo "🇬🇧 = custom,$Server,$Port,$Method,$Password,$Module,$OTA\r\n";
+echo "🇨🇳 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
+echo "🇳🇫 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
+echo "🇬🇧 = custom,$Server,$Port,$Method,$Password,$Module\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 //echo "AutoGroup = url-test, 🇨🇳, 🇳🇫, 🇬🇧, url = http://www.gstatic.com/generate_204, interval = 600, tolerance = 200, timeout = 5\r\n";

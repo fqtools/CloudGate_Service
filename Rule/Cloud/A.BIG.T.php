@@ -31,6 +31,9 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
+$USERAGENTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/USERAGENT.txt";
+$USERAGENTFile  = $USERAGENTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+$USERAGENT = fopen($USERAGENTFile,"r");
 //--------------配置------------//
 if($General){
 while(!feof($General))
@@ -96,6 +99,19 @@ fclose($REJECT);
 }
 }else {
   echo "\r\n# REJECT Module下载失败!\r\n";//
+}
+//USERAGENT
+if($USERAGENT){
+echo"# USERAGENT\r\n";
+while(!feof($USERAGENT))
+{
+echo fgets($USERAGENT)."";
+}
+{
+fclose($USERAGENT);
+}
+}else {
+  echo "\r\n# USERAGENT Module下载失败!\r\n";//
 }
 //KEYWORD
 if($KEYWORD){

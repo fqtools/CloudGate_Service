@@ -25,6 +25,9 @@ $KEYWORD = fopen($KEYWORDFile,"r");
 $IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
 $IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
 $IPCIDR = fopen($IPCIDRFile,"r");
+$USERAGENTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/USERAGENT.txt";
+$USERAGENTFile  = $USERAGENTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
+$USERAGENT = fopen($USERAGENTFile,"r");
 //--------------配置------------//
 echo "[General]\r\n";
 echo "skip-proxy = 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, ::ffff:0:0:0:0/1, ::ffff:128:0:0:0/1, *.crashlytics.com, *.helpshift.com, *.supercell.net\r\n";
@@ -90,6 +93,19 @@ fclose($REJECT);
 }
 }else {
   echo "\r\n# REJECT Module下载失败!\r\n";//
+}
+//USERAGENT
+if($USERAGENT){
+echo"# USERAGENT\r\n";
+while(!feof($USERAGENT))
+{
+echo fgets($USERAGENT)."";
+}
+{
+fclose($USERAGENT);
+}
+}else {
+  echo "\r\n# USERAGENT Module下载失败!\r\n";//
 }
 //KEYWORD
 if($KEYWORD){
