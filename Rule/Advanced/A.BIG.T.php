@@ -163,7 +163,7 @@ fclose($USERAGENT);
 }
 //KEYWORD
 if($KEYWORD){
-echo"# KEYWORD\r\n";
+echo"\r\n# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
 echo "DOMAIN-KEYWORD,";

@@ -53,7 +53,7 @@ echo trim(fgets($Default)).",DIRECT"."\r\n";
 fclose($Default);
 }
 }else {
-  echo "\r\n# Default Module下载失败!\r\n";//
+  echo "\r\n# Default Module下载失败!\r\n";
 }
 //PROXY
 if($Proxy){
@@ -66,7 +66,7 @@ echo trim(fgets($Proxy)).",Proxy"."\r\n";
 fclose($Proxy);
 }
 }else {
-  echo "\r\n# Proxy Module下载失败!\r\n";//
+  echo "\r\n# Proxy Module下载失败!\r\n";
 }
 //DIRECT
 if($DIRECT){
@@ -79,7 +79,7 @@ echo trim(fgets($DIRECT)).",DIRECT"."\r\n";
 fclose($DIRECT);
 }
 }else {
-  echo "\r\n# DIRECT Module下载失败!\r\n";//
+  echo "\r\n# DIRECT Module下载失败!\r\n";
 }
 //REJECT
 if($REJECT){
@@ -92,7 +92,7 @@ echo trim(fgets($REJECT)).",REJECT"."\r\n";
 fclose($REJECT);
 }
 }else {
-  echo "\r\n# REJECT Module下载失败!\r\n";//
+  echo "\r\n# REJECT Module下载失败!\r\n";
 }
 //USERAGENT
 if($USERAGENT){
@@ -105,11 +105,11 @@ echo fgets($USERAGENT)."";
 fclose($USERAGENT);
 }
 }else {
-  echo "\r\n# USERAGENT Module下载失败!\r\n";//
+  echo "\r\n# USERAGENT Module下载失败!\r\n";
 }
 //KEYWORD
 if($KEYWORD){
-echo"# KEYWORD\r\n";
+echo"\r\n# KEYWORD\r\n";
 while(!feof($KEYWORD))
 {
 echo "DOMAIN-KEYWORD,";
@@ -119,7 +119,7 @@ echo fgets($KEYWORD)."";
 fclose($KEYWORD);
 }
 }else {
-  echo "\r\n# KEYWORD Module下载失败!\r\n";//
+  echo "\r\n# KEYWORD Module下载失败!\r\n";
 }
 //IPCIDR
 if($IPCIDR){
@@ -133,7 +133,7 @@ echo fgets($IPCIDR)."";
 fclose($IPCIDR);
 }
 }else {
-  echo "\r\n# IPCIDR Module下载失败!\r\n";//
+  echo "\r\n# IPCIDR Module下载失败!\r\n";
 }
 //Other
 echo"\r\n# Other\r\n";
