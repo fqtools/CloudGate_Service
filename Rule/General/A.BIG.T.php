@@ -10,6 +10,9 @@ $ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/
 $ModuleArray  = array("Advanced","Basic","DIRECT","Default","HostsFix","IPCIDR","KEYWORD","REJECT","Rewrite","YouTube","Other","USERAGENT");
 $Cache        = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
 
+# 设定参数默认值
+$Module       = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module";
+
 # 参数组合一起就是完整的模块地址
 $AdvancedFile  = $ModuleAPI.$ModuleArray[0].$Cache;
 $BasicFile     = $ModuleAPI.$ModuleArray[1].$Cache;
@@ -96,9 +99,9 @@ echo "# A.BIG.T Config File [CloudGate]\r\n";
 echo "# Download Time: " . date("Y-m-d H:i:s") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,172.0.0.1,80,aes-256-cfb,Password,https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module\r\n";
-echo "🇳🇫 = custom,172.0.0.1,80,aes-256-cfb,Password,https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module\r\n";
-echo "🇬🇧 = custom,172.0.0.1,80,aes-256-cfb,Password,https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module\r\n";
+echo "🇨🇳 = custom,172.0.0.1,80,aes-256-cfb,Password,$Module\r\n";
+echo "🇳🇫 = custom,172.0.0.1,80,aes-256-cfb,Password,$Module\r\n";
+echo "🇬🇧 = custom,172.0.0.1,80,aes-256-cfb,Password,$Module\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 

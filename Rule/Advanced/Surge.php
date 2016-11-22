@@ -15,24 +15,24 @@ $Module       = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/
 $AutoGroupURL = "http://www.gstatic.com/generate_204";
 
 # 接收GET请求参数
-$Logo      = $_GET['Logo'];//ok
+$Logo      = $_GET['Logo'];
 $AutoGroup = $_GET['AutoGroup'];
-$Rule      = $_GET['Rule'];//ok
+$Rule      = $_GET['Rule'];
 $Apple     = $_GET['Apple'];
-$IPV6      = $_GET['IPV6'];//ok
-$Group     = $_GET['Group'];//ok
-$DNS1      = $_GET['DNS1'];//ok
-$DNS2      = $_GET['DNS2'];//ok
-$Config1   = $_GET['Config1'];//ok
-$Config2   = $_GET['Config2'];//ok
-$Config3   = $_GET['Config3'];//ok
-$Config4   = $_GET['Config4'];//ok
-$Config5   = $_GET['Config5'];//ok
-$Flag1     = $_GET['Flag1'];//ok
-$Flag2     = $_GET['Flag2'];//ok
-$Flag3     = $_GET['Flag3'];//ok
-$Flag4     = $_GET['Flag4'];//ok
-$Flag5     = $_GET['Flag5'];//ok
+$IPV6      = $_GET['IPV6'];
+$Group     = $_GET['Group'];
+$DNS1      = $_GET['DNS1'];
+$DNS2      = $_GET['DNS2'];
+$Config1   = $_GET['Config1'];
+$Config2   = $_GET['Config2'];
+$Config3   = $_GET['Config3'];
+$Config4   = $_GET['Config4'];
+$Config5   = $_GET['Config5'];
+$Flag1     = $_GET['Flag1'];
+$Flag2     = $_GET['Flag2'];
+$Flag3     = $_GET['Flag3'];
+$Flag4     = $_GET['Flag4'];
+$Flag5     = $_GET['Flag5'];
 
 # 检测GET接收参数
 if(empty($Logo)){$Logo="true";}else{$Logo=$Logo;}
@@ -48,11 +48,11 @@ if(empty($Config2)){$Config2="127.0.0.1,80,aes-256-cfb,Password";}else{$Config2=
 if(empty($Config3)){$Config3="127.0.0.1,80,aes-256-cfb,Password";}else{$Config3=$Config3;}
 if(empty($Config4)){$Config4="127.0.0.1,80,aes-256-cfb,Password";}else{$Config4=$Config4;}
 if(empty($Config5)){$Config5="127.0.0.1,80,aes-256-cfb,Password";}else{$Config5=$Config5;}
-if(empty($Flag1)){$Flag1="NONE1";}else{$Flag1=$Flag1;}
-if(empty($Flag2)){$Flag2="NONE2";}else{$Flag2=$Flag2;}
-if(empty($Flag3)){$Flag3="NONE3";}else{$Flag3=$Flag3;}
-if(empty($Flag4)){$Flag4="NONE4";}else{$Flag4=$Flag4;}
-if(empty($Flag5)){$Flag5="NONE5";}else{$Flag5=$Flag5;}
+if(empty($Flag1)){$Flag1="NONE1";}else{$Flag1=$Flag1;$ENFlag1 = urlencode($Flag1);}
+if(empty($Flag2)){$Flag2="NONE2";}else{$Flag2=$Flag2;$ENFlag2 = urlencode($Flag2);}
+if(empty($Flag3)){$Flag3="NONE3";}else{$Flag3=$Flag3;$ENFlag3 = urlencode($Flag3);}
+if(empty($Flag4)){$Flag4="NONE4";}else{$Flag4=$Flag4;$ENFlag4 = urlencode($Flag4);}
+if(empty($Flag5)){$Flag5="NONE5";}else{$Flag5=$Flag5;$ENFlag5 = urlencode($Flag5);}
 
 # 参数组合一起就是完整的模块地址
 $AdvancedFile  = $ModuleAPI.$ModuleArray[0].$Cache;
