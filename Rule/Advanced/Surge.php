@@ -10,7 +10,7 @@ if( isset($_GET['Protocol']) ){$Protocol = $_GET['Protocol'];  }else {$Protocol 
 if( isset($_GET['AutoGroup']) ){$AutoGroup = $_GET['AutoGroup'];}else {$Rule = "false";}
 if( $AutoGroup=="true" ){$GETAutoGroup="true";}elseif($AutoGroup=="false"){$GETAutoGroup="false";}elseif($AutoGroup=="select"){$GETAutoGroup="select";}else {$GETAutoGroup="false";}
 if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "false";}
-if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Apple="false";}
+if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Rule="false";}
 if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "false";}
 if( $Apple=="true" ){$GETApple="Proxy";}elseif ($Apple=="false"){$GETApple="DIRECT";}else {$GETApple="DIRECT";}
 if( isset($_GET['IPV6']) ){$IPV6 = $_GET['IPV6'];}else {$IPV6 = "false";}

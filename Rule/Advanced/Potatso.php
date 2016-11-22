@@ -8,7 +8,7 @@ header('Content-Disposition: attachment; filename='.'Potatso.Conf');
 //if( isset($_GET['AutoGroup']) ){$AutoGroup = $_GET['AutoGroup'];}else {$Rule = "false";}
 //if( $AutoGroup=="true" ){$AutoGroup="true";}elseif($AutoGroup=="false"){$AutoGroup="false";}else {$AutoGroup="false";}
 if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "false";}
-if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Apple="false";}
+if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Rule="false";}
 if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "false";}
 if( $Apple=="true" ){$GETApple="Proxy";}elseif ($Apple=="false"){$GETApple="DIRECT";}else {$GETApple="DIRECT";}
 //if( isset($_GET['IPV6']) ){$IPV6 = $_GET['IPV6'];}else {$IPV6 = "false";}

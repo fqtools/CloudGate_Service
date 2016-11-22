@@ -9,7 +9,7 @@ if( isset($_GET['Logo']) ){$Logo = $_GET['Logo'];  }else {$Logo = "true";}
 //if( isset($_GET['AutoGroup']) ){$AutoGroup = $_GET['AutoGroup'];}else {$Rule = "false";}
 //if( $AutoGroup=="true" ){$AutoGroup="true";}elseif($AutoGroup=="false"){$AutoGroup="false";}else {$AutoGroup="false";}
 if( isset($_GET['Rule']) ){$Rule = $_GET['Rule'];}else {$Rule = "false";}
-if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Apple="false";}
+if( $Rule=="true" ){$Rule="true";}elseif ($Rule=="false"){$Rule="false";}else {$Rule="false";}
 if( isset($_GET['Apple']) ){$Apple = $_GET['Apple'];}else {$Apple = "false";}
 if( $Apple=="true" ){$GETApple="Proxy";}elseif ($Apple=="false"){$GETApple="DIRECT";}else {$GETApple="DIRECT";}
 //if( isset($_GET['IPV6']) ){$IPV6 = $_GET['IPV6'];}else {$IPV6 = "false";}
@@ -93,7 +93,6 @@ elseif ($Group>"6"){
 echo "$Flag1 = custom,$Config1,$Module\r\n";}
 else {
 echo "$Flag1 = custom,$Config1,$Module\r\n";}
-
 //--------------模块------------//
 //Default
 if($Default){
@@ -159,7 +158,7 @@ echo fgets($USERAGENT)."";
 fclose($USERAGENT);
 }
 }else {
-  echo "\r\n# USERAGENT Module下载失败!\r\n";//
+  echo "\r\n# USERAGENT Module下载失败!\r\n";
 }
 //KEYWORD
 if($KEYWORD){
