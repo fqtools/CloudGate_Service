@@ -6,7 +6,7 @@ header("Content-Type:text/html;charset=UTF-8");
 header('Content-Disposition: attachment; filename='.'Surge.Conf');
 
 # 默认模块API托管在Github[GithubUserContent] | 模块数组 | 请求模块禁止缓存
-$ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/";
+$ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Rule/";
 $ModuleArray  = array("Advanced","Basic","DIRECT","Default","HostsFix","IPCIDR","KEYWORD","REJECT","Rewrite","YouTube","Other","USERAGENT");
 $Cache        = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
 
@@ -96,9 +96,9 @@ echo "# A.BIG.T Config File [CloudGate]\r\n";
 echo "# Download Time: " . date("Y-m-d H:i:s") . "\r\n";
 echo "# \r\n";
 echo "[Proxy]\r\n";
-echo "🇨🇳 = custom,172.0.0.1,80,aes-256-cfb,Password,http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module\r\n";
-echo "🇳🇫 = custom,172.0.0.1,80,aes-256-cfb,Password,http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module\r\n";
-echo "🇬🇧 = custom,172.0.0.1,80,aes-256-cfb,Password,http://7xpphx.com1.z0.glb.clouddn.com/Proxy/Surge.Module\r\n";
+echo "🇨🇳 = custom,172.0.0.1,80,aes-256-cfb,Password,https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module\r\n";
+echo "🇳🇫 = custom,172.0.0.1,80,aes-256-cfb,Password,https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module\r\n";
+echo "🇬🇧 = custom,172.0.0.1,80,aes-256-cfb,Password,https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module\r\n";
 echo "[Proxy Group]\r\n";
 echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 

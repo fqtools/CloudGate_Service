@@ -6,7 +6,7 @@ header("Content-Type:text/html;charset=UTF-8");
 header('Content-Disposition: attachment; filename='.'Shadowrocket.Conf');
 
 # 默认模块API托管在Github[GithubUserContent] | 模块数组 | 请求模块禁止缓存
-$ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/";
+$ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Rule/";
 $ModuleArray  = array("Advanced","Basic","DIRECT","Default","HostsFix","IPCIDR","KEYWORD","REJECT","Rewrite","YouTube","Other","USERAGENT");
 $Cache        = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
 
