@@ -1,150 +1,110 @@
 <?php
-//------------Start-------------//
+
+# 页面禁止缓存 | UTF-8编码 | 触发下载
 header("cache-control:no-cache,must-revalidate");
 header("Content-Type:text/html;charset=UTF-8");
-header("Accept-Ranges: bytes");
 header('Content-Disposition: attachment; filename='.'Shadowrocket.Conf');
-//-------------通用-------------//
-$GeneralDefaultURL = "http://7xpphx.com1.z0.glb.clouddn.com/General/Demo/Shadowrocket_General.cfg";
-if( isset($_GET['Config']) ){$GeneralURL = $_GET['Config'];}else {$GeneralURL = "$GeneralDefaultURL";}
-if( strstr($GeneralURL,"http://")&&strstr($GeneralURL,".cfg") ){$GeneralURLSign = $GeneralURL .'?Sign='.sha1(mt_rand()).'&TimeStamp='.time();}else {$GeneralURLSign = "$GeneralDefaultURL";}
-$a_array = get_headers($GeneralURLSign,true); 
-$FileSize = $a_array['Content-Length']; 
-if( $FileSize<"524288"&&$FileSize>"100" ){$GeneralFile = "$GeneralURLSign";}
-//-------------文件-------------//
-$General = fopen($GeneralFile,"r");
-$DefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Default.txt";
-$DefaultFile  = $DefaultFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$Default = fopen($DefaultFile,"r");
-$ProxyFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Advanced.txt";
-$ProxyFile  = $ProxyFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$Proxy = fopen($ProxyFile,"r");
-$DIRECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/DIRECT.txt";
-$DIRECTFile  = $DIRECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$DIRECT = fopen($DIRECTFile,"r");
-$REJECTFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/REJECT.txt";
-$REJECTFile  = $REJECTFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$REJECT = fopen($REJECTFile,"r");
-$KEYWORDFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/KEYWORD.txt";
-$KEYWORDFile  = $KEYWORDFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$KEYWORD = fopen($KEYWORDFile,"r");
-$IPCIDRFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/IPCIDR.txt";
-$IPCIDRFile  = $IPCIDRFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$IPCIDR = fopen($IPCIDRFile,"r");
-$RewriteFile = "http://7xpphx.com1.z0.glb.clouddn.com/Proxy/File/Rewrite.txt";
-$RewriteFile  = $RewriteFile . '?Sign='.sha1(mt_rand()).'&TimeStamp='.time();
-$Rewrite = fopen($RewriteFile,"r");
-//--------------配置------------//
-if($General){
-while(!feof($General))
-{
-echo trim(fgets($General))."\r\n"; 
-}
-{
-fclose($General);
-}
-}else {
-  echo "\r\n# General Module下载失败!\r\n";
-}
-//--------------模块------------//
-//Default
-if($Default){
-echo "[Rule]";
-echo"\r\n# Default\r\n";
-while(!feof($Default))
-{
-echo trim(fgets($Default)).",DIRECT"."\r\n"; 
-}
-{
-fclose($Default);
-}
-}else {
-  echo "\r\n# Default Module下载失败!\r\n";
-}
-//PROXY
-if($Proxy){
-echo"# PROXY\r\n";
-while(!feof($Proxy))
-{
-echo trim(fgets($Proxy)).",PROXY"."\r\n"; 
-}
-{
-fclose($Proxy);
-}
-}else {
-  echo "\r\n# Proxy Module下载失败!\r\n";
-}
-//DIRECT
-if($DIRECT){
-echo"# DIRECT\r\n";
-while(!feof($DIRECT))
-{
-echo trim(fgets($DIRECT)).",DIRECT"."\r\n"; 
-}
-{
-fclose($DIRECT);
-}
-}else {
-  echo "\r\n# DIRECT Module下载失败!\r\n";
-}
-//REJECT
-if($REJECT){
-echo"# REJECT\r\n";
-while(!feof($REJECT))
-{
-echo trim(fgets($REJECT)).",REJECT"."\r\n"; 
-}
-{
-fclose($REJECT);
-}
-}else {
-  echo "\r\n# REJECT Module下载失败!\r\n";
-}
-//KEYWORD
-if($KEYWORD){
-echo"# KEYWORD\r\n";
-while(!feof($KEYWORD))
-{
-echo "DOMAIN-KEYWORD,";
-echo trim(fgets($KEYWORD)).",force-remote-dns"."\r\n"; 
-}
-{
-fclose($KEYWORD);
-}
-}else {
-  echo "\r\n# KEYWORD Module下载失败!\r\n";
-}
-//IPCIDR
-if($IPCIDR){
-echo"\r\n# IP-CIDR\r\n";
-while(!feof($IPCIDR))
-{
-echo "IP-CIDR,";
-echo fgets($IPCIDR)."";
-}
-{
-fclose($IPCIDR);
-}
-}else {
-  echo "\r\n# IPCIDR Module下载失败!\r\n";
-}
-//Other
-echo"\r\n# Other\r\n";
-echo"GEOIP,CN,DIRECT\r\n";
-echo"FINAL,PROXY";
-//Rewrite
-if($Rewrite){
-echo"\r\n# Rewrite\r\n";
-echo"[URL Rewrite]\r\n";
-while(!feof($Rewrite))
-{
-echo trim(fgets($Rewrite))."\r\n"; 
-}
-{
-fclose($Rewrite);
-}
-}else {
-  echo "\r\n# Rewrite Module下载失败!\r\n";
-}
-exit();
-//--------------END------------//
+
+# 默认模块API托管在Github[GithubUserContent] | 模块数组 | 请求模块禁止缓存
+$ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/";
+$ModuleArray  = array("Advanced","Basic","DIRECT","Default","HostsFix","IPCIDR","KEYWORD","REJECT","Rewrite","YouTube","Other","USERAGENT");
+$Cache        = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
+
+# 设定参数默认值
+$ConfigDefaultFile = "http://7xpphx.com1.z0.glb.clouddn.com/General/Demo/Shadowrocket_General.cfg";
+
+# 接收GET请求参数
+$Config = $_GET['Config'];
+
+# 检测GET请求参数
+if(empty($Config)){$Config = $ConfigDefaultFile.$Cache;}else{$Config = $Config.$Cache;}
+$ConfigArray = get_headers($Config,true); 
+$ConfigSize  = $ConfigArray['Content-Length']; 
+if($ConfigSize<"524288"&&$ConfigSize>"100"){$ConfigFile = $Config;}else{$ConfigFile = $ConfigDefaultFile;}
+if(strstr($ConfigFile,"http://")&&strstr($ConfigFile,".cfg")){$ConfigSuccess = $ConfigFile;}else{$ConfigSuccess = $ConfigDefaultFile;}
+
+# 参数组合一起就是完整的模块地址
+$AdvancedFile  = $ModuleAPI.$ModuleArray[0].$Cache;
+$BasicFile     = $ModuleAPI.$ModuleArray[1].$Cache;
+$DIRECTFile    = $ModuleAPI.$ModuleArray[2].$Cache;
+$DefaultFile   = $ModuleAPI.$ModuleArray[3].$Cache;
+$HostsFixFile  = $ModuleAPI.$ModuleArray[4].$Cache;
+$IPCIDRFile    = $ModuleAPI.$ModuleArray[5].$Cache;
+$KEYWORDFile   = $ModuleAPI.$ModuleArray[6].$Cache;
+$REJECTFile    = $ModuleAPI.$ModuleArray[7].$Cache;
+$RewriteFile   = $ModuleAPI.$ModuleArray[8].$Cache;
+$YouTubeFile   = $ModuleAPI.$ModuleArray[9].$Cache;
+$OtherFile     = $ModuleAPI.$ModuleArray[10].$Cache;
+$USERAGENTFile = $ModuleAPI.$ModuleArray[11].$Cache;
+
+# 现在暂时还是单线程,后续可能会改成循环请求或多线程请求
+$ConfigModuleCURL   = curl_init();
+curl_setopt($ConfigModuleCURL,CURLOPT_URL,"$ConfigSuccess");
+curl_setopt($ConfigModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$ConfigCURLF        = curl_exec($ConfigModuleCURL);
+curl_close($ConfigModuleCURL);
+$DefaultModuleCURL  = curl_init();
+curl_setopt($DefaultModuleCURL,CURLOPT_URL,"$DefaultFile");
+curl_setopt($DefaultModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$DefaultCURLF       = curl_exec($DefaultModuleCURL);
+curl_close($DefaultModuleCURL);
+$AdvancedModuleCURL = curl_init();
+curl_setopt($AdvancedModuleCURL,CURLOPT_URL,"$AdvancedFile");
+curl_setopt($AdvancedModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$AdvancedCURLF      = curl_exec($AdvancedModuleCURL);
+curl_close($AdvancedModuleCURL);
+$DIRECTModuleCURL   = curl_init();
+curl_setopt($DIRECTModuleCURL,CURLOPT_URL,"$DIRECTFile");
+curl_setopt($DIRECTModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$DIRECTCURLF        = curl_exec($DIRECTModuleCURL);
+curl_close($DIRECTModuleCURL);
+$REJECTModuleCURL   = curl_init();
+curl_setopt($REJECTModuleCURL,CURLOPT_URL,"$REJECTFile");
+curl_setopt($REJECTModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$REJECTCURLF        = curl_exec($REJECTModuleCURL);
+curl_close($REJECTModuleCURL);
+$KEYWORDModuleCURL  = curl_init();
+curl_setopt($KEYWORDModuleCURL,CURLOPT_URL,"$KEYWORDFile");
+curl_setopt($KEYWORDModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$KEYWORDCURLF       = curl_exec($KEYWORDModuleCURL);
+curl_close($KEYWORDModuleCURL);
+$IPCIDRModuleCURL   = curl_init();
+curl_setopt($IPCIDRModuleCURL,CURLOPT_URL,"$IPCIDRFile");
+curl_setopt($IPCIDRModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$IPCIDRCURLF        = curl_exec($IPCIDRModuleCURL);
+curl_close($IPCIDRModuleCURL);
+$RewriteModuleCURL  = curl_init();
+curl_setopt($RewriteModuleCURL,CURLOPT_URL,"$RewriteFile");
+curl_setopt($RewriteModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$RewriteCURLF       = curl_exec($RewriteModuleCURL);
+curl_close($RewriteModuleCURL);
+$OtherModuleCURL    = curl_init();
+curl_setopt($OtherModuleCURL,CURLOPT_URL,"$OtherFile");
+curl_setopt($OtherModuleCURL,CURLOPT_RETURNTRANSFER,true);
+$OtherCURLF         = curl_exec($OtherModuleCURL);
+curl_close($OtherModuleCURL);
+
+# 正则表达式替换规则格式
+$Default  = preg_replace('/([^])([ \s]+)/','$1,DIRECT$2',$DefaultCURLF."\r\n");
+$Advanced = preg_replace('/([^])([ \s]+)/','$1,Proxy$2',$AdvancedCURLF."\r\n");
+$DIRECT   = preg_replace('/([^])([ \s]+)/','$1,DIRECT$2',$DIRECTCURLF."\r\n");
+$REJECT   = preg_replace('/([^])([ \s]+)/','$1,REJECT$2',$REJECTCURLF."\r\n");
+$KEYWORD  = preg_replace('/([^])([ \s]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$KEYWORDCURLF."\r\n");
+$IPCIDR   = preg_replace('/([^])([ \s]+)/','IP-CIDR,$1$2,no-resolve',$IPCIDRCURLF."\r\n");
+$Rewrite  = preg_replace('/([^])([ \s]+)/','$1$2',$RewriteCURLF."\r\n");
+$Other    = preg_replace('/([^])([ \s]+)/','$1$2',$OtherCURLF."\r\n");
+
+# Surge[General]规则模板
+echo "$ConfigCURLF\r\n";
+
+# 最后模块内容输出
+echo "[Rule]\r\n";
+echo "# Default\r\n".$Default;
+echo "# PROXY\r\n".$Advanced;
+echo "# DIRECT\r\n".$DIRECT;
+echo "# REJECT\r\n".$REJECT;
+echo "# KEYWORD\r\n".$KEYWORD;
+echo "# IP-CIDR\r\n".$IPCIDR;
+echo "# Other\r\n".$Other;
+echo "[URL Rewrite]\r\n";
+echo "# Rewrite\r\n".$Rewrite;
