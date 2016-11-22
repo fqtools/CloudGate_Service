@@ -75,7 +75,7 @@ $Other    = preg_replace('/  - FINAL,Proxy/','',$OtherF."\r\n");
 echo"ruleSets:\r\n";
 echo"# \r\n";
 echo"# Potatso Config File [CloudGate]\r\n";
-echo"# Download Time: " . date("Y/m/d") . "\r\n";
+echo"# Download Time: " . date("Y-m-d H:i:s") . "\r\n";
 echo"#\r\n";
 echo"- name: CloudGate\r\n";
 echo"  rules: \r\n";

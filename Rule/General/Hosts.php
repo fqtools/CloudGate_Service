@@ -43,7 +43,7 @@ echo "replica = false\r\n";
 echo "ipv6 = false\r\n";
 echo "#  \r\n";
 echo "# HOSTS Config File [$NAME]\r\n";
-echo "# Last Modified: " . date("Y/m/d") . "\r\n";
+echo "# Last Modified: " . date("Y-m-d H:i:s") . "\r\n";
 echo "# \r\n";
 //--------------模块------------//
 //REJECT
