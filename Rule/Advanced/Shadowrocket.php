@@ -1,9 +1,12 @@
 <?php
 
+# 关闭所有 Notice | Warning 级别的错误
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
+
 # 页面禁止缓存 | UTF-8编码 | 触发下载
 header("cache-control:no-cache,must-revalidate");
 header("Content-Type:text/html;charset=UTF-8");
-header('Content-Disposition: attachment; filename='.'Surge.Conf');
+header('Content-Disposition: attachment; filename='.'Shadowrocket.Conf');
 
 # 默认模块API托管在Github[GithubUserContent] | 模块数组 | 请求模块禁止缓存
 $ModuleAPI    = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Rule/";
