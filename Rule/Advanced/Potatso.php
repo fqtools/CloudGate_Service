@@ -3,6 +3,16 @@
 # 触发下载
 header('Content-Disposition: attachment; filename='.'Potatso.Conf');
 
+# 设置开启哪些模块 | 必须放置在Controller控制器前面
+$DefaultModule  = "true";
+$AdvancedModule = "true";
+$BasicModule    = "true";
+$DIRECTModule   = "true";
+$REJECTModule   = "true";
+$KEYWORDModule  = "true";
+$IPCIDRModule   = "true";
+$OtherModule    = "true";
+
 # 引用Controller控制器模块
 require '../Controller/Controller.php';
 
