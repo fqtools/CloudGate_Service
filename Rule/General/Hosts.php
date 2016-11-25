@@ -1,11 +1,6 @@
 <?php
 
-# 关闭所有 Notice | Warning 级别的错误
-error_reporting(E_ALL^E_NOTICE^E_WARNING);
-
-# 页面禁止缓存 | UTF-8编码 | 触发下载
-header("cache-control:no-cache,must-revalidate");
-header("Content-Type:text/html;charset=UTF-8");
+# 触发下载
 header('Content-Disposition: attachment; filename='.'Hosts.Conf');
 
 # 检测GET接收参数
@@ -14,7 +9,7 @@ if(empty($Fix)){$Fix="false";}elseif($Fix=="true"){$Fix="true";}else{$Fix="false
 # 判断GET参数
 if($Fix=="true"){$HostsCURLF=$HostsFixCURLF;}elseif($Fix=="false"){$HostsCURLF = $HostsCURLF;}
 
-# 设置开启哪些模块 | 必须放置在最前面
+# 设置开启哪些模块 | 必须放置在Controller控制器前面
 $DefaultModule  = "true";
 $REJECTModule   = "true";
 $KEYWORDModule  = "true";

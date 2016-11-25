@@ -1,14 +1,9 @@
 <?php
 
-# 关闭所有 Notice | Warning 级别的错误
-error_reporting(E_ALL^E_NOTICE^E_WARNING);
-
-# 页面禁止缓存 | UTF-8编码 | 触发下载
-header("cache-control:no-cache,must-revalidate");
-header("Content-Type:text/html;charset=UTF-8");
+# 触发下载
 header('Content-Disposition: attachment; filename='.'Wingy.Conf');
 
-# 设置开启哪些模块 | 必须放置在最前面
+# 设置开启哪些模块 | 必须放置在Controller控制器前面
 $DefaultModule  = "true";
 $AdvancedModule = "true";
 $REJECTModule   = "true";
@@ -60,7 +55,7 @@ echo "# DIRECT\r\n".$Wingy_DIRECT;
 echo "  - type: iplist\r\n";
 echo "    adapter: direct\r\n";
 echo "    criteria:\r\n";
-echo "# IP-CIDR";
+echo "# IP-CIDR\r\n";
 echo "      - 10.0.0.0/8\r\n";
 echo "      - 127.0.0.0/8\r\n";
 echo "      - 192.168.0.0/16\r\n";
