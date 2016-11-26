@@ -3,12 +3,6 @@
 # 触发下载
 header('Content-Disposition: attachment; filename='.'Hosts.Conf');
 
-# 检测GET接收参数
-if(empty($Fix)){$Fix="false";}elseif($Fix=="true"){$Fix="true";}else{$Fix="false";}
-
-# 判断GET参数
-if($Fix=="true"){$HostsCURLF=$HostsFixCURLF;}elseif($Fix=="false"){$HostsCURLF = $HostsCURLF;}
-
 # 设置开启哪些模块 | 必须放置在Controller控制器前面
 $DefaultModule  = "true";
 $REJECTModule   = "true";
@@ -22,6 +16,12 @@ $HostsModule    = "true";
 
 # 引用Controller控制器模块
 require '../Controller/Controller.php';
+
+# 检测GET接收参数
+if(empty($Fix)){$Fix="false";}elseif($Fix=="true"){$Fix="true";}else{$Fix="false";}
+
+# 判断GET参数
+if($Fix=="true"){$HostsCURLF=$HostsFixCURLF;}elseif($Fix=="false"){$HostsCURLF = $HostsCURLF;}
 
 # 正则表达式替换Hosts格式
 if($Fix=="true"){$Hosts = str_replace(" = "," = $HostsFixIP",$HostsCURLF);}
