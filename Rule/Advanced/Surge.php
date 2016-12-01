@@ -31,19 +31,19 @@ if(empty($Config2)){$Config2="127.0.0.1,80,aes-256-cfb,Password";}else{$Config2=
 if(empty($Config3)){$Config3="127.0.0.1,80,aes-256-cfb,Password";}else{$Config3=$Config3;}
 if(empty($Config4)){$Config4="127.0.0.1,80,aes-256-cfb,Password";}else{$Config4=$Config4;}
 if(empty($Config5)){$Config5="127.0.0.1,80,aes-256-cfb,Password";}else{$Config5=$Config5;}
-if(empty($Flag1)){$Flag1="NONE1";}else{$Flag1=$Flag1;$ENFlag1 = urlencode($Flag1);}
-if(empty($Flag2)){$Flag2="NONE2";}else{$Flag2=$Flag2;$ENFlag2 = urlencode($Flag2);}
-if(empty($Flag3)){$Flag3="NONE3";}else{$Flag3=$Flag3;$ENFlag3 = urlencode($Flag3);}
-if(empty($Flag4)){$Flag4="NONE4";}else{$Flag4=$Flag4;$ENFlag4 = urlencode($Flag4);}
-if(empty($Flag5)){$Flag5="NONE5";}else{$Flag5=$Flag5;$ENFlag5 = urlencode($Flag5);}
+if(empty($Flag1)){$Flag1="NONE1";}else{$Flag1=$Flag1;$ENFlag1=urlencode($Flag1);}
+if(empty($Flag2)){$Flag2="NONE2";}else{$Flag2=$Flag2;$ENFlag2=urlencode($Flag2);}
+if(empty($Flag3)){$Flag3="NONE3";}else{$Flag3=$Flag3;$ENFlag3=urlencode($Flag3);}
+if(empty($Flag4)){$Flag4="NONE4";}else{$Flag4=$Flag4;$ENFlag4=urlencode($Flag4);}
+if(empty($Flag5)){$Flag5="NONE5";}else{$Flag5=$Flag5;$ENFlag5=urlencode($Flag5);}
 
 # 判断GET参数
 if($Rule=="true"){$AdvancedCURLF=$BasicCURLF;}elseif($Rule=="false"){$AdvancedCURLF=$AdvancedCURLF;}
 
 # 正则表达式替换规则格式
-if($AutoGroup=="true"){$Default = preg_replace('/([^])([ \s]+)/','$1,AutoGroup$2',$DefaultCURLF."\r\n");}
-elseif($AutoGroup=="select"){$Default = preg_replace('/([^])([ \s]+)/','$1,Auto$2',$DefaultCURLF."\r\n");}
-elseif($AutoGroup=="false"){if($Apple=="true"){$Default = preg_replace('/([^])([ \s]+)/','$1,Proxy$2',$DefaultCURLF."\r\n");}
+if($AutoGroup=="true"&&$Apple=="true"){$Default = preg_replace('/([^])([ \s]+)/','$1,AutoGroup$2',$DefaultCURLF."\r\n");}
+elseif($AutoGroup=="select"&&$Apple=="true"){$Default = preg_replace('/([^])([ \s]+)/','$1,Auto$2',$DefaultCURLF."\r\n");}
+else{if($Apple=="true"){$Default = preg_replace('/([^])([ \s]+)/','$1,Proxy$2',$DefaultCURLF."\r\n");}
 elseif($Apple=="false"){$Default = preg_replace('/([^])([ \s]+)/','$1,DIRECT$2',$DefaultCURLF."\r\n");}
 else{$Default = preg_replace('/([^])([ \s]+)/','$1,DIRECT$2',$DefaultCURLF."\r\n");}}
 if($AutoGroup=="true"){$Advanced = preg_replace('/([^])([ \s]+)/','$1,AutoGroup$2',$AdvancedCURLF."\r\n");}
