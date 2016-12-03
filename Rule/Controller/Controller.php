@@ -15,6 +15,8 @@ $Cache        = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
 
 # 接收GET请求参数
 $Fix       = $_GET['Fix'];
+$Tolerance = $_GET['Tolerance'];
+$Interval  = $_GET['Interval'];
 $Config    = $_GET['Config'];
 $Logo      = $_GET['Logo'];
 $AutoGroup = $_GET['AutoGroup'];
@@ -40,6 +42,7 @@ $Module       = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/
 $AutoGroupURL = "http://www.gstatic.com/generate_204";
 $HostsFixIP   = "202.171.253.103";
 $YouTubeIP    = "219.76.4.3";
+$HTTPSURL     = "true";
 
 # 默认云端模块地址
 $Potatso_Config_Module      = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/General/Potatso_General.cfg";

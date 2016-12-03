@@ -36,9 +36,12 @@ if(empty($Flag2)){$Flag2="NONE2";}else{$Flag2=$Flag2;$ENFlag2=urlencode($Flag2);
 if(empty($Flag3)){$Flag3="NONE3";}else{$Flag3=$Flag3;$ENFlag3=urlencode($Flag3);}
 if(empty($Flag4)){$Flag4="NONE4";}else{$Flag4=$Flag4;$ENFlag4=urlencode($Flag4);}
 if(empty($Flag5)){$Flag5="NONE5";}else{$Flag5=$Flag5;$ENFlag5=urlencode($Flag5);}
+if(empty($Tolerance)){$Tolerance="200";}else{$Tolerance=$Tolerance;}
+if(empty($Interval)){$Tolerance="600";}else{$Interval=$Interval;}
 
 # 判断GET参数
 if($Rule=="true"){$AdvancedCURLF=$BasicCURLF;}elseif($Rule=="false"){$AdvancedCURLF=$AdvancedCURLF;}
+if($HTTPSURL=="true"){$Host="https";}else{$Host="false";}
 
 # 正则表达式替换规则格式
 if($AutoGroup=="true"&&$Apple=="true"){$Default = preg_replace('/([^])([ \s]+)/','$1,AutoGroup$2',$DefaultCURLF."\r\n");}
@@ -66,12 +69,12 @@ elseif($AutoGroup=="select"){$Other= preg_replace('/Proxy/','Auto',$OtherF."\r\n
 else{$Other = preg_replace('/Proxy/','Proxy',$OtherF."\r\n");}
 
 # Surge[General]规则模板
-echo "#!MANAGED-CONFIG http://".$_SERVER['SERVER_NAME']."/Rule/Advanced/Surge.php?AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$ENFlag1&Flag2=$ENFlag2&Flag3=$ENFlag3&Flag4=$ENFlag4&Flag5=$ENFlag5&Logo=$Logo interval=86400\r\n";
+echo "#!MANAGED-CONFIG $Host://".$_SERVER['SERVER_NAME']."/Rule/Advanced/Surge.php?AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$ENFlag1&Flag2=$ENFlag2&Flag3=$ENFlag3&Flag4=$ENFlag4&Flag5=$ENFlag5&Logo=$Logo interval=86400\r\n";
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
 echo "skip-proxy = 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, ::ffff:0:0:0:0/1, ::ffff:128:0:0:0/1, *.crashlytics.com\r\n";
-if($Logo=="true"){echo "bypass-tun = 10.0.0.0/8,127.0.0.0/24,172.0.0.0/8,192.168.0.0/16\r\n";}
-elseif($Logo=="false"){echo "bypass-tun = 0.0.0.0/8,10.0.0.0/8,127.0.0.0/24,172.0.0.0/8,192.168.0.0/16\r\n";}
+if($Logo=="true"){echo "bypass-tun = 10.0.0.0/8, 127.0.0.0/24, 172.0.0.0/8, 192.168.0.0/16\r\n";}
+elseif($Logo=="false"){echo "bypass-tun = 0.0.0.0/8, 10.0.0.0/8, 127.0.0.0/24, 172.0.0.0/8, 192.168.0.0/16\r\n";}
 if($DNS1&&$DNS2){echo "dns-server = $DNS1,$DNS2\r\n";}
 elseif($DNS1!=NULL&&$DNS2!=NULL){echo "dns-server = 8.8.8.8,8.8.4.4\r\n";}
 else{echo "dns-server = 8.8.8.8,8.8.4.4\r\n";}
@@ -123,17 +126,17 @@ elseif ($Group<"6"){echo "Auto = select, AutoGroup, $Flag1, $Flag2, $Flag3, $Fla
 elseif ($Group>"6"){echo "Auto = select, $Flag1\r\n";}}
 else {echo "Proxy = select, $Flag1\r\n";}
 if ($AutoGroup=="true"){
-if ($Group<"2"){echo "AutoGroup = url-test, $Flag1, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}}
+if ($Group<"2"){echo "AutoGroup = url-test, $Flag1, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}}
 if ($AutoGroup=="select"){
-if ($Group<"2"){echo "AutoGroup = url-test, $Flag1, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}
-elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = $AutoGroupURL, interval = 600, tolerance = 200, timeout = 5\r\n";}}
+if ($Group<"2"){echo "AutoGroup = url-test, $Flag1, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"3"){echo "AutoGroup = url-test, $Flag1, $Flag2, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"4"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"5"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}
+elseif ($Group<"6"){echo "AutoGroup = url-test, $Flag1, $Flag2, $Flag3, $Flag4, $Flag5, url = $AutoGroupURL, interval = $Interval, tolerance = $Tolerance, timeout = 5\r\n";}}
 elseif ($AutoGroup=="false"){}
 
 # 最后模块内容输出
