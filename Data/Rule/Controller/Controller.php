@@ -17,33 +17,34 @@ $ModuleArray  = array("Advanced","Basic","DIRECT","Default","HostsFix","IPCIDR",
 $Cache        = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
 
 # 接收GET请求参数
-$Fix       = $_GET['Fix'];
-$Tolerance = $_GET['Tolerance'];
-$Interval  = $_GET['Interval'];
-$Config    = $_GET['Config'];
-$Logo      = $_GET['Logo'];
-$AutoGroup = $_GET['AutoGroup'];
-$Rule      = $_GET['Rule'];
-$Apple     = $_GET['Apple'];
-$IPV6      = $_GET['IPV6'];
-$Group     = $_GET['Group'];
-$DNS1      = $_GET['DNS1'];
-$DNS2      = $_GET['DNS2'];
-$Config1   = $_GET['Config1'];
-$Config2   = $_GET['Config2'];
-$Config3   = $_GET['Config3'];
-$Config4   = $_GET['Config4'];
-$Config5   = $_GET['Config5'];
-$Flag1     = $_GET['Flag1'];
-$Flag2     = $_GET['Flag2'];
-$Flag3     = $_GET['Flag3'];
-$Flag4     = $_GET['Flag4'];
-$Flag5     = $_GET['Flag5'];
+$Fix        = $_GET['Fix'];
+$Tolerance  = $_GET['Tolerance'];
+$Interval   = $_GET['Interval'];
+$Config     = $_GET['Config'];
+$Logo       = $_GET['Logo'];
+$AutoGroup  = $_GET['AutoGroup'];
+$Rule       = $_GET['Rule'];
+$Apple      = $_GET['Apple'];
+$IPV6       = $_GET['IPV6'];
+$Group      = $_GET['Group'];
+$DNS1       = $_GET['DNS1'];
+$DNS2       = $_GET['DNS2'];
+$Config1    = $_GET['Config1'];
+$Config2    = $_GET['Config2'];
+$Config3    = $_GET['Config3'];
+$Config4    = $_GET['Config4'];
+$Config5    = $_GET['Config5'];
+$Flag1      = $_GET['Flag1'];
+$Flag2      = $_GET['Flag2'];
+$Flag3      = $_GET['Flag3'];
+$Flag4      = $_GET['Flag4'];
+$Flag5      = $_GET['Flag5'];
+$WIFIAccess = $_GET['WIFIAccess'];
 
 # 设定参数默认值
 $Module       = "https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module";
 $AutoGroupURL = "http://www.gstatic.com/generate_204";
-$HostsFixIP   = "202.171.253.103";
+$HostsFixIP   = "219.76.4.3";
 $YouTubeIP    = "219.76.4.3";
 $HTTPSURL     = "true";
 
@@ -71,66 +72,79 @@ $USERAGENTFile = $ModuleAPI.$ModuleArray[11].$Cache;
 if($AdvancedModule =="true"){$AdvancedModuleCURL  = curl_init();
 curl_setopt($AdvancedModuleCURL,CURLOPT_URL,"$AdvancedFile");
 curl_setopt($AdvancedModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($AdvancedModuleCURL,CURLOPT_TIMEOUT,30);
 $AdvancedCURLF  = curl_exec($AdvancedModuleCURL);
 curl_close($AdvancedModuleCURL);}
 if($BasicModule    =="true"){$BasicModuleCURL     = curl_init();
 curl_setopt($BasicModuleCURL,CURLOPT_URL,"$BasicFile");
 curl_setopt($BasicModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($BasicModuleCURL,CURLOPT_TIMEOUT,30);
 $BasicCURLF     = curl_exec($BasicModuleCURL);
 curl_close($BasicModuleCURL);}
 if($DIRECTModule   =="true"){$DIRECTModuleCURL    = curl_init();
 curl_setopt($DIRECTModuleCURL,CURLOPT_URL,"$DIRECTFile");
 curl_setopt($DIRECTModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($DIRECTModuleCURL,CURLOPT_TIMEOUT,30);
 $DIRECTCURLF    = curl_exec($DIRECTModuleCURL);
 curl_close($DIRECTModuleCURL);}
 if($DefaultModule  =="true"){$DefaultModuleCURL   = curl_init();
 curl_setopt($DefaultModuleCURL,CURLOPT_URL,"$DefaultFile");
 curl_setopt($DefaultModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($DefaultModuleCURL,CURLOPT_TIMEOUT,30);
 $DefaultCURLF   = curl_exec($DefaultModuleCURL);
 curl_close($DefaultModuleCURL);}
 if($IPCIDRModule   =="true"){$IPCIDRModuleCURL    = curl_init();
 curl_setopt($IPCIDRModuleCURL,CURLOPT_URL,"$IPCIDRFile");
 curl_setopt($IPCIDRModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($IPCIDRModuleCURL,CURLOPT_TIMEOUT,30);
 $IPCIDRCURLF    = curl_exec($IPCIDRModuleCURL);
 curl_close($IPCIDRModuleCURL);}
 if($KEYWORDModule  =="true"){$KEYWORDModuleCURL   = curl_init();
 curl_setopt($KEYWORDModuleCURL,CURLOPT_URL,"$KEYWORDFile");
 curl_setopt($KEYWORDModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($KEYWORDModuleCURL,CURLOPT_TIMEOUT,30);
 $KEYWORDCURLF   = curl_exec($KEYWORDModuleCURL);
 curl_close($KEYWORDModuleCURL);}
 if($REJECTModule   =="true"){$REJECTModuleCURL    = curl_init();
 curl_setopt($REJECTModuleCURL,CURLOPT_URL,"$REJECTFile");
 curl_setopt($REJECTModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($REJECTModuleCURL,CURLOPT_TIMEOUT,30);
 $REJECTCURLF    = curl_exec($REJECTModuleCURL);
 curl_close($REJECTModuleCURL);}
 if($RewriteModule  =="true"){$RewriteModuleCURL   = curl_init();
 curl_setopt($RewriteModuleCURL,CURLOPT_URL,"$RewriteFile");
 curl_setopt($RewriteModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($RewriteModuleCURL,CURLOPT_TIMEOUT,30);
 $RewriteCURLF   = curl_exec($RewriteModuleCURL);
 curl_close($RewriteModuleCURL);}
 if($YouTubeModule  =="true"){$YouTubeModuleCURL   = curl_init();
 curl_setopt($YouTubeModuleCURL,CURLOPT_URL,"$YouTubeFile");
 curl_setopt($YouTubeModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($YouTubeModuleCURL,CURLOPT_TIMEOUT,30);
 $YouTubeCURLF   = curl_exec($YouTubeModuleCURL);
 curl_close($YouTubeModuleCURL);}
 if($OtherModule    =="true"){$OtherModuleCURL     = curl_init();
 curl_setopt($OtherModuleCURL,CURLOPT_URL,"$OtherFile");
 curl_setopt($OtherModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($OtherModuleCURL,CURLOPT_TIMEOUT,30);
 $OtherCURLF     = curl_exec($OtherModuleCURL);
 curl_close($OtherModuleCURL);}
 if($USERAGENTModule=="true"){$USERAGENTModuleCURL = curl_init();
 curl_setopt($USERAGENTModuleCURL,CURLOPT_URL,"$USERAGENTFile");
 curl_setopt($USERAGENTModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($USERAGENTModuleCURL,CURLOPT_TIMEOUT,30);
 $USERAGENTCURLF = curl_exec($USERAGENTModuleCURL);
 curl_close($USERAGENTModuleCURL);}
 if($HostsModule    =="true"){$HostsModuleCURL     = curl_init();
 curl_setopt($HostsModuleCURL,CURLOPT_URL,"$HostsAPI");
 curl_setopt($HostsModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($HostsModuleCURL,CURLOPT_TIMEOUT,30);
 $HostsCURLF     = curl_exec($HostsModuleCURL);
 curl_close($HostsModuleCURL);}
 if($HostsFixModule =="true"){$HostsFixModuleCURL  = curl_init();
 curl_setopt($HostsFixModuleCURL,CURLOPT_URL,"$HostsFixFile");
 curl_setopt($HostsFixModuleCURL,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($HostsFixModuleCURL,CURLOPT_TIMEOUT,30);
 $HostsFixCURLF  = curl_exec($HostsFixModuleCURL);
 curl_close($HostsFixModuleCURL);}
 
