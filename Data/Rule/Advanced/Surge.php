@@ -73,7 +73,7 @@ else{$Other = preg_replace('/Proxy/','Proxy',$OtherF."\r\n");}
 echo "#!MANAGED-CONFIG $Host://".$_SERVER['SERVER_NAME']."/Rule/Advanced/Surge.php?WIFIAccess=$WIFIAccess&Interval=$Interval&Tolerance=$Tolerance&DNS1=$DNS1&DNS2=$DNS2&AutoGroup=$AutoGroup&Rule=$Rule&Apple=$Apple&IPV6=$IPV6&Group=$Group&Config1=$Config1&Config2=$Config2&Config3=$Config3&Config4=$Config4&Config5=$Config5&Flag1=$ENFlag1&Flag2=$ENFlag2&Flag3=$ENFlag3&Flag4=$ENFlag4&Flag5=$ENFlag5&Logo=$Logo interval=86400\r\n";
 echo "[General]\r\n";
 echo "bypass-system = true\r\n";
-echo "skip-proxy = 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, ::ffff:0:0:0:0/1, ::ffff:128:0:0:0/1, *.crashlytics.com\r\n";
+echo "skip-proxy = 10.0.0.0/8, 17.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, localhost, *.local, *.crashlytics.com\r\n";
 if($Logo=="true"){echo "bypass-tun = 10.0.0.0/8, 127.0.0.0/24, 172.0.0.0/8, 192.168.0.0/16\r\n";}
 elseif($Logo=="false"){echo "bypass-tun = 0.0.0.0/8, 10.0.0.0/8, 127.0.0.0/24, 172.0.0.0/8, 192.168.0.0/16\r\n";}
 if($DNS1&&$DNS2){echo "dns-server = $DNS1,$DNS2\r\n";}
