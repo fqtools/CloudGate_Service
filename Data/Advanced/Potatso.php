@@ -16,8 +16,8 @@ require_once "../Controller/Controller.php";
 
 # 处理URI参数
 GET().parse_str($REQUEST_QUERY_URI);
-Verify($DNS,$Logo,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$Group,$Rule,$IPV6,$Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance);
-Exp_lode($Group,$DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5);
+Verify($DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0,$Group,$Rule,$IPV6,$Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance);
+Exp_lode($Group,$DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0);
 
 # REQUEST配置信息
 echo"proxies:\r\n";
@@ -33,7 +33,6 @@ echo"- name: CloudGate\r\n";
 echo"  rules: \r\n";
 
 # CloudGate模块
-echo "[Rule]\r\n";
 echo "# Default\r\n".Advanced(CURL(true,$RuleList['Default']).$CURLContent,$AutoGroup,$Apple).$Potatso_Default;
 if($Rule==='true'){echo "# PROXY\r\n".Advanced(CURL(true,$RuleList['Basic']).$CURLContent,$AutoGroup,$Apple).$Potatso_Proxy;}
 elseif($Rule==='false'){echo "# PROXY\r\n".Advanced(CURL(true,$RuleList['Advanced']).$CURLContent,$AutoGroup,$Apple).$Potatso_Proxy;}

@@ -9,19 +9,25 @@
  */
 
 # Verify String
-function Verify($DNS=NULL,$Logo=NULL,$SERVER1=NULL,$SERVER2=NULL,
-                $SERVER3=NULL,$SERVER4=NULL,$SERVER5=NULL,$Group=NULL,
-                $Rule=NULL,$IPV6=NULL,$Apple=NULL,$WIFIAccess=NULL,
-                $AutoGroup=NULL,$Interval=NULL,$Tolerance=NULL)
+function Verify($DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,
+                $SERVER4=NULL,$SERVER5=NULL,$SERVER6=NULL,$SERVER7=NULL,$SERVER8=NULL,
+                $SERVER9=NULL,$SERVER0=NULL,$Group=NULL,$Rule=NULL,$IPV6=NULL,
+                $Apple=NULL,$WIFIAccess=NULL,$AutoGroup=NULL,$Interval=NULL,$Tolerance=NULL)
 {
-    global $DNS,$Logo,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$Group;
-    global $Rule,$IPV6,$Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance;
+    global $DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6;
+    global $SERVER7,$SERVER8,$SERVER9,$SERVER0,$Rule,$Group,$IPV6;
+    global $Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance;
     !empty($DNS) ? $DNS = $DNS : $DNS = 'true,2,8.8.8.8,8.8.4.4';
     !empty($SERVER1) ? $SERVER1 = $SERVER1:$SERVER1 = 'NONE1,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER2) ? $SERVER2 = $SERVER2:$SERVER2 = 'NONE2,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER3) ? $SERVER3 = $SERVER3:$SERVER3 = 'NONE3,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER4) ? $SERVER4 = $SERVER4:$SERVER4 = 'NONE4,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER5) ? $SERVER5 = $SERVER5:$SERVER5 = 'NONE5,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER6) ? $SERVER6 = $SERVER6:$SERVER6 = 'NONE6,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER7) ? $SERVER7 = $SERVER7:$SERVER7 = 'NONE7,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER8) ? $SERVER8 = $SERVER8:$SERVER8 = 'NONE8,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER9) ? $SERVER9 = $SERVER9:$SERVER9 = 'NONE9,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER0) ? $SERVER0 = $SERVER0:$SERVER0 = 'NONE0,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($Group) ? $Group = $Group : $Group = '2';
     !empty($Rule)  ? $Rule  = $Rule  : $Rule  = 'false';
     !empty($IPV6)  ? $IPV6  = $IPV6  : $IPV6  = 'false';
@@ -33,7 +39,7 @@ function Verify($DNS=NULL,$Logo=NULL,$SERVER1=NULL,$SERVER2=NULL,
 }
 
 # Explode String
-function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,$SERVER4=NULL,$SERVER5=NULL){
+function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,$SERVER4=NULL,$SERVER5=NULL,$SERVER6=NULL,$SERVER7=NULL,$SERVER8=NULL,$SERVER9=NULL,$SERVER0=NULL){
     global $SERVER1_Exp,$SERVER2_Exp,$SERVER3_Exp,$DNS_ExpA;
     global $SERVER_Implode,$DNS_Implode,$Potatso_List;
     $SERVER1_ExpA = explode(',',$SERVER1,3);
@@ -41,9 +47,19 @@ function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL
     $SERVER3_ExpA = explode(',',$SERVER3,3);
     $SERVER4_ExpA = explode(',',$SERVER4,3);
     $SERVER5_ExpA = explode(',',$SERVER5,3);
-    $SERVER1_Exp  = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0]);
-    $SERVER2_Exp  = array($SERVER1_ExpA[1],$SERVER2_ExpA[1],$SERVER3_ExpA[1],$SERVER4_ExpA[1],$SERVER5_ExpA[1]);
-    $SERVER3_Exp  = array($SERVER1_ExpA[2],$SERVER2_ExpA[2],$SERVER3_ExpA[2],$SERVER4_ExpA[2],$SERVER5_ExpA[2]);
+    $SERVER6_ExpA = explode(',',$SERVER6,3);
+    $SERVER7_ExpA = explode(',',$SERVER7,3);
+    $SERVER8_ExpA = explode(',',$SERVER8,3);
+    $SERVER9_ExpA = explode(',',$SERVER9,3);
+    $SERVER0_ExpA = explode(',',$SERVER0,3);
+    $SERVER1_Exp  = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0],$SERVER6_ExpA[0],$SERVER7_ExpA[0],$SERVER8_ExpA[0],$SERVER9_ExpA[0],$SERVER0_ExpA[0]);
+    $SERVER2_Exp  = array($SERVER1_ExpA[1],$SERVER2_ExpA[1],$SERVER3_ExpA[1],$SERVER4_ExpA[1],$SERVER5_ExpA[1],$SERVER6_ExpA[1],$SERVER7_ExpA[1],$SERVER8_ExpA[1],$SERVER9_ExpA[1],$SERVER0_ExpA[1]);
+    $SERVER3_Exp  = array($SERVER1_ExpA[2],$SERVER2_ExpA[2],$SERVER3_ExpA[2],$SERVER4_ExpA[2],$SERVER5_ExpA[2],$SERVER6_ExpA[2],$SERVER7_ExpA[2],$SERVER8_ExpA[2],$SERVER9_ExpA[2],$SERVER0_ExpA[2]);
+    $Group==='10'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0],$SERVER6_ExpA[0],$SERVER7_ExpA[0],$SERVER8_ExpA[0],$SERVER9_ExpA[0],$SERVER0_ExpA[0]):false;
+    $Group==='9'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0],$SERVER6_ExpA[0],$SERVER7_ExpA[0],$SERVER8_ExpA[0],$SERVER9_ExpA[0]):false;
+    $Group==='8'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0],$SERVER6_ExpA[0],$SERVER7_ExpA[0],$SERVER8_ExpA[0]):false;
+    $Group==='7'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0],$SERVER6_ExpA[0],$SERVER7_ExpA[0]):false;
+    $Group==='6'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0],$SERVER6_ExpA[0]):false;
     $Group==='5'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0],$SERVER5_ExpA[0]):false;
     $Group==='4'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0],$SERVER4_ExpA[0]):false;
     $Group==='3'?$SERVER_Imp = array($SERVER1_ExpA[0],$SERVER2_ExpA[0],$SERVER3_ExpA[0]):false;
@@ -61,16 +77,31 @@ function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL
     $Potatso3_Exp  = explode(',',$SERVER3);
     $Potatso4_Exp  = explode(',',$SERVER4);
     $Potatso5_Exp  = explode(',',$SERVER5);
+    $Potatso6_Exp  = explode(',',$SERVER6);
+    $Potatso7_Exp  = explode(',',$SERVER7);
+    $Potatso8_Exp  = explode(',',$SERVER8);
+    $Potatso9_Exp  = explode(',',$SERVER9);
+    $Potatso0_Exp  = explode(',',$SERVER0);
     $Potatso1_List = "- name: {$Potatso1_Exp[0]}\r\n  type: {$Potatso1_Exp[1]}\r\n  host: {$Potatso1_Exp[2]}\r\n  port: {$Potatso1_Exp[3]}\r\n  encryption: {$Potatso1_Exp[4]}\r\n  password: {$Potatso1_Exp[5]}\r\n";
     $Potatso2_List = "- name: {$Potatso2_Exp[0]}\r\n  type: {$Potatso2_Exp[1]}\r\n  host: {$Potatso2_Exp[2]}\r\n  port: {$Potatso2_Exp[3]}\r\n  encryption: {$Potatso2_Exp[4]}\r\n  password: {$Potatso2_Exp[5]}\r\n";
     $Potatso3_List = "- name: {$Potatso3_Exp[0]}\r\n  type: {$Potatso3_Exp[1]}\r\n  host: {$Potatso3_Exp[2]}\r\n  port: {$Potatso3_Exp[3]}\r\n  encryption: {$Potatso3_Exp[4]}\r\n  password: {$Potatso3_Exp[5]}\r\n";
     $Potatso4_List = "- name: {$Potatso4_Exp[0]}\r\n  type: {$Potatso4_Exp[1]}\r\n  host: {$Potatso4_Exp[2]}\r\n  port: {$Potatso4_Exp[3]}\r\n  encryption: {$Potatso4_Exp[4]}\r\n  password: {$Potatso4_Exp[5]}\r\n";
     $Potatso5_List = "- name: {$Potatso5_Exp[0]}\r\n  type: {$Potatso5_Exp[1]}\r\n  host: {$Potatso5_Exp[2]}\r\n  port: {$Potatso5_Exp[3]}\r\n  encryption: {$Potatso5_Exp[4]}\r\n  password: {$Potatso5_Exp[5]}\r\n";
-    $Group<'6'?$Potatso_List="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}":false;
-    $Group<'5'?$Potatso_List="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}":false;
-    $Group<'4'?$Potatso_List="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}":false;
-    $Group<'3'?$Potatso_List="{$Potatso1_List}{$Potatso2_List}":false;
-    $Group<'2'?$Potatso_List="{$Potatso1_List}":false;
+    $Potatso6_List = "- name: {$Potatso6_Exp[0]}\r\n  type: {$Potatso6_Exp[1]}\r\n  host: {$Potatso6_Exp[2]}\r\n  port: {$Potatso6_Exp[3]}\r\n  encryption: {$Potatso6_Exp[4]}\r\n  password: {$Potatso6_Exp[5]}\r\n";
+    $Potatso7_List = "- name: {$Potatso7_Exp[0]}\r\n  type: {$Potatso7_Exp[1]}\r\n  host: {$Potatso7_Exp[2]}\r\n  port: {$Potatso7_Exp[3]}\r\n  encryption: {$Potatso7_Exp[4]}\r\n  password: {$Potatso7_Exp[5]}\r\n";
+    $Potatso8_List = "- name: {$Potatso8_Exp[0]}\r\n  type: {$Potatso8_Exp[1]}\r\n  host: {$Potatso8_Exp[2]}\r\n  port: {$Potatso8_Exp[3]}\r\n  encryption: {$Potatso8_Exp[4]}\r\n  password: {$Potatso8_Exp[5]}\r\n";
+    $Potatso9_List = "- name: {$Potatso9_Exp[0]}\r\n  type: {$Potatso9_Exp[1]}\r\n  host: {$Potatso9_Exp[2]}\r\n  port: {$Potatso9_Exp[3]}\r\n  encryption: {$Potatso9_Exp[4]}\r\n  password: {$Potatso9_Exp[5]}\r\n";
+    $Potatso0_List = "- name: {$Potatso0_Exp[0]}\r\n  type: {$Potatso0_Exp[1]}\r\n  host: {$Potatso0_Exp[2]}\r\n  port: {$Potatso0_Exp[3]}\r\n  encryption: {$Potatso0_Exp[4]}\r\n  password: {$Potatso0_Exp[5]}\r\n";
+    $Group<'11'?$Potatso_List="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}{$Potatso6_List}{$Potatso7_List}{$Potatso8_List}{$Potatso9_List}{$Potatso0_List}":false;
+    $Group<'10'?$Potatso_List="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}{$Potatso6_List}{$Potatso7_List}{$Potatso8_List}{$Potatso9_List}":false;
+    $Group<'9'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}{$Potatso6_List}{$Potatso7_List}{$Potatso8_List}":false;
+    $Group<'8'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}{$Potatso6_List}{$Potatso7_List}":false;
+    $Group<'7'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}{$Potatso6_List}":false;
+    $Group<'6'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}{$Potatso5_List}":false;
+    $Group<'5'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}{$Potatso4_List}":false;
+    $Group<'4'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}{$Potatso3_List}":false;
+    $Group<'3'?$Potatso_List ="{$Potatso1_List}{$Potatso2_List}":false;
+    $Group<'2'?$Potatso_List ="{$Potatso1_List}":false;
 }
 
 # RegExp Replace
