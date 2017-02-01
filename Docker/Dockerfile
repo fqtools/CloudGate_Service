@@ -6,7 +6,7 @@ FROM alpine:latest
 MAINTAINER BurpSuite <Service@BurpSuite.Site>
 
 # APK 自动安装 PHP 相关的依赖包
-RUN apk --update add wget nginx php7 php7-fpm php7-curl openssl supervisor --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
+RUN apk --update add wget nginx php7 php7-fpm php7-curl php7-openssl openssl supervisor --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
 
 # 移动 NGINX 配置文件
 COPY Docker/nginx.conf /etc/nginx/nginx.conf
