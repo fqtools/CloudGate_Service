@@ -34,9 +34,9 @@ require_once "Request.php";
 require_once "Replace.php";
 
 # CloudGate配置信息
-$ModuleAPI  = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Rule/';
+$ModuleAPI  = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-List/master/Rule/';
 $HostsAPI   = 'https://raw.githubusercontent.com/racaljk/hosts/master/hosts';
-$ConfigFile = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/Module/Module';
+$CryptoFile = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-List/master/Encrypt/Crypto';
 $AutoURL    = 'http://www.gstatic.com/generate_204';
 $HostsFix   = '219.76.4.3';
 $Host       = 'https';
