@@ -45,10 +45,10 @@ $Bypass     = '10.0.0.0/8, 127.0.0.0/24, 172.0.0.0/8, 192.168.0.0/16';
 $Cache      = '?Cache='.sha1(mt_rand()).'&TimeStamp='.time();
 
 # ClouGate模块地址
-$Potatso_Config_Module      = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/General/Potatso_General.cfg';
-$ABIGT_Config_Module        = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/General/A.BIG.T_General.cfg';
-$Surge_Config_Module        = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/General/Surge_General.cfg';
-$Shadowrocket_Config_Module = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-RuleList/master/General/Shadowrocket_General.cfg';
+$Potatso_Config_Module      = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-List/master/Cloud/Potatso_General.cfg';
+$ABIGT_Config_Module        = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-List/master/Cloud/A.BIG.T_General.cfg';
+$Surge_Config_Module        = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-List/master/Cloud/Surge_General.cfg';
+$Shadowrocket_Config_Module = 'https://raw.githubusercontent.com/BurpSuite/CloudGate-List/master/Cloud/Shadowrocket_General.cfg';
 
 # CloudGate规则列表
 !empty($_GET['List'])?$ModuleAPI=$_GET['List']:$ModuleAPI=$ModuleAPI;
