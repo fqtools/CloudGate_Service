@@ -2,7 +2,7 @@
 
 /*
  * License: MIT
- *    Time: 2017-01-20 11:14:17
+ *    Time: 2017-02-08 06:42:34
  *    Name: Potatso.php
  *    Note: CloudGate Potatso Basic Rule
  *  Author: Eval,BurpSuite
@@ -24,12 +24,12 @@ echo"- name: CloudGate\r\n";
 echo"  rules: \r\n";
 
 # CloudGate模块
-echo "# Default\r\n".Replace(CURL(true,$RuleList['Default']).$CURLContent,false,false,true,false,false).$Potatso_Default;
-echo "# PROXY\r\n".Replace(CURL(true,$RuleList['Advanced']).$CURLContent,false,false,true,false,false).$Potatso_Advanced;
-echo "# DIRECT\r\n".Replace(CURL(true,$RuleList['DIRECT']).$CURLContent,false,false,true,false,false).$Potatso_DIRECT;
-echo "# REJECT\r\n".Replace(CURL(true,$RuleList['REJECT']).$CURLContent,false,false,true,false,false).$Potatso_REJECT;
-echo "# KEYWORD\r\n".Replace(CURL(true,$RuleList['KEYWORD']).$CURLContent,false,false,true,false,false).$Potatso_KEYWORD;
-echo "# IPCIDR\r\n".Replace(CURL(true,$RuleList['IPCIDR']).$CURLContent,false,false,true,false,false).$Potatso_IPCIDR;
-echo "# Other\r\n".Replace(CURL(true,$RuleList['Other']).$CURLContent,false,false,true,false,false).$Potatso_Other;
+echo Replace(CURL(true,$RuleList['Default']).$CURLContent,false,false,true,false,false).$Potatso_Default;
+echo Replace(CURL(true,$RuleList['Advanced']).$CURLContent,false,false,true,false,false).$Potatso_Advanced;
+echo Replace(CURL(true,$RuleList['DIRECT']).$CURLContent,false,false,true,false,false).$Potatso_DIRECT;
+echo Replace(CURL(true,$RuleList['REJECT']).$CURLContent,false,false,true,false,false).$Potatso_REJECT;
+echo Replace(CURL(true,$RuleList['KEYWORD']).$CURLContent,false,false,true,false,false).$Potatso_KEYWORD;
+echo Replace(CURL(true,$RuleList['IPCIDR']).$CURLContent,false,false,true,false,false).$Potatso_IPCIDR;
+echo Replace(CURL(true,$RuleList['Other']).$CURLContent,false,false,true,false,false).$Potatso_Other;
 
 ?>

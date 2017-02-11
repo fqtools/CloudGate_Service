@@ -12,11 +12,12 @@
 function Verify($DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,
                 $SERVER4=NULL,$SERVER5=NULL,$SERVER6=NULL,$SERVER7=NULL,$SERVER8=NULL,
                 $SERVER9=NULL,$SERVER0=NULL,$Group=NULL,$Rule=NULL,$IPV6=NULL,
-                $Apple=NULL,$WIFIAccess=NULL,$AutoGroup=NULL,$Interval=NULL,$Tolerance=NULL)
+                $Apple=NULL,$WIFIAccess=NULL,$AutoGroup=NULL,$Interval=NULL,$Tolerance=NULL,
+                $TimeOut=NULL,$AGENT=NULL)
 {
     global $DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6;
     global $SERVER7,$SERVER8,$SERVER9,$SERVER0,$Rule,$Group,$IPV6;
-    global $Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance;
+    global $Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut;
     !empty($DNS) ? $DNS = $DNS : $DNS = 'true,2,8.8.8.8,8.8.4.4';
     !empty($SERVER1) ? $SERVER1 = $SERVER1:$SERVER1 = 'NONE1,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER2) ? $SERVER2 = $SERVER2:$SERVER2 = 'NONE2,custom,127.0.0.1,80,aes-256-cfb,Password';
@@ -36,6 +37,8 @@ function Verify($DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,
     !empty($AutoGroup)  ? $AutoGroup  = $AutoGroup  : $AutoGroup  = 'false';
     !empty($Interval)   ? $Interval   = $Interval   : $Interval   = '600';
     !empty($Tolerance)  ? $Tolerance  = $Tolerance  : $Tolerance  = '200';
+    !empty($TimeOut)    ? $TimeOut    = $TimeOut    : $TimeOut    = '5';
+    !empty($AGENT)  ? $AGENT  = $AGENT  : $AGENT  = 'false';
 }
 
 # Explode String
@@ -110,39 +113,43 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
     if($Surge===true)
     {
         global $Surge_Default,$Surge_Advanced,$Surge_Basic;
-        global $Surge_DIRECT,$Surge_REJECT,$Surge_KEYWORD;
-        global $Surge_IPCIDR,$Surge_Rewrite,$Surge_Other;
-        $Surge_Default         = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace."\r\n");
+        global $Surge_DIRECT,$Surge_REJECT,$Surge_KEYWORD,$Surge_Host;
+        global $Surge_IPCIDR,$Surge_Rewrite,$Surge_Other,$Surge_USERAGENT;
+        $Surge_Default         = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
         $Surge_Advanced        = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
         $Surge_Basic           = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
         $Surge_DIRECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
         $Surge_REJECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,REJECT',$Replace);
         $Surge_KEYWORD         = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
         $Surge_IPCIDR          = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
-        $Surge_Rewrite         = preg_replace('/(\^)(http:\/\/)([a-zA-Z0-9_\-\/.%?]+ )(.*)(\w+)/','$1$2$3$4$5',$Replace);
-        $Surge_Other           = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace."\r\n");
+        $Surge_Rewrite         = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);
+        $Surge_Other           = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
+        $Surge_USERAGENT       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/]+,)([a-zA-Z]+)/','$1$2$3',$Replace);
+        $Surge_Host            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
     }
     elseif($Shadowrocket===true)
     {
         global $Shadowrocket_Default,$Shadowrocket_Advanced,$Shadowrocket_Basic;
         global $Shadowrocket_DIRECT,$Shadowrocket_REJECT,$Shadowrocket_KEYWORD;
         global $Shadowrocket_IPCIDR,$Shadowrocket_Rewrite,$Shadowrocket_Other;
-        $Shadowrocket_Default  = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace."\r\n");
+        global $Shadowrocket_Host;
+        $Shadowrocket_Default  = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
         $Shadowrocket_Advanced = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
         $Shadowrocket_Basic    = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
         $Shadowrocket_DIRECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
         $Shadowrocket_REJECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,REJECT',$Replace);
         $Shadowrocket_KEYWORD  = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
         $Shadowrocket_IPCIDR   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
-        $Shadowrocket_Rewrite  = preg_replace('/(\^)(http:\/\/)([a-zA-Z0-9_\-\/.%?]+ )(.*)(\w+)/','$1$2$3$4$5',$Replace);
-        $Shadowrocket_Other    = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace."\r\n");
+        $Shadowrocket_Rewrite  = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);
+        $Shadowrocket_Other    = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
+        $Shadowrocket_Host     = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
     }
     elseif($Potatso===true)
     {
         global $Potatso_Default,$Potatso_Advanced;
         global $Potatso_Basic,$Potatso_DIRECT,$Potatso_REJECT;
         global $Potatso_KEYWORD,$Potatso_IPCIDR,$Potatso_Other;
-        $Potatso_Default       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,DIRECT',$Replace."\r\n");
+        $Potatso_Default       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,DIRECT',$Replace);
         $Potatso_Advanced      = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,Proxy',$Replace);
         $Potatso_Basic         = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,Proxy',$Replace);
         $Potatso_DIRECT        = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,DIRECT',$Replace);
@@ -157,16 +164,18 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         global $ABIGT_Default,$ABIGT_Advanced,$ABIGT_Basic;
         global $ABIGT_DIRECT,$ABIGT_REJECT,$ABIGT_KEYWORD;
         global $ABIGT_IPCIDR,$ABIGT_Rewrite,$ABIGT_Other,$ABIGT_USERAGENT;
-        $ABIGT_Default         = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace."\r\n");
+        global $ABIGT_Host;
+        $ABIGT_Default         = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
         $ABIGT_Advanced        = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
         $ABIGT_Basic           = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1,Proxy$2',$Replace);
         $ABIGT_DIRECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1,DIRECT$2',$Replace);
         $ABIGT_REJECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1,REJECT$2',$Replace);
         $ABIGT_KEYWORD         = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
         $ABIGT_IPCIDR          = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
-        $ABIGT_Rewrite         = preg_replace('/(\^)(http:\/\/)([a-zA-Z0-9_\-\/.%?]+ )(.*)(\w+)/','$1$2$3$4$5',$Replace);
-        $ABIGT_Other           = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace."\r\n");
-        $ABIGT_USERAGENT       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/]+,)([a-zA-Z]+)/','$1$2$3',$Replace."\r\n");
+        $ABIGT_Rewrite         = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);
+        $ABIGT_Other           = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
+        $ABIGT_USERAGENT       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/]+,)([a-zA-Z]+)/','$1$2$3',$Replace);
+        $ABIGT_Host            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
     }
     elseif($Wingy===true)
     {
@@ -197,12 +206,12 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         $Wingy_KEYWORD_REJECTC = preg_replace('/([0-9a-zA-Z]+)(\-\w+\--\w+)([ \s]+)/','',$Wingy_KEYWORD_REJECTB);
         $Wingy_KEYWORD_REJECTD = preg_replace('/([0-9a-zA-Z]+)(\-\w+\--\w+)/','',$Wingy_KEYWORD_REJECTC);
         $Wingy_KEYWORD_REJECT  = preg_replace('/([0-9a-zA-Z]+)(,REJECT)/','      - k,$1',$Wingy_KEYWORD_REJECTD);
-        $Wingy_IPCIDR_ProxyA   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,DIRECT)/','$1$2-DIRECT--DIRECT',$Replace)."\r\n";
+        $Wingy_IPCIDR_ProxyA   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,DIRECT)/','$1$2-DIRECT--DIRECT',$Replace);
         $Wingy_IPCIDR_ProxyB   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,REJECT)/','$1$2-REJECT--REJECT',$Wingy_IPCIDR_ProxyA);
         $Wingy_IPCIDR_ProxyC   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\-\w+\--\w+)([ \s]+)/','',$Wingy_IPCIDR_ProxyB);
         $Wingy_IPCIDR_ProxyD   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\-\w+\--\w+)/','',$Wingy_IPCIDR_ProxyC);
         $Wingy_IPCIDR_Proxy    = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,Proxy)/','      - $1$2',$Wingy_IPCIDR_ProxyD);
-        $Wingy_IPCIDR_DIRECTA  = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,Proxy)/','$1$2-Proxy--Proxy',$Replace)."\r\n";
+        $Wingy_IPCIDR_DIRECTA  = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,Proxy)/','$1$2-Proxy--Proxy',$Replace);
         $Wingy_IPCIDR_DIRECTB  = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+)(,REJECT)/','$1$2-REJECT--REJECT',$Wingy_IPCIDR_DIRECTA);
         $Wingy_IPCIDR_DIRECTC  = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\-\w+\--\w+)([ \s]+)/','',$Wingy_IPCIDR_DIRECTB);
         $Wingy_IPCIDR_DIRECTD  = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\-\w+\--\w+)/','',$Wingy_IPCIDR_DIRECTC);
@@ -222,44 +231,46 @@ function Hosts_Replace($Replace=false,$Hosts=false,$HostsFix=false)
     {
         global $Hosts_Format_Replace,$Hosts_KEYWORD,$Hosts_IPCIDR;
         global $Hosts_Other,$Hosts_YouTube,$Hosts_REJECT,$Hosts_Rewrite;
+        global $Hosts_Host;
         $Hosts_Format_ReplaceA = preg_replace('/(\d+\.\d+\.\d+\.\d+)([ \t]+)([a-zA-Z0-9_\-\/.]+)/', '$3 = $1', $Replace);
         $Hosts_Format_Replace  = preg_replace('/(::)/', '# ::', $Hosts_Format_ReplaceA);
         $Hosts_KEYWORDA        = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
         $Hosts_KEYWORD         = preg_replace('/(Proxy)/', 'DIRECT', $Hosts_KEYWORDA);
         $Hosts_IPCIDRA         = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
         $Hosts_IPCIDR          = preg_replace('/(Proxy)/', 'DIRECT', $Hosts_IPCIDRA);
-        $Hosts_OtherA          = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace."\r\n");
+        $Hosts_OtherA          = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
         $Hosts_Other           = preg_replace('/(Proxy)/', 'DIRECT', $Hosts_OtherA);
         $Hosts_REJECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,REJECT',$Replace);
-        $Hosts_YouTube         = preg_replace('/([a-zA-Z0-9_\-\/.%]+)/', "$1 = {$HostsFix}", $Replace . "\r\n");
-        $Hosts_Rewrite         = preg_replace('/(\^)(http:\/\/)([a-zA-Z0-9_\-\/.%?]+ )(.*)(\w+)/','$1$2$3$4$5',$Replace);
+        $Hosts_YouTube         = preg_replace('/([a-zA-Z0-9_\-\/.%]+)/', "$1 = {$HostsFix}", $Replace);
+        $Hosts_Host            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
+        $Hosts_Rewrite         = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);
     }
 }
 
 # Advanced Replace
 function Advanced($Replace,$AutoGroup,$Apple){
-    global $Default,$Proxy,$DIRECT,$REJECT,$KEYWORD,$IPCIDR,$Rewrite,$Other;
+    global $Default,$Proxy,$DIRECT,$REJECT,$KEYWORD,$IPCIDR,$Rewrite,$Other,$USERAGENT,$Hosts;
     global $Potatso_Default,$Potatso_Proxy,$Potatso_DIRECT,$Potatso_REJECT;
     global $Potatso_KEYWORD,$Potatso_IPCIDR,$Potatso_Other;
     if($AutoGroup==='true'&&$Apple==='true'){
-        $Advanced_Proxy   = 'AutoGroup';$Advanced_KEYWORD = 'AutoGroup';
-        $Advanced_IPCIDR  = 'AutoGroup';$Advanced_Other   = 'AutoGroup';
-        $Advanced_Default = 'AutoGroup';
+        $Advanced_Proxy   = 'AutoGroup';$Advanced_KEYWORD   = 'AutoGroup';
+        $Advanced_IPCIDR  = 'AutoGroup';$Advanced_Other     = 'AutoGroup';
+        $Advanced_Default = 'AutoGroup';$Advanced_USERAGENT = 'AutoGroup';
     }
     elseif($AutoGroup==='false'&&$Apple==='false'){
-        $Advanced_Proxy   = 'Proxy';$Advanced_KEYWORD = 'Proxy';
-        $Advanced_IPCIDR  = 'Proxy';$Advanced_Other   = 'Proxy';
-        $Advanced_Default = 'DIRECT';
+        $Advanced_Proxy   = 'Proxy'; $Advanced_KEYWORD   = 'Proxy';
+        $Advanced_IPCIDR  = 'Proxy'; $Advanced_Other     = 'Proxy';
+        $Advanced_Default = 'DIRECT';$Advanced_USERAGENT = 'Proxy';
     }
     elseif($AutoGroup==='true'&&$Apple==='false'){
-        $Advanced_Proxy   = 'AutoGroup';$Advanced_KEYWORD = 'AutoGroup';
-        $Advanced_IPCIDR  = 'AutoGroup';$Advanced_Other   = 'AutoGroup';
-        $Advanced_Default = 'DIRECT';
+        $Advanced_Proxy   = 'AutoGroup';$Advanced_KEYWORD   = 'AutoGroup';
+        $Advanced_IPCIDR  = 'AutoGroup';$Advanced_Other     = 'AutoGroup';
+        $Advanced_Default = 'DIRECT';   $Advanced_USERAGENT = 'AutoGroup';
     }
     elseif($AutoGroup==='false'&&$Apple==='true'){
-        $Advanced_Proxy   = 'Proxy';$Advanced_KEYWORD = 'Proxy';
-        $Advanced_IPCIDR  = 'Proxy';$Advanced_Other   = 'Proxy';
-        $Advanced_Default = 'Proxy';
+        $Advanced_Proxy   = 'Proxy';$Advanced_KEYWORD   = 'Proxy';
+        $Advanced_IPCIDR  = 'Proxy';$Advanced_Other     = 'Proxy';
+        $Advanced_Default = 'Proxy';$Advanced_USERAGENT = 'Proxy';
     }
     elseif($AutoGroup==='select'&&$Apple==='true'){
         $Advanced_Proxy   = 'Auto';$Advanced_KEYWORD = 'Auto';
@@ -267,28 +278,30 @@ function Advanced($Replace,$AutoGroup,$Apple){
         $Advanced_Default = 'Auto';
     }
     elseif($AutoGroup==='select'&&$Apple==='false'){
-        $Advanced_Proxy   = 'Auto';$Advanced_KEYWORD = 'Auto';
-        $Advanced_IPCIDR  = 'Auto';$Advanced_Other   = 'Auto';
-        $Advanced_Default = 'DIRECT';
+        $Advanced_Proxy   = 'Auto';  $Advanced_KEYWORD   = 'Auto';
+        $Advanced_IPCIDR  = 'Auto';  $Advanced_Other     = 'Auto';
+        $Advanced_Default = 'DIRECT';$Advanced_USERAGENT = 'Auto';
     }
     else{
-        $Advanced_Proxy   = 'Proxy';$Advanced_KEYWORD = 'Proxy';
-        $Advanced_IPCIDR  = 'Proxy';$Advanced_Other   = 'Proxy';
-        $Advanced_Default = 'DIRECT';
+        $Advanced_Proxy   = 'Proxy'; $Advanced_KEYWORD   = 'Proxy';
+        $Advanced_IPCIDR  = 'Proxy'; $Advanced_Other     = 'Proxy';
+        $Advanced_Default = 'DIRECT';$Advanced_USERAGENT = 'Proxy';
     }
-    $Default  = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"$1$2,{$Advanced_Default}",$Replace."\r\n");
-    $Proxy    = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"$1$2,{$Advanced_Proxy}",$Replace);
-    $DIRECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
-    $REJECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,REJECT',$Replace);
-    $KEYWORDA = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
-    $KEYWORD  = preg_replace('/(Proxy)/',"{$Advanced_KEYWORD}",$KEYWORDA);
-    $IPCIDRA  = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
-    $IPCIDR   = preg_replace('/(Proxy)/',"{$Advanced_IPCIDR}",$IPCIDRA);
-    $Rewrite  = preg_replace('/(\^)(http:\/\/)([a-zA-Z0-9_\-\/.%?]+ )(.*)(\w+)/','$1$2$3$4$5',$Replace);
-    $OtherA   = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
-    $Other    = preg_replace('/(Proxy)/',"{$Advanced_Other}",$OtherA."\r\n");
-
-    $Potatso_Default  = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"  - $1$2,{$Advanced_Default}",$Replace."\r\n");
+    $Default          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"$1$2,{$Advanced_Default}",$Replace);
+    $Proxy            = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"$1$2,{$Advanced_Proxy}",$Replace);
+    $DIRECT           = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
+    $REJECT           = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,REJECT',$Replace);
+    $KEYWORDA         = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
+    $KEYWORD          = preg_replace('/(Proxy)/',"{$Advanced_KEYWORD}",$KEYWORDA);
+    $IPCIDRA          = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
+    $IPCIDR           = preg_replace('/(Proxy)/',"{$Advanced_IPCIDR}",$IPCIDRA);
+    $USERAGENTA       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/]+,)([a-zA-Z]+)/','$1$2$3',$Replace);
+    $USERAGENT        = preg_replace('/(Proxy)/',"{$Advanced_USERAGENT}",$USERAGENTA);
+    $Rewrite          = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);
+    $OtherA           = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
+    $Other            = preg_replace('/(Proxy)/',"{$Advanced_Other}",$OtherA);
+    $Hosts            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
+    $Potatso_Default  = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"  - $1$2,{$Advanced_Default}",$Replace);
     $Potatso_Proxy    = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"  - $1$2,{$Advanced_Proxy}",$Replace);
     $Potatso_DIRECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,DIRECT',$Replace);
     $Potatso_REJECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,REJECT',$Replace);
