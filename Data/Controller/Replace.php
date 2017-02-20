@@ -13,11 +13,11 @@ function Verify($DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,
                 $SERVER4=NULL,$SERVER5=NULL,$SERVER6=NULL,$SERVER7=NULL,$SERVER8=NULL,
                 $SERVER9=NULL,$SERVER0=NULL,$Group=NULL,$Rule=NULL,$IPV6=NULL,
                 $Apple=NULL,$WIFIAccess=NULL,$AutoGroup=NULL,$Interval=NULL,$Tolerance=NULL,
-                $TimeOut=NULL,$AGENT=NULL)
+                $TimeOut=NULL,$AGENT=NULL,$MacOS=NULL)
 {
     global $DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6;
     global $SERVER7,$SERVER8,$SERVER9,$SERVER0,$Rule,$Group,$IPV6;
-    global $Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut;
+    global $Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut,$MacOS;
     !empty($DNS) ? $DNS = $DNS : $DNS = 'true,2,8.8.8.8,8.8.4.4';
     !empty($SERVER1) ? $SERVER1 = $SERVER1:$SERVER1 = 'NONE1,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER2) ? $SERVER2 = $SERVER2:$SERVER2 = 'NONE2,custom,127.0.0.1,80,aes-256-cfb,Password';
@@ -29,22 +29,24 @@ function Verify($DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,
     !empty($SERVER8) ? $SERVER8 = $SERVER8:$SERVER8 = 'NONE8,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER9) ? $SERVER9 = $SERVER9:$SERVER9 = 'NONE9,custom,127.0.0.1,80,aes-256-cfb,Password';
     !empty($SERVER0) ? $SERVER0 = $SERVER0:$SERVER0 = 'NONE0,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($Group) ? $Group = $Group : $Group = '2';
-    !empty($Rule)  ? $Rule  = $Rule  : $Rule  = 'false';
-    !empty($IPV6)  ? $IPV6  = $IPV6  : $IPV6  = 'false';
-    !empty($Apple) ? $Apple = $Apple : $Apple = 'false';
+    !empty($Group)   ? $Group   = $Group  : $Group  = '2';
+    !empty($Rule)    ? $Rule    = $Rule   : $Rule   = 'false';
+    !empty($IPV6)    ? $IPV6    = $IPV6   : $IPV6   = 'false';
+    !empty($Apple)   ? $Apple   = $Apple  : $Apple  = 'false';
     !empty($WIFIAccess) ? $WIFIAccess = $WIFIAccess : $WIFIAccess = 'false';
     !empty($AutoGroup)  ? $AutoGroup  = $AutoGroup  : $AutoGroup  = 'false';
     !empty($Interval)   ? $Interval   = $Interval   : $Interval   = '600';
     !empty($Tolerance)  ? $Tolerance  = $Tolerance  : $Tolerance  = '200';
     !empty($TimeOut)    ? $TimeOut    = $TimeOut    : $TimeOut    = '5';
-    !empty($AGENT)  ? $AGENT  = $AGENT  : $AGENT  = 'false';
+    !empty($AGENT)      ? $AGENT      = $AGENT      : $AGENT      = 'false';
+    !empty($MacOS)      ? $MacOS      = $MacOS      : $MacOS      = 'false';
 }
 
 # Explode String
-function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,$SERVER4=NULL,$SERVER5=NULL,$SERVER6=NULL,$SERVER7=NULL,$SERVER8=NULL,$SERVER9=NULL,$SERVER0=NULL){
-    global $SERVER1_Exp,$SERVER2_Exp,$SERVER3_Exp,$DNS_ExpA;
+function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,$SERVER4=NULL,$SERVER5=NULL,$SERVER6=NULL,$SERVER7=NULL,$SERVER8=NULL,$SERVER9=NULL,$SERVER0=NULL,$MacOS=NULL){
+    global $SERVER1_Exp,$SERVER2_Exp,$SERVER3_Exp,$DNS_ExpA,$MacOS_Exp;
     global $SERVER_Implode,$DNS_Implode,$Potatso_List;
+    $MacOS_Exp    = explode(',',$MacOS);
     $SERVER1_ExpA = explode(',',$SERVER1,3);
     $SERVER2_ExpA = explode(',',$SERVER2,3);
     $SERVER3_ExpA = explode(',',$SERVER3,3);
@@ -167,9 +169,9 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         global $ABIGT_Host;
         $ABIGT_Default         = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
         $ABIGT_Advanced        = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
-        $ABIGT_Basic           = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1,Proxy$2',$Replace);
-        $ABIGT_DIRECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1,DIRECT$2',$Replace);
-        $ABIGT_REJECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1,REJECT$2',$Replace);
+        $ABIGT_Basic           = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,Proxy',$Replace);
+        $ABIGT_DIRECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,DIRECT',$Replace);
+        $ABIGT_REJECT          = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','$1$2,REJECT',$Replace);
         $ABIGT_KEYWORD         = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/','DOMAIN-KEYWORD,$1$2,force-remote-dns',$Replace);
         $ABIGT_IPCIDR          = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','IP-CIDR,$1$2$3,no-resolve',$Replace);
         $ABIGT_Rewrite         = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);

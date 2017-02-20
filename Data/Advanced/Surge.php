@@ -16,16 +16,22 @@ require_once "../Controller/Controller.php";
 
 # 处理URI参数
 GET().parse_str($REQUEST_QUERY_URI);
-@Verify($DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0,$Group,$Rule,$IPV6,$Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut,$AGENT);
-Exp_lode($Group,$DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0);
+@Verify($DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0,$Group,$Rule,$IPV6,$Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut,$AGENT,$MacOS);
+Exp_lode($Group,$DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0,$MacOS);
 
 # REQUEST配置信息
 echo "#!MANAGED-CONFIG {$Host}://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']."\r\n";
 echo "[General]\r\n";
 echo CURL(true,$RuleList['General']).$CURLContent."\r\n";
-if($DNS_ExpA[0]==='true'){echo "dns-server = {$DNS_Implode}\r\n";}
+echo $DNS_ExpA[0]==='true'?"dns-server = {$DNS_Implode}\r\n":false;
 echo $WIFIAccess==='true'?"allow-wifi-access = {$WIFIAccess}\r\n":false;
 echo $IPV6==='true'?"ipv6 = true\r\n":false;
+if($MacOS_Exp[0]==='true'){
+    echo "interface = {$MacOS_Exp[1]}\r\n";
+    echo "socks-interface = {$MacOS_Exp[2]}\r\n";
+    echo "port = {$MacOS_Exp[3]}\r\n";
+    echo "socks-port = {$MacOS_Exp[4]}\r\n";
+}
 echo "#  \r\n";
 echo "# Surge Config File [CloudGate]\r\n";
 echo "# Download Time: " . date("Y-m-d H:i:s") . "\r\n";
