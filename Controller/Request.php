@@ -24,18 +24,16 @@ function Cloud($Data,$DefaultModule,$Cache){
 }
 
 # CURL Request
- function CURL($CURL, $File){
-    if ($CURL === true){
-        global $CURLContent;
-            $CURLSize = get_headers($File,true);
-            $CURLSize['Content-Length']<'524288'&&$CURLSize['Accept-Ranges']==='bytes'?$CURLFile=$File:$CURLFile=false;
-            $CURL = curl_init();
-            curl_setopt($CURL, CURLOPT_URL, $CURLFile);
-            curl_setopt($CURL, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($CURL, CURLOPT_TIMEOUT, 30);
-            $CURLContent = curl_exec($CURL);
-            curl_close($CURL);
-     }
+ function CURL($File=false){
+     global $CURLContent;
+     $CURLSize = get_headers($File,true);
+     $CURLSize['Content-Length']<'524288'&&$CURLSize['Accept-Ranges']==='bytes'?$CURLFile=$File:$CURLFile=false;
+     $CURL = curl_init();
+     curl_setopt($CURL, CURLOPT_URL, $CURLFile);
+     curl_setopt($CURL, CURLOPT_RETURNTRANSFER, true);
+     curl_setopt($CURL, CURLOPT_TIMEOUT, 30);
+     $CURLContent = curl_exec($CURL);
+     curl_close($CURL);
 }
 
 ?>

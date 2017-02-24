@@ -18,21 +18,21 @@ function Verify($DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL,
     global $DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6;
     global $SERVER7,$SERVER8,$SERVER9,$SERVER0,$Rule,$Group,$IPV6;
     global $Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut,$MacOS;
-    !empty($DNS) ? $DNS = $DNS : $DNS = 'true,2,8.8.8.8,8.8.4.4';
-    !empty($SERVER1) ? $SERVER1 = $SERVER1:$SERVER1 = 'NONE1,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER2) ? $SERVER2 = $SERVER2:$SERVER2 = 'NONE2,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER3) ? $SERVER3 = $SERVER3:$SERVER3 = 'NONE3,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER4) ? $SERVER4 = $SERVER4:$SERVER4 = 'NONE4,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER5) ? $SERVER5 = $SERVER5:$SERVER5 = 'NONE5,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER6) ? $SERVER6 = $SERVER6:$SERVER6 = 'NONE6,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER7) ? $SERVER7 = $SERVER7:$SERVER7 = 'NONE7,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER8) ? $SERVER8 = $SERVER8:$SERVER8 = 'NONE8,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER9) ? $SERVER9 = $SERVER9:$SERVER9 = 'NONE9,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($SERVER0) ? $SERVER0 = $SERVER0:$SERVER0 = 'NONE0,custom,127.0.0.1,80,aes-256-cfb,Password';
-    !empty($Group)   ? $Group   = $Group  : $Group  = '2';
-    !empty($Rule)    ? $Rule    = $Rule   : $Rule   = 'false';
-    !empty($IPV6)    ? $IPV6    = $IPV6   : $IPV6   = 'false';
-    !empty($Apple)   ? $Apple   = $Apple  : $Apple  = 'false';
+    !empty($DNS)        ? $DNS        = $DNS        : $DNS        = 'true,2,8.8.8.8,8.8.4.4';
+    !empty($SERVER1)    ? $SERVER1    = $SERVER1    : $SERVER1    = 'NONE1,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER2)    ? $SERVER2    = $SERVER2    : $SERVER2    = 'NONE2,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER3)    ? $SERVER3    = $SERVER3    : $SERVER3    = 'NONE3,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER4)    ? $SERVER4    = $SERVER4    : $SERVER4    = 'NONE4,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER5)    ? $SERVER5    = $SERVER5    : $SERVER5    = 'NONE5,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER6)    ? $SERVER6    = $SERVER6    : $SERVER6    = 'NONE6,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER7)    ? $SERVER7    = $SERVER7    : $SERVER7    = 'NONE7,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER8)    ? $SERVER8    = $SERVER8    : $SERVER8    = 'NONE8,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER9)    ? $SERVER9    = $SERVER9    : $SERVER9    = 'NONE9,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($SERVER0)    ? $SERVER0    = $SERVER0    : $SERVER0    = 'NONE0,custom,127.0.0.1,80,aes-256-cfb,Password';
+    !empty($Group)      ? $Group      = $Group      : $Group      = '2';
+    !empty($Rule)       ? $Rule       = $Rule       : $Rule       = 'false';
+    !empty($IPV6)       ? $IPV6       = $IPV6       : $IPV6       = 'false';
+    !empty($Apple)      ? $Apple      = $Apple      : $Apple      = 'false';
     !empty($WIFIAccess) ? $WIFIAccess = $WIFIAccess : $WIFIAccess = 'false';
     !empty($AutoGroup)  ? $AutoGroup  = $AutoGroup  : $AutoGroup  = 'false';
     !empty($Interval)   ? $Interval   = $Interval   : $Interval   = '600';
@@ -110,9 +110,9 @@ function Exp_lode($Group='2',$DNS=NULL,$SERVER1=NULL,$SERVER2=NULL,$SERVER3=NULL
 }
 
 # RegExp Replace
-function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,$ABIGT=false,$Wingy=false)
+function Replace($Replace=false,$Format=false)
 {
-    if($Surge===true)
+    if($Format==='Surge')
     {
         global $Surge_Default,$Surge_Advanced,$Surge_Basic;
         global $Surge_DIRECT,$Surge_REJECT,$Surge_KEYWORD,$Surge_Host;
@@ -129,7 +129,7 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         $Surge_USERAGENT       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/]+,)([a-zA-Z]+)/','$1$2$3',$Replace);
         $Surge_Host            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
     }
-    elseif($Shadowrocket===true)
+    elseif($Format==='Shadowrocket')
     {
         global $Shadowrocket_Default,$Shadowrocket_Advanced,$Shadowrocket_Basic;
         global $Shadowrocket_DIRECT,$Shadowrocket_REJECT,$Shadowrocket_KEYWORD;
@@ -146,7 +146,7 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         $Shadowrocket_Other    = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','$1$2$3',$Replace);
         $Shadowrocket_Host     = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
     }
-    elseif($Potatso===true)
+    elseif($Format==='Potatso')
     {
         global $Potatso_Default,$Potatso_Advanced;
         global $Potatso_Basic,$Potatso_DIRECT,$Potatso_REJECT;
@@ -161,7 +161,7 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         $Potatso_OtherA        = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','  - $1$2$3',$Replace);
         $Potatso_Other         = preg_replace('/(  - FINAL,Proxy)/','',$Potatso_OtherA);
     }
-    elseif($ABIGT===true)
+    elseif($Format==='A.BIG.T')
     {
         global $ABIGT_Default,$ABIGT_Advanced,$ABIGT_Basic;
         global $ABIGT_DIRECT,$ABIGT_REJECT,$ABIGT_KEYWORD;
@@ -179,7 +179,7 @@ function Replace($Replace=false,$Surge=false,$Shadowrocket=false,$Potatso=false,
         $ABIGT_USERAGENT       = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/]+,)([a-zA-Z]+)/','$1$2$3',$Replace);
         $ABIGT_Host            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
     }
-    elseif($Wingy===true)
+    elseif($Format==='Wingy')
     {
         global $Wingy_Default,$Wingy_Advanced,$Wingy_Basic,$Wingy_DIRECT;
         global $Wingy_REJECT,$Wingy_KEYWORD_DIRECT,$Wingy_KEYWORD_REJECT,$Wingy_KEYWORD_Proxy;
@@ -307,8 +307,7 @@ function Advanced($Replace,$AutoGroup,$Apple){
     $Potatso_Proxy    = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/',"  - $1$2,{$Advanced_Proxy}",$Replace);
     $Potatso_DIRECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,DIRECT',$Replace);
     $Potatso_REJECT   = preg_replace('/([A-Z\-\.]+,)([a-zA-Z0-9_\-\/.%]+)/','  - $1$2,REJECT',$Replace);
-    $Potatso_KEYWORDA = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/',"  - DOMAIN-MATCH,$1,$2",$Replace);
-    $Potatso_KEYWORD  = preg_replace('/(Proxy)/',"{$Advanced_KEYWORD}",$KEYWORDA);
+    $Potatso_KEYWORD  = preg_replace('/([0-9a-zA-Z\-\.]+,)([a-zA-Z]+)/',"  - DOMAIN-MATCH,$1$2",$Replace);
     $Potatso_IPCIDR   = preg_replace('/(\d+\.\d+\.\d+\.\d+)(\/\d+\,)([a-zA-Z]+)/','  - IP-CIDR,$1$2$3',$Replace);
     $Potatso_OtherA   = preg_replace('/([A-Z\-\.]+,)(.*)([a-zA-Z]+)/','  - $1$2$3',$Replace);
     $Potatso_Other    = preg_replace('/(  - FINAL,Proxy)/','',$Potatso_OtherA);

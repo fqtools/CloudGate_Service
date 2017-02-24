@@ -31,16 +31,16 @@ echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 
 # CloudGate模块
 echo "[Rule]\r\n";
-echo Replace(CURL(true,$RuleList['Default']).$CURLContent,true,false,false,false,false).$Surge_Default;
-echo Replace(CURL(true,$RuleList['Advanced']).$CURLContent,true,false,false,false,false).$Surge_Advanced;
-echo Replace(CURL(true,$RuleList['DIRECT']).$CURLContent,true,false,false,false,false).$Surge_DIRECT;
-echo Replace(CURL(true,$RuleList['REJECT']).$CURLContent,true,false,false,false,false).$Surge_REJECT;
-echo Replace(CURL(true,$RuleList['KEYWORD']).$CURLContent,true,false,false,false,false).$Surge_KEYWORD;
-echo Replace(CURL(true,$RuleList['IPCIDR']).$CURLContent,true,false,false,false,false).$Surge_IPCIDR;
-echo Replace(CURL(true,$RuleList['Other']).$CURLContent,true,false,false,false,false).$Surge_Other;
+echo Replace(CURL($RuleList['Default']).$CURLContent,'Surge').$Surge_Default;
+echo Replace(CURL($RuleList['Advanced']).$CURLContent,'Surge').$Surge_Advanced;
+echo Replace(CURL($RuleList['DIRECT']).$CURLContent,'Surge').$Surge_DIRECT;
+echo Replace(CURL($RuleList['REJECT']).$CURLContent,'Surge').$Surge_REJECT;
+echo Replace(CURL($RuleList['KEYWORD']).$CURLContent,'Surge').$Surge_KEYWORD;
+echo Replace(CURL($RuleList['IPCIDR']).$CURLContent,'Surge').$Surge_IPCIDR;
+echo Replace(CURL($RuleList['Other']).$CURLContent,'Surge').$Surge_Other;
 echo "[Host]\r\n";
-echo Replace(CURL(true,$RuleList['Host']).$CURLContent,true,false,false,false,false).$Surge_Host;
+echo Replace(CURL($RuleList['Host']).$CURLContent,'Surge').$Surge_Host;
 echo "[URL Rewrite]\r\n";
-echo Replace(CURL(true,$RuleList['Rewrite']).$CURLContent,true,false,false,false,false).$Surge_Rewrite;
+echo Replace(CURL($RuleList['Rewrite']).$CURLContent,'Surge').$Surge_Rewrite;
 
 ?>

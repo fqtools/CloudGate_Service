@@ -22,7 +22,7 @@ Exp_lode($Group,$DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERV
 # REQUEST配置信息
 echo "#!MANAGED-CONFIG {$Host}://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']."\r\n";
 echo "[General]\r\n";
-echo CURL(true,$RuleList['General']).$CURLContent."\r\n";
+echo CURL($RuleList['General']).$CURLContent."\r\n";
 echo $DNS_ExpA[0]==='true'?"dns-server = {$DNS_Implode}\r\n":false;
 echo $WIFIAccess==='true'?"allow-wifi-access = {$WIFIAccess}\r\n":false;
 echo $IPV6==='true'?"ipv6 = true\r\n":false;
@@ -46,18 +46,18 @@ if($AutoGroup==='select'){echo "AutoGroup = url-test,{$SERVER_Implode}, url = {$
 
 # CloudGate模块
 echo "[Rule]\r\n";
-echo Advanced(CURL(true,$RuleList['Default']).$CURLContent,$AutoGroup,$Apple).$Default;
-if($Rule==='true'){echo Advanced(CURL(true,$RuleList['Basic']).$CURLContent,$AutoGroup,$Apple).$Proxy;}
-elseif($Rule==='false'){echo Advanced(CURL(true,$RuleList['Advanced']).$CURLContent,$AutoGroup,$Apple).$Proxy;}
-echo Advanced(CURL(true,$RuleList['DIRECT']).$CURLContent,$AutoGroup,$Apple).$DIRECT;
-echo Advanced(CURL(true,$RuleList['REJECT']).$CURLContent,$AutoGroup,$Apple).$REJECT;
-echo Advanced(CURL(true,$RuleList['KEYWORD']).$CURLContent,$AutoGroup,$Apple).$KEYWORD;
-echo Advanced(CURL(true,$RuleList['IPCIDR']).$CURLContent,$AutoGroup,$Apple).$IPCIDR;
-if($AGENT==='true'){echo Advanced(CURL(true,$RuleList['USERAGENT']).$CURLContent,$AutoGroup,$Apple).$USERAGENT;}
-echo Advanced(CURL(true,$RuleList['Other']).$CURLContent,$AutoGroup,$Apple).$Other;
+echo Advanced(CURL($RuleList['Default']).$CURLContent,$AutoGroup,$Apple).$Default;
+if($Rule==='true'){echo Advanced(CURL($RuleList['Basic']).$CURLContent,$AutoGroup,$Apple).$Proxy;}
+elseif($Rule==='false'){echo Advanced(CURL($RuleList['Advanced']).$CURLContent,$AutoGroup,$Apple).$Proxy;}
+echo Advanced(CURL($RuleList['DIRECT']).$CURLContent,$AutoGroup,$Apple).$DIRECT;
+echo Advanced(CURL($RuleList['REJECT']).$CURLContent,$AutoGroup,$Apple).$REJECT;
+echo Advanced(CURL($RuleList['KEYWORD']).$CURLContent,$AutoGroup,$Apple).$KEYWORD;
+echo Advanced(CURL($RuleList['IPCIDR']).$CURLContent,$AutoGroup,$Apple).$IPCIDR;
+if($AGENT==='true'){echo Advanced(CURL($RuleList['USERAGENT']).$CURLContent,$AutoGroup,$Apple).$USERAGENT;}
+echo Advanced(CURL($RuleList['Other']).$CURLContent,$AutoGroup,$Apple).$Other;
 echo "[Host]\r\n";
-echo Advanced(CURL(true,$RuleList['Host']).$CURLContent,$AutoGroup,$Apple).$Hosts;
+echo Advanced(CURL($RuleList['Host']).$CURLContent,$AutoGroup,$Apple).$Hosts;
 echo "[URL Rewrite]\r\n";
-echo Advanced(CURL(true,$RuleList['Rewrite']).$CURLContent,$AutoGroup,$Apple).$Rewrite;
+echo Advanced(CURL($RuleList['Rewrite']).$CURLContent,$AutoGroup,$Apple).$Rewrite;
 
 ?>
