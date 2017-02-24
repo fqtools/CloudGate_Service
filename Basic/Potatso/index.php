@@ -12,7 +12,7 @@
 header('Content-Disposition: attachment; filename='.'Potatso.Conf');
 
 # ClouGate控制器
-require_once "../Controller/Controller.php";
+require_once "../../Controller/Controller.php";
 
 # Cloud配置信息
 echo"ruleSets:\r\n";

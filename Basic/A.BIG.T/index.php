@@ -12,7 +12,7 @@
 header('Content-Disposition: attachment; filename='.'A.BIG.T.Conf');
 
 # ClouGate控制器
-require_once "../Controller/Controller.php";
+require_once "../../Controller/Controller.php";
 
 # Cloud配置信息
 echo "[General]\r\n";

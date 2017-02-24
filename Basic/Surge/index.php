@@ -2,9 +2,9 @@
 
 /*
  * License: MIT
- *    Time: 2017-02-12 01:52:06
+ *    Time: 2017-02-12 00:16:46
  *    Name: Surge.php
- *    Note: CloudGate Surge Cloud Rule
+ *    Note: CloudGate Surge Basic Rule
  *  Author: Eval,BurpSuite
  */
 
@@ -12,15 +12,22 @@
 header('Content-Disposition: attachment; filename='.'Surge.Conf');
 
 # ClouGate控制器
-require_once "../Controller/Controller.php";
-
-# 处理URI参数
-GET().parse_str($REQUEST_QUERY_URI);
-@Verify($DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0,$Group,$Rule,$IPV6,$Apple,$WIFIAccess,$AutoGroup,$Interval,$Tolerance,$TimeOut,$AGENT);
-Exp_lode($Group,$DNS,$SERVER1,$SERVER2,$SERVER3,$SERVER4,$SERVER5,$SERVER6,$SERVER7,$SERVER8,$SERVER9,$SERVER0);
+require_once "../../Controller/Controller.php";
 
 # Cloud配置信息
-echo CURL(Cloud($Data,$Surge_Config_Module,$Cache).$ConfigFile).$CURLContent."\r\n";
+echo "[General]\r\n";
+echo CURL(true,$RuleList['General']).$CURLContent."\r\n";
+echo "dns-server = 8.8.8.8, 8.8.4.4\r\n";
+echo "#  \r\n";
+echo "# Surge Config File [CloudGate]\r\n";
+echo "# Download Time: " . date("Y-m-d H:i:s") . "\r\n";
+echo "# \r\n";
+echo "[Proxy]\r\n";
+echo "🇨🇳 = custom,172.0.0.1,80,aes-256-cfb,Password,$CryptoFile\r\n";
+echo "🇳🇫 = custom,172.0.0.1,80,aes-256-cfb,Password,$CryptoFile\r\n";
+echo "🇬🇧 = custom,172.0.0.1,80,aes-256-cfb,Password,$CryptoFile\r\n";
+echo "[Proxy Group]\r\n";
+echo "Proxy = select, 🇨🇳, 🇳🇫, 🇬🇧\r\n";
 
 # CloudGate模块
 echo "[Rule]\r\n";

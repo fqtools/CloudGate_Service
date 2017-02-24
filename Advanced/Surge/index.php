@@ -12,7 +12,7 @@
 header('Content-Disposition: attachment; filename='.'Surge.Conf');
 
 # ClouGate控制器
-require_once "../Controller/Controller.php";
+require_once "../../Controller/Controller.php";
 
 # 处理URI参数
 GET().parse_str($REQUEST_QUERY_URI);

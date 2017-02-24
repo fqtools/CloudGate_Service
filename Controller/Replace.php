@@ -227,10 +227,8 @@ function Replace($Replace=false,$Format=false)
 }
 
 # Hosts Replace
-function Hosts_Replace($Replace=false,$Hosts=false,$HostsFix=false)
+function Hosts_Replace($Replace=false,$HostsFix=false)
 {
-    if($Hosts===true)
-    {
         global $Hosts_Format_Replace,$Hosts_KEYWORD,$Hosts_IPCIDR;
         global $Hosts_Other,$Hosts_YouTube,$Hosts_REJECT,$Hosts_Rewrite;
         global $Hosts_Host;
@@ -246,7 +244,6 @@ function Hosts_Replace($Replace=false,$Hosts=false,$HostsFix=false)
         $Hosts_YouTube         = preg_replace('/([a-zA-Z0-9_\-\/.%]+)/', "$1 = {$HostsFix}", $Replace);
         $Hosts_Host            = preg_replace('/([0-9a-zA-Z._-]+)( = )([0-9a-zA-Z._-]+)/','$1$2$3',$Replace);
         $Hosts_Rewrite         = preg_replace('/([\^()]+)([0-9a-zA-Z:\/\\/\-\.|?+()_]+)(.*)(\w+)/','$1$2$3$4',$Replace);
-    }
 }
 
 # Advanced Replace
